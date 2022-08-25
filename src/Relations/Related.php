@@ -5,9 +5,10 @@ namespace SDamian\Larasort\Relations;
 use Illuminate\Database\Query\Builder;
 use SDamian\Larasort\Exception\LarasortException;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder as BuilderE;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 /**
  * Larasort - This Trait is useful for generate the href and CSS class attributes.
@@ -76,6 +77,9 @@ class Related
     private function getRelatedKeys(Relation $relation): array
     {
         if ($relation instanceof HasOne) {
+            $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
+            $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
+        } if ($relation instanceof HasMany) {
             $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
             $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
         } elseif ($relation instanceof BelongsTo) {
