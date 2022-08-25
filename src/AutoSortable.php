@@ -3,6 +3,7 @@
 namespace SDamian\Larasort;
 
 use Illuminate\Database\Query\Builder;
+use SDamian\Larasort\Support\Security;
 use SDamian\Larasort\Exception\LarasortException;
 use Illuminate\Database\Eloquent\Builder as BuilderE;
 
@@ -32,7 +33,8 @@ trait AutoSortable
      */
     final public function scopeAutosort(Builder|BuilderE $query, array $options = []): Builder|BuilderE
     {
-        $this->verifySortables();
+        $this->verifySortablesProperty();
+        Security::verifyScopeAutosortOptions($options);
 
         if (isset($options['related'])) {
             $related = new Related($this, $query, $options);
@@ -114,7 +116,18 @@ trait AutoSortable
         return $this->sortables;
     }
 
-    private function verifySortables(): void
+    private function hasRequestStr(): bool
+    {
+        return request()->has('orderby') && request()->orderby !== null;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Security
+    |--------------------------------------------------------------------------
+    */
+
+    private function verifySortablesProperty(): void
     {
         if (! property_exists($this, 'sortables')) {
             throw new LarasortException('The "$sortables" property must exist in the model.');
@@ -123,10 +136,5 @@ trait AutoSortable
         if (! is_array($this->sortables) || count($this->sortables) === 0) {
             throw new LarasortException('The "sortables" property must be an array with at least one element.');
         }
-    }
-
-    private function hasRequestStr(): bool
-    {
-        return request()->has('orderby') && request()->orderby !== null;
     }
 }

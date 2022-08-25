@@ -2,6 +2,7 @@
 
 namespace SDamian\Larasort;
 
+use SDamian\Larasort\Support\Security;
 use SDamian\Larasort\Traits\UtilsTrait;
 
 /**
@@ -115,6 +116,8 @@ final class Larasort
      */
     final public static function setSortablesDefaultOrder(array $sortablesDefaultOrder): void
     {
+        Security::verifyKeyIsAscOrDescAndValueIsArray($sortablesDefaultOrder);
+
         self::$sortablesDefaultOrder['desc'] = self::getSortablesDefaultOrderWithoutTable($sortablesDefaultOrder['desc'] ?? []);
         self::$sortablesDefaultOrder['asc'] = self::getSortablesDefaultOrderWithoutTable($sortablesDefaultOrder['asc'] ?? []);
     }
