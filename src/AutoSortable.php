@@ -27,12 +27,24 @@ use Illuminate\Database\Eloquent\Builder as BuilderE;
  */
 trait AutoSortable
 {
-    final public function scopeAutosort(Builder|BuilderE $query): Builder|BuilderE
+    /**
+     * @param array<mixed> $options
+     */
+    final public function scopeAutosort(Builder|BuilderE $query, array $options = []): Builder|BuilderE
     {
         $this->verifySortables();
 
-        // "$orderBy" can be null (it is if in the "$sortables" property we have asked that it is not ordered by by default).
-        $orderBy = $this->getSqlOrderBy();
+        if (isset($options['related'])) {
+            $related = new Related($this, $query, $options);
+            $related->makeRelationship();
+
+            if ($related->verifyRequestOrderBy($this->hasRequestStr(), $this->sortablesRelated ?? [])) {
+                $orderByRelated = $related->getSqlOrderBy(request()->orderby);
+            }
+        }
+
+        // "$this->getSqlOrderBy()" can be null (it is if in the "$sortables" property we have asked that it is not ordered by by default).
+        $orderBy = $orderByRelated ?? $this->getSqlOrderBy();
 
         if ($orderBy) {
             return $query->orderBy($orderBy, $this->getSqlOrder());
@@ -43,11 +55,9 @@ trait AutoSortable
 
     final public function getSqlOrderBy(): ?string
     {
-        $hasOrderByStr = request()->has('orderby') && request()->orderby !== null;
-
-        if ($hasOrderByStr && property_exists($this, 'sortablesAs') && in_array(request()->orderby, $this->sortablesAs)) {
+        if ($this->hasRequestStr() && property_exists($this, 'sortablesAs') && in_array(request()->orderby, $this->sortablesAs)) {
             return request()->orderby; // If is an alias: we don't want a prefix table.
-        } elseif ($hasOrderByStr && in_array(request()->orderby, $this->sortables)) {
+        } elseif ($this->hasRequestStr() && in_array(request()->orderby, $this->sortables)) {
             $orderBy = request()->orderby;
         } else {
             $orderBy = Larasort::getDefaultSortable() ?? $this->sortables[0];
@@ -113,5 +123,10 @@ trait AutoSortable
         if (! is_array($this->sortables) || count($this->sortables) === 0) {
             throw new LarasortException('The "sortables" property must be an array with at least one element.');
         }
+    }
+
+    private function hasRequestStr(): bool
+    {
+        return request()->has('orderby') && request()->orderby !== null;
     }
 }

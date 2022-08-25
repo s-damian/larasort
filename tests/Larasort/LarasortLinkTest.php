@@ -56,7 +56,7 @@ class LarasortLinkTest extends TestCase
             '<a href="http://localhost/?orderby=email&order=asc">Email<span class="larasort-icon-2"></span></a>',
             LarasortLink::getLink('email')
         );
-        
+
         Request::offsetSet('orderby', 'user_name');
         Request::offsetSet('order', 'desc');
 
