@@ -403,7 +403,7 @@ public function article()
 ```php
 <?php
 
-$users = User::searchBySearches($request)
+$users = User::active()
     ->autosort([
         'related' => 'article', // Required - this is the name of the (here it is HasOne).
         'columns' => ['id', 'username', 'email', 'role'], // Optional - by default it will be "*" (SELECT all columns of this Model).
@@ -450,7 +450,7 @@ public function articles()
 ```php
 <?php
 
-$users = User::searchBySearches($request)
+$users = User::active()
     ->autosort([
         'related' => 'articles', // Required - this is the name of the relationship (here it is HasMany).
         'columns' => ['id', 'username', 'email', 'role'], // Optional - by default it will be "*" (SELECT all columns of this Model).
@@ -490,7 +490,7 @@ public function user()
 ```php
 <?php
 
-$articles = self::searchBySearches($request)
+$articles = self::active()
     ->autosort([
         'related' => 'user', // Required - this is the name of the relationship (here it is HasMany).
         'columns' => ['id', 'slug', 'h1', 'updated_at'], // Optional - by default it will be "*" (SELECT all columns of this Model).
