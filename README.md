@@ -65,6 +65,10 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
   * [Basic usage](#basic-usage)
   * [Aliasing](#aliasing)
     * [Example with ->join()](#example-with--join)
+  * [Relationships](#relationships)
+    * [One To One](#one-to-one)
+    * [One To Many](#one-to-many)
+    * [Belongs To](#belongs-to)
   * [For a column, specify its table](#for-a-column-specify-its-table)
   * [Put "desc" or "asc" by default for some columns](#put-desc-or-asc-by-default-for-some-columns)
   * [Clear Larasort static methods](#clear-larasort-static-methods)
@@ -339,6 +343,178 @@ class Customer extends Model
 ```html
 @sortableLink('article_title', 'Article Title')
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Relationships
+
+With **Larasort** you can automate the ```ORDER BY``` of your relations One To One and One To Many.
+
+* Example in view (with Blade):
+
+```html
+@sortableLink('article.title', 'Article Title')
+...
+
+
+
+
+
+### One To One
+
+In this example, a **user** has created one **article**, and an **article** has been created by a single **user**.
+
+This therefore makes a **One To One** relationship between **users** and **articles**.
+
+* Example in User Model:
+
+```php
+<?php
+
+/**
+ * The attributes of its sortable relations.
+ *
+ * @var array
+ */
+private array $sortablesRelated = [
+    // Convention: {relationship name}.{column in this relationship's table}.
+    'article.title',
+];
+
+public function article()
+{
+    return $this->hasOne(Article::class, 'user_id_created_at', 'id');
+}
+```
+
+* Example in UserController:
+
+```php
+<?php
+
+$users = User::searchBySearches($request)
+    ->autosort([
+        'related' => 'article', // Required - this is the name of the (here it is HasOne).
+        'columns' => ['id', 'username', 'email', 'role'], // Optional - by default it will be "*" (SELECT all columns of this Model).
+        'related_columns' => ['title AS article_title', 'h1'], // Optional - by default it will be "*" (SELECT all columns of relation).
+        'join_type' => 'join' // Optional - by default it will do a "leftJoin".
+    ])
+    ->paginate();
+```
+
+
+
+
+
+
+### One To Many
+
+In this example, a **user** has created multiple **articles**, and an **article** has been created by a single **user**.
+
+This therefore makes a **One To Many** relationship between **users** and **articles** (several articles per user, and only one user per article).
+
+* Example in User Model:
+
+```php
+<?php
+
+/**
+ * The attributes of its sortable relations.
+ *
+ * @var array
+ */
+private array $sortablesRelated = [
+    // Convention: {relationship name}{separator}{column in this relationship's table}.
+    'articles.title',
+];
+
+public function articles()
+{
+    return $this->hasMany(Article::class, 'user_id_created_at', 'id');
+}
+```
+
+* Example in UserController:
+
+```php
+<?php
+
+$users = User::searchBySearches($request)
+    ->autosort([
+        'related' => 'articles', // Required - this is the name of the relationship (here it is HasMany).
+        'columns' => ['id', 'username', 'email', 'role'], // Optional - by default it will be "*" (SELECT all columns of this Model).
+        'related_columns' => ['title AS article_title', 'h1'], // Optional - by default it will be "*" (SELECT all columns of relation).
+        'join_type' => 'join' // Optional - by default it will do a "leftJoin".
+    ])
+    ->paginate();
+```
+
+
+
+
+
+
+### Belongs To
+
+Whether for a **One To One** or **One To Many** relationship, you must put the **belongsTo** method in the Article Model.
+
+* Example in Article Model:
+
+```php
+<?php
+
+private array $sortablesRelated = [
+    // Convention: {relationship name}{separator}{column in this relationship's table}.
+    'user.email',
+];
+
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id_created_at', 'id');
+}
+```
+
+* Example in ArticleController:
+
+```php
+<?php
+
+$articles = self::searchBySearches($request)
+    ->autosort([
+        'related' => 'user', // Required - this is the name of the relationship (here it is HasMany).
+        'columns' => ['id', 'slug', 'h1', 'updated_at'], // Optional - by default it will be "*" (SELECT all columns of this Model).
+        'related_columns' => ['email AS user_email', 'first_name'], // Optional - by default it will be "*" (SELECT all columns of relation).
+        'join_type' => 'join' // Optional - by default it will do a "leftJoin".
+    ])
+    ->paginate(Paginate::getLimit($request));
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## For a column, specify its table
 
