@@ -169,7 +169,7 @@ class Customer extends Model
 
 You can override the column used by default for ```ORDER BY``` with this static method:
 
-PS: the advantage of using the **setDefaultSortable** method is that even if in the URL there are no ```?orderby={column}&order={direction},
+PS: the advantage of using the **setDefaultSortable** method is that even if in the URL there are no ```?orderby={column}&order={direction}```,
 the icon will appear the same in the link of the default column.
 
 ```php
