@@ -98,10 +98,13 @@ class AutoSortableTraitTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | Teser : Aliasing
+    | Teser : D'autres comportements
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * Teser l'aliasing
+     */
     public function testSortablesAsProperty(): void
     {
         $this->verifyInAllTests();
