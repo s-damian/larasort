@@ -78,12 +78,14 @@ class LarasortLink
         return '<span class="'.$class.'"></span>';
     }
 
-    final public static function getLink(string $column, string $label): string
+    final public static function getLink(string $column, string $label = null): string
     {
+        $labelToShow = $label ?? ucfirst(str_replace('_', ' ', $column));
+
         $html = '';
 
         $html .= '<a '.self::getHref($column).'>';
-        $html .=     $label;
+        $html .=     $labelToShow;
         $html .=     self::getIcon($column);
         $html .= '</a>';
 
