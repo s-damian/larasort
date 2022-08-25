@@ -42,7 +42,7 @@ trait AutoSortable
             $related->makeRelationship();
 
             if ($related->verifyRequestOrderBy($this->hasRequestStr(), $this->sortablesRelated ?? [])) {
-                $orderByRelated = $related->getSqlOrderBy(request()->orderby);
+                $orderByRelated = $related->getTableColumnByUrl();
             }
         }
 

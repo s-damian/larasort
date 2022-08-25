@@ -49,7 +49,8 @@ class Related
      */
     final public function verifyRequestOrderBy(bool $hasRequestStr, array $sortablesRelated): bool
     {
-        return $hasRequestStr && strpos((string) request()->orderby, config('larasort.relation_column_separator')) !== false && in_array(request()->orderby, $sortablesRelated);
+        return $hasRequestStr && strpos((string) request()->orderby, config('larasort.relation_column_separator')) !== false
+            && in_array(request()->orderby, $sortablesRelated);
     }
 
     /*
@@ -60,7 +61,8 @@ class Related
 
     final public function makeRelationship(): void
     {
-        $relation = $this->query->getRelation($this->options['related']);
+        // Here we use the "getRelationByOptions" method, because we want to join even if there is no relation in the URL.
+        $relation = $this->query->getRelation($this->getRelationByOptions());
 
         [$relatedPrimaryKey, $modelPrimaryKey] = $this->getRelatedKeys($relation);
 
@@ -129,32 +131,39 @@ class Related
 
     /*
     |--------------------------------------------------------------------------
-    | Generate SQL string
-    |--------------------------------------------------------------------------
-    */
-
-    final public function getSqlOrderBy(string $requestOrderBy): string
-    {
-        $ex = explode(config('larasort.relation_column_separator'), $requestOrderBy);
-
-        return $this->getRelatedTable().'.'.$ex[1];
-    }
-
-    /*
-    |--------------------------------------------------------------------------
     | Utils
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Get table of Model related.
-     */
     private function getRelatedTable(): string
     {
-        $relation = $this->query->getRelation($this->options['related']);
-
+        $relation = $this->query->getRelation($this->getRelationByOptions());
         $relatedModel = $relation->getRelated();
 
         return $relatedModel->getTable();
+    }
+
+    private function getRelationByOptions(): string
+    {
+        return $this->options['related'];
+    }
+
+    private function getRelationByUrl(): string
+    {
+        $ex = explode(config('larasort.relation_column_separator'), request()->orderby);
+
+        return $ex[0];
+    }
+
+    final public function getTableColumnByUrl(): ?string
+    {
+        // We do the ORDER BY on the relation only if: if the relation name passed in $options['related'] is the same as the one in the URL.
+        if ($this->getRelationByUrl() !== $this->getRelationByOptions()) {
+            return null;
+        }
+
+        $ex = explode(config('larasort.relation_column_separator'), request()->orderby);
+
+        return  $this->getRelatedTable().'.'.$ex[1];
     }
 }
