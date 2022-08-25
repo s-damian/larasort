@@ -589,6 +589,7 @@ And in the view you can do this in the **thead** of a **table** for example:
     </tr>
 </thead>
 ```
+PS: if you wish, you can also have access to ```$larasortManAttrs['first_name']['url']```
 
 ## LarasortManual - For a column, specify its table
 
