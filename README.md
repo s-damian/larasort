@@ -43,7 +43,7 @@ $customers = Customer::whereNotNull('confirmed_at')
 @sortableLink('email', 'Email')
 ```
 
-Example rendering of a link in a table:
+#### Example rendering of a link in a table:
 
 [![Larasort](https://raw.githubusercontent.com/s-damian/medias/main/packages/larasort-th-example.webp)](https://github.com/s-damian/larasort)
 
