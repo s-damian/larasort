@@ -8,7 +8,7 @@ use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
 use SDamian\Tests\Larasort\Fixtures\Models\Address;
 
 /**
- * Ici on fait des tests avec le Model "Address" (qui n' pas de table).
+ * Ici on fait des tests sur le trait AutoSortable avec le Model "Address" (qui n' pas de table).
  */
 class AutoSortableTraitAddressTest extends TestCase
 {
@@ -25,7 +25,7 @@ class AutoSortableTraitAddressTest extends TestCase
 
     /**
      * Ici on test juste la propriété "$sortables" lorsqu'on lui met null en première "colonne".
-     * C'est utile si par défaut (lorsque dans l'URL il n'y a pas de ?orderby={colonne}), qu'on ne veut pas mettre ORDER BY à la requête SQL.
+     * C'est utile si par défaut (lorsque dans l'URL il n'y a pas de $_GET actif) qu'on ne veut pas mettre de ORDER BY à la requête SQL.
      */
     public function testSortablesPropWithNullInFirstPosWithoutRequest(): void
     {
@@ -38,7 +38,7 @@ class AutoSortableTraitAddressTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        // On test avec "name" qu'il a dans "$sortables" :
+        // On test avec "name" qu'il a bien dans "$sortables" :
 
         Request::offsetSet('orderby', 'name');
         Request::offsetSet('order', 'asc');
@@ -52,6 +52,6 @@ class AutoSortableTraitAddressTest extends TestCase
         Request::offsetSet('order', 'asc');
 
         $this->assertTrue($this->address->getSqlOrderBy() === null);
-        // Par défaut sa prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la req SQL).
+        // Par défaut sa prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
     }
 }
