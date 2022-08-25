@@ -252,6 +252,7 @@ And in the view you can do this in the **thead** of a **table** for example:
 ```
 
 PS: 1st parameter is the **column** in database, 2nd parameter is the **title** (**label**).
+The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
 
 If you need to keep more control inside a **th**, as an equivalent you can replace **@sortableLink** by **@sortableHref** and **@sortableIcon**. Example:
 
