@@ -43,7 +43,7 @@ $customers = Customer::whereNotNull('confirmed_at')
 @sortableLink('email', 'Email')
 ```
 
-#### Example rendering of a link in a table:
+Example rendering of a link in a table:
 
 [![Larasort](https://raw.githubusercontent.com/s-damian/medias/main/packages/larasort-th-example.webp)](https://github.com/s-damian/larasort)
 
@@ -589,7 +589,7 @@ And in the view you can do this in the **thead** of a **table** for example:
     </tr>
 </thead>
 ```
-PS: if you wish, you can also have access to ```$larasortManAttrs['first_name']['url']```
+PS: if you wish, you can also have access to ```$larasortManAttrs['column_name']['url']```
 
 ## LarasortManual - For a column, specify its table
 
