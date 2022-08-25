@@ -49,7 +49,7 @@ class Related
      */
     final public function verifyRequestOrderBy(bool $hasRequestStr, array $sortablesRelated): bool
     {
-        return $hasRequestStr && strpos((string) request()->orderby, ':') !== false && in_array(request()->orderby, $sortablesRelated);
+        return $hasRequestStr && strpos((string) request()->orderby, config('larasort.relation_column_separator')) !== false && in_array(request()->orderby, $sortablesRelated);
     }
 
     /*
@@ -135,7 +135,7 @@ class Related
 
     final public function getSqlOrderBy(string $requestOrderBy): string
     {
-        $ex = explode(':', $requestOrderBy);
+        $ex = explode(config('larasort.relation_column_separator'), $requestOrderBy);
 
         return $this->getRelatedTable().'.'.$ex[1];
     }

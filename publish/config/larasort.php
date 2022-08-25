@@ -13,4 +13,11 @@ return [
      */
     'default_order' => 'asc',
 
+    /**
+     * 
+     * Relation column separator.
+     * Example: "article.title" means relation "article" and column "title".
+     */
+    'relation_column_separator' => '.',
+
 ];
