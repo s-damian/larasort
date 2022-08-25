@@ -4,6 +4,7 @@ namespace SDamian\Larasort;
 
 use Illuminate\Database\Query\Builder;
 use SDamian\Larasort\Support\Security;
+use SDamian\Larasort\Relations\Related;
 use SDamian\Larasort\Exception\LarasortException;
 use Illuminate\Database\Eloquent\Builder as BuilderE;
 

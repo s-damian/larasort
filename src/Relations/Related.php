@@ -1,6 +1,6 @@
 <?php
 
-namespace SDamian\Larasort;
+namespace SDamian\Larasort\Relations;
 
 use Illuminate\Database\Query\Builder;
 use SDamian\Larasort\Exception\LarasortException;
