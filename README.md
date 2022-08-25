@@ -106,7 +106,7 @@ The **vendor:publish** command will generate these files:
 
 * config/larasort.php
 
-* public/vendor/larasort/css/larasort.css (you must include this CSS in your website)
+* public/vendor/larasort/css/larasort.css (**you must include this CSS in your website**)
 
 * public/vendor/larasort/images/order.webp
 
