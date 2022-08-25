@@ -45,7 +45,7 @@ trait AutoSortable
     {
         $hasOrderByStr = request()->has('orderby') && request()->orderby !== null;
 
-        if ($hasOrderByStr && in_array(request()->orderby, $this->sortablesAs ?? [])) {
+        if ($hasOrderByStr && property_exists($this, 'sortablesAs') && in_array(request()->orderby, $this->sortablesAs)) {
             return request()->orderby; // If is an alias: we don't want a prefix table.
         } elseif ($hasOrderByStr && in_array(request()->orderby, $this->sortables)) {
             $orderBy = request()->orderby;
@@ -56,7 +56,7 @@ trait AutoSortable
         // if and elseif : if column (key) is assigned to a table.
         if (array_key_exists($orderBy, Larasort::getSortablesToTables())) {
             return Larasort::getSortablesToTables()[$orderBy];
-        } elseif (array_key_exists($orderBy, $this->sortablesToTables ?? [])) {
+        } elseif (property_exists($this, 'sortablesToTables') && array_key_exists($orderBy, $this->sortablesToTables)) {
             return $this->sortablesToTables[$orderBy];
         }
 
@@ -97,7 +97,7 @@ trait AutoSortable
     }
 
     /**
-     * @return array<string>
+     * @return array<null|string>
      */
     final public function getSortables(): array
     {

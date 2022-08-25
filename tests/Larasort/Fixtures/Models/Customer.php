@@ -22,7 +22,7 @@ class Customer extends Model
      * For Larasort
      * The attributes that are sortable.
      *
-     * @var array<string>
+     * @var array<null|string>
      */
     private array $sortables = [
         'id',

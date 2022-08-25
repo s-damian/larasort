@@ -13,6 +13,12 @@ class Address extends Model
 {
     use AutoSortable; // For Larasort
 
+    /**
+     * For Larasort
+     * The attributes that are sortable.
+     *
+     * @var array<null|string>
+     */
     private array $sortables = [
         null,
         'id',
