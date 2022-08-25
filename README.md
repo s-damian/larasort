@@ -15,7 +15,7 @@ This Open Source library allows to make **sortable columns** in an automated way
 
 You have two packages in one: **Larasort** (for sorting **with** Eloquent ORM) and **LarasortManual** (for sorting **without** Eloquent ORM).
 
-[![Larasort](https://raw.githubusercontent.com/s-damian/medias/main/packages/larasort-th-example.webp.webp)](https://github.com/s-damian/larasort)
+[![Larasort](https://raw.githubusercontent.com/s-damian/medias/main/packages/larasort-th-example.webp)](https://github.com/s-damian/larasort)
 
 > Sort easily in an automated way 🚀
 
