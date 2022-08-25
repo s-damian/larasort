@@ -43,10 +43,10 @@ trait AutoSortable
 
     final public function getSqlOrderBy(): ?string
     {
-        if (request()->has('orderby') && in_array(request()->orderby, $this->sortables)) {
-            $orderBy = request()->orderby;
-        } elseif (request()->has('orderby') && in_array(request()->orderby, $this->sortablesAs ?? [])) {
+        if (request()->has('orderby') && in_array(request()->orderby, $this->sortablesAs ?? [])) {
             return request()->orderby; // If is an alias: we don't want a prefix table.
+        } elseif (request()->has('orderby') && in_array(request()->orderby, $this->sortables)) {
+            $orderBy = request()->orderby;
         } else {
             $orderBy = Larasort::getDefaultSortable() ?? $this->sortables[0];
         }
