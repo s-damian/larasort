@@ -6,6 +6,7 @@ use SDamian\Tests\TestCase;
 use SDamian\Larasort\Larasort;
 use Illuminate\Support\Facades\Request;
 use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
+use SDamian\Tests\Larasort\Fixtures\Models\Address;
 use SDamian\Tests\Larasort\Fixtures\Models\Customer;
 
 /**
@@ -224,5 +225,47 @@ class AutoSortableTraitTest extends TestCase
         Request::offsetSet('orderby', 'aaaaazzzzz'); // on met n'inporte quoi
 
         $this->assertSame('customers.id', $this->customer->getSqlOrderBy()); // c'est bien la colonne par défaut qui est mis (par sécurité)
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Teser : faire des test avec le Model "Address" (qui a null en 1è "colonne" de sa propriété "$sortables").
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Ici on test juste la propriété "$sortables" lorsqu'on lui met null en première "colonne".
+     * C'est utile si par défaut (lorsque dans l'URL il n'y a pas de $_GET actif) qu'on ne veut pas mettre de ORDER BY à la requête SQL.
+     */
+    public function testSortablesPropWithNullInFirstPosWithoutRequest(): void
+    {
+        $this->verifyInAllTests();
+
+        $address = new Address();
+
+        $this->assertTrue($address->getSqlOrderBy() === null);
+    }
+
+    public function testSortablesPropWithNullInFirstPosWithRequest(): void
+    {
+        $this->verifyInAllTests();
+
+        $address = new Address();
+
+        // On test avec "name" qu'il a bien dans "$sortables" :
+
+        Request::offsetSet('orderby', 'name');
+        Request::offsetSet('order', 'asc');
+
+        $this->assertSame('addresses.name', $address->getSqlOrderBy());
+        $this->assertSame('asc', $address->getSqlOrder());
+
+        // On test avec "aaazzz" qu'il n'a pas dans "$sortables" :
+
+        Request::offsetSet('orderby', 'aaazzz');
+        Request::offsetSet('order', 'asc');
+
+        $this->assertTrue($address->getSqlOrderBy() === null);
+        // Par défaut sa prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
     }
 }
