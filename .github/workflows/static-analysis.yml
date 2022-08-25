@@ -1,0 +1,34 @@
+name: Static analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  src:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['8.0', '8.1']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Analyze
+        run: vendor/bin/phpstan --configuration="tools/phpstan/phpstan.neon"

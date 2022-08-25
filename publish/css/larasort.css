@@ -1,0 +1,65 @@
+/*
+|--------------------------------------------------------------------------
+| Larasort
+|--------------------------------------------------------------------------
+*/
+
+.with-larasort a {
+    position: relative;
+}
+
+.with-larasort span.larasort-icon-n-1,
+.with-larasort span.larasort-icon-n-2,
+.with-larasort span.larasort-icon-1,
+.with-larasort span.larasort-icon-2 {
+    background: url('../images/order.webp') center center no-repeat;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    bottom: 3px;
+    right: -14px;
+}
+
+/* hidden icon ... */
+.with-larasort span.larasort-icon-n-1,
+.with-larasort span.larasort-icon-n-2 {
+    display: none;
+}
+/* ... except at the hover */
+.with-larasort thead th a:hover span.larasort-icon-n-1,
+.with-larasort tfoot td a:hover span.larasort-icon-n-1,
+.with-larasort a.a-for-larasort-icon:hover span.larasort-icon-n-1 {
+    display: inline-block;
+    transform: rotateZ(-180deg);
+}
+/* ... except at the hover */
+.with-larasort thead th a:hover span.larasort-icon-n-2,
+.with-larasort tfoot td a:hover span.larasort-icon-n-2,
+.with-larasort a.a-for-larasort-icon:hover span.larasort-icon-n-2 {
+    display: inline-block;
+}
+
+/* if the $_GET 'asc' is active, display ... */
+.with-larasort span.larasort-icon-1 {
+    display: inline-block;
+    /*position: relative;*/
+    transform: rotateZ(-180deg);
+}
+/* ... at the hover, also display it but in the other direction */
+.with-larasort thead th a:hover span.larasort-icon-1,
+.with-larasort tfoot td a:hover span.larasort-icon-1,
+.with-larasort a.a-for-larasort-icon:hover span.larasort-icon-1 {
+    transform: rotateZ(0deg);
+}
+
+
+/* if the $_GET 'desc' is active, display ... */
+.with-larasort span.larasort-icon-2 {
+    display: inline-block;
+}
+/* ... at the hover, also display it but in the other direction */
+.with-larasort thead th a:hover span.larasort-icon-2,
+.with-larasort tfoot td a:hover span.larasort-icon-2,
+.with-larasort a.a-for-larasort-icon:hover span.larasort-icon-2 {
+    transform: rotateZ(-180deg);
+}

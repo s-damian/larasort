@@ -1,0 +1,55 @@
+{
+    "name": "s-damian/larasort",
+    "description": "Column sortable for Laravel",
+    "type": "library",
+    "keywords": ["laravel", "larasort", "sortable", "orderby", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stephen Damian",
+            "email": "contact@devandweb.fr",
+            "homepage": "https://github.com/s-damian"
+        }
+    ],
+    "support": {
+        "email": "contact@devandweb.fr",
+        "issues": "https://github.com/s-damian/larasort/issues",
+        "source": "https://github.com/s-damian/larasort",
+        "docs": "https://github.com/s-damian/larasort/blob/main/README.md"
+    },
+    "require": {
+        "php": "^8.0 || ^8.1"
+    },
+    "require-dev": {
+        "laravel/framework": "^8 || ^9",
+        "phpunit/phpunit": "9.5.*",
+        "orchestra/testbench": "^6",
+        "phpstan/phpstan": "1.8.*"
+    },
+    "autoload": {
+        "psr-4" : {
+            "SDamian\\Larasort\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SDamian\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SDamian\\Larasort\\LarasortServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "php ./vendor/phpunit/phpunit/phpunit",
+        "test-f": "php ./vendor/phpunit/phpunit/phpunit --filter",
+        "phpstan": "php ./vendor/bin/phpstan --configuration='tools/phpstan/phpstan.neon'",
+        "fix-all": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config=tools/php-cs-fixer/.php-cs-fixer.dist.php",
+        "fix-all-dry": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config=tools/php-cs-fixer/.php-cs-fixer.dist.php -vv --dry-run --diff"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
