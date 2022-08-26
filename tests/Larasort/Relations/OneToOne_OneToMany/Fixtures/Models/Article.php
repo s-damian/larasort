@@ -4,6 +4,7 @@ namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models;
 
 use SDamian\Larasort\AutoSortable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Factories\ArticleFactory;
 
 class Article extends Model
@@ -27,6 +28,24 @@ class Article extends Model
         'id',
         'title',
     ];
+
+    /**
+     * The attributes of its sortable relations.
+     *
+     * @var array<string>
+     */
+    private array $sortablesRelated = [
+        // Convention: {relationship name}{separator}{column in this relationship table}.
+        'user.email', // UTILE pour tester le "Belongs To".
+    ];
+
+    /**
+     * UTILE pour tester la relation "Belongs To".
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id_created_at', 'id');
+    }
 
     /**
      * UTILE pour tester la relation "One To One".
