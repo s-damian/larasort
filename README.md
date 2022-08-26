@@ -385,8 +385,7 @@ public function article()
 ```php
 <?php
 
-$users = User::active()
-    ->autosortWith('article', [
+$users = User::autosortWith('article', [
         'join_type' => 'join', // Optional - "leftJoin" by default.
         'columns' => ['id', 'username', 'email', 'role'], // Optional - "*" by default.
         'related_columns' => ['title AS article_title', 'h1'], // Optional - "*" by default.
@@ -426,8 +425,7 @@ public function articles()
 ```php
 <?php
 
-$users = User::active()
-    ->autosortWith('articles', [
+$users = User::autosortWith('articles', [
         'join_type' => 'join', // Optional - "leftJoin" by default.
         'columns' => ['id', 'username', 'email', 'role'], // Optional - "*" by default.
         'related_columns' => ['title AS article_title', 'h1'], // Optional - "*" by default.
@@ -460,8 +458,7 @@ public function user()
 ```php
 <?php
 
-$articles = Article::active()
-    ->autosortWith('user', [
+$articles = Article::autosortWith('user', [
         'join_type' => 'join', // Optional - "leftJoin" by default.
         'columns' => ['id', 'slug', 'h1', 'updated_at'], // Optional - "*" by default.
         'related_columns' => ['email AS user_email', 'first_name'], // Optional - "*" by default.
