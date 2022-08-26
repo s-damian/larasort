@@ -64,13 +64,10 @@ class Related
 
     final public function makeRelationship(): void
     {
-        // Here we use the "getRelationByOptions" method, because we want to join even if there is no relation in the URL.
-        $relation = $this->query->getRelation($this->getRelationByOptions());
-
-        [$relatedPrimaryKey, $modelPrimaryKey] = $this->getRelatedKeys($relation);
-
         // Assign columns to Models.
         $this->setColumnsToModel()->setColumnsToRelated();
+
+        [$relatedPrimaryKey, $modelPrimaryKey] = $this->getRelatedKeys();
 
         // Make the join.
         $this->query->{$this->getJoin()}($this->getRelatedTable(), $modelPrimaryKey, '=', $relatedPrimaryKey);
@@ -79,8 +76,11 @@ class Related
     /**
      * @return array<string>
      */
-    private function getRelatedKeys(Relation $relation): array
+    private function getRelatedKeys(): array
     {
+        // Here we use the "getRelationByOptions" method, because we want to join even if there is no relation in the URL.
+        $relation = $this->query->getRelation($this->getRelationByOptions());
+
         switch (true) {
             case $relation instanceof HasOne:
             case $relation instanceof HasMany:
@@ -100,14 +100,7 @@ class Related
 
     private function setColumnsToModel(): self
     {
-        if (isset($this->options['columns'])) {
-            $columns = [];
-            foreach ($this->options['columns'] as $related_column) {
-                $columns[] = $this->model->getTable().'.'.$related_column;
-            }
-        } else {
-            $columns = $this->model->getTable().'.*';
-        }
+        $columns = $this->setColumns($this->model->getTable(), $this->options['columns'] ?? []);
 
         $this->query->select($columns);
 
@@ -116,16 +109,27 @@ class Related
 
     private function setColumnsToRelated(): void
     {
-        if (isset($this->options['related_columns'])) {
-            $columnsForRelated = [];
-            foreach ($this->options['related_columns'] as $related_column) {
-                $columnsForRelated[] = $this->getRelatedTable().'.'.$related_column;
+        $columns = $this->setColumns($this->getRelatedTable(), $this->options['related_columns'] ?? []);
+
+        $this->query->addSelect($columns);
+    }
+
+    /**
+     * @param array<string> $columns
+     * @return array<string>
+     */
+    private function setColumns(string $table, array $columns = []): array
+    {
+        if ($columns !== []) {
+            $columnsToReturn = [];
+            foreach ($columns as $column) {
+                $columnsToReturn[] = $table.'.'.$column;
             }
         } else {
-            $columnsForRelated = $this->getRelatedTable().'.*';
+            $columnsToReturn = [$table.'.*'];
         }
 
-        $this->query->addSelect($columnsForRelated);
+        return $columnsToReturn;
     }
 
     private function getJoin(): string
