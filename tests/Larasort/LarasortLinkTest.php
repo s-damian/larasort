@@ -93,7 +93,7 @@ class LarasortLinkTest extends TestCase
         $this->assertSame('href="http://localhost/?orderby=email&order=asc"', LarasortLink::getHref('email'));
         $this->assertSame('<span class="larasort-icon-2"></span>', LarasortLink::getIcon('email'));
 
-        Larasort::setDefaultSortable('NULL'); // Pour éviter "conflits" avec les tests suivants.
+        Larasort::clearDefaultSortable(); // Pour éviter "conflits" avec les tests suivants.
     }
 
     /**

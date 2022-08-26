@@ -102,6 +102,8 @@ class OneToManyTest extends TestCase
      */
     public function testLeftJoin(): void
     {
+        $this->verifyInAllTests();
+
         $users = User::autosort([
                 'related' => 'articles', // Required - name of the relation.
                 'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
@@ -129,6 +131,8 @@ class OneToManyTest extends TestCase
 
     public function testWithOrderByUserEmail(): void
     {
+        $this->verifyInAllTests();
+
         Request::offsetSet('orderby', 'email'); // ICI
         Request::offsetSet('order', 'asc');
 
@@ -164,6 +168,8 @@ class OneToManyTest extends TestCase
 
     public function testWithOrderByArticleTitleAsc(): void
     {
+        $this->verifyInAllTests();
+
         Request::offsetSet('orderby', 'articles.title'); // ICI
         Request::offsetSet('order', 'asc'); // ICI
 
@@ -199,6 +205,8 @@ class OneToManyTest extends TestCase
 
     public function testWithOrderByArticleTitleDesc(): void
     {
+        $this->verifyInAllTests();
+
         Request::offsetSet('orderby', 'articles.title'); // ICI
         Request::offsetSet('order', 'desc'); // ICI
 
