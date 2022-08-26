@@ -14,6 +14,10 @@ use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Traits\ForOneToOneTrait;
  * Ici on test le "Belongs To".
  * Le "Belongs To" fonctionne identiquement avec "One To One" et avec "One To Many".
  * Dans cette class de test, on va le "simuler" avec les mêmes données en BDD qu'avec le "One To One".
+ * 
+ * Ici on "simule" qu'on est dans un Controller Article,
+ * et qu'on travail le "Belongs To" sur un Model Article qui a une relation "One To One" avec un Model User.
+ * Un article peut avoir été créé par qu'un seul user, un user peut avoir créé qu'un seul article.
  */
 class BelongsToTest extends TestCase
 {

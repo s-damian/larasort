@@ -12,6 +12,10 @@ use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Traits\ForOneToOneTrait;
 
 /**
  * Ici on test le "One To One".
+ * 
+ * Ici on "simule" qu'on est dans un Controller User,
+ * et qu'on travail sur un Model User qui a une relation "One To One" avec un Model Article.
+ * Un user peut avoir créé qu'un seul article, un article peut avoir été créé par qu'un seul user.
  */
 class OneToOneTest extends TestCase
 {
