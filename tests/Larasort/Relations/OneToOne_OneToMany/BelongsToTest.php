@@ -118,10 +118,104 @@ class BelongsToTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
+    public function testWithOrderByArticleTitle(): void
+    {
+        $this->verifyInAllTests();
 
+        Request::offsetSet('orderby', 'title'); // ICI
+        Request::offsetSet('order', 'asc');
 
+        // Tester avec JOIN :
 
+        $articles = $this->getArticlesJoinToUsers();
 
+        $articleFirst = $articles->first();
+        $articleLast = $articles->last();
+
+        // Req avec JOIN retourne 2 rows :
+        // "Article 1" et "Article 3". Car seul ces 2 articles sont joint à un user.
+        $this->assertSame(2, $articles->count());
+        $this->assertSame('Title-1', $articleFirst->title);
+        $this->assertSame('Title-3', $articleLast->title); // ICI
+
+        // Tester avec LEFT JOIN :
+
+        $articles = $this->getArticlesLeftJoinToUsers();
+
+        $articleFirst = $articles->first();
+        $articleLast = $articles->last();
+
+        // Req avec LEFT JOIN retourne les 3 rows.
+        $this->assertSame(3, $articles->count());
+        $this->assertSame('Title-1', $articleFirst->title);
+        $this->assertSame('Title-3', $articleLast->title); // ICI
+    }
+
+    public function testWithOrderByUserEmailAsc(): void
+    {
+        $this->verifyInAllTests();
+
+        Request::offsetSet('orderby', 'user.email'); // ICI
+        Request::offsetSet('order', 'asc'); // ICI
+
+        // Tester avec JOIN :
+
+        $articles = $this->getArticlesJoinToUsers();
+
+        $articleFirst = $articles->first();
+        $articleLast = $articles->last();
+
+        // Req avec JOIN retourne 2 rows :
+        // "Article 1" et "Article 3". Car seul ces 2 articles sont joint à un user.
+        $this->assertSame(2, $articles->count());
+        $this->assertSame('Title-1', $articleFirst->title); // Car "Article 1" est joint à "user 1".
+        $this->assertSame('Title-3', $articleLast->title); // Car "Article 3" est joint à "user 2".
+
+        // Tester avec LEFT JOIN :
+
+        $articles = $this->getArticlesLeftJoinToUsers();
+
+        $articleFirst = $articles->first();
+        $articleLast = $articles->last();
+
+        // Req avec LEFT JOIN retourne les 3 rows.
+        $this->assertSame(3, $articles->count());
+        $this->assertSame('Title-2', $articleFirst->title); // Car "Article 2" n'a pas d'user joint, donc sont 'user_email' vaut null.
+        $this->assertSame('Title-3', $articleLast->title); // Car "Article 3" est joint à "user 2".
+    }
+
+    public function testWithOrderByUserEmailDesc(): void
+    {
+        $this->verifyInAllTests();
+
+        Request::offsetSet('orderby', 'user.email'); // ICI
+        Request::offsetSet('order', 'desc'); // ICI
+
+        // Tester avec JOIN :
+
+        $articles = $this->getArticlesJoinToUsers();
+
+        $articleFirst = $articles->first();
+        $articleLast = $articles->last();
+
+        // Req avec JOIN retourne 2 rows :
+        // "Article 1" et "Article 3". Car seul ces 2 articles sont joint à un user.
+        $this->assertSame(2, $articles->count());
+        $this->assertSame('Title-3', $articleFirst->title); // Car "Article 3" est joint à "user 2".
+        $this->assertSame('Title-1', $articleLast->title); // Car "Article 1" est joint à "user 1".
+
+        // Tester avec LEFT JOIN :
+
+        $articles = $this->getArticlesLeftJoinToUsers();
+
+        $articleFirst = $articles->first();
+        $articleLast = $articles->last();
+
+        // Req avec LEFT JOIN retourne les 3 rows.
+        $this->assertSame(3, $articles->count());
+        $this->assertSame('Title-3', $articleFirst->title); // Car "Article 3" est joint à "user 2".
+        $this->assertSame('Title-2', $articleLast->title); // Car "Article 2" n'a pas d'user joint, donc sont 'user_email' vaut null.
+    }
 
     /*
     |--------------------------------------------------------------------------
