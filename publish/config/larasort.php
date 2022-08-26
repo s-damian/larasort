@@ -8,16 +8,21 @@
 return [
 
     /**
-     * The default order (direction) of order by.
-     * Supported: "asc" and "desc"
+     * The default order (direction) of ORDER BY.
+     * Supported: "asc", "desc"
      */
     'default_order' => 'asc',
 
     /**
-     * 
-     * Relation column separator.
+     * Default relationship column separator.
      * Example: "article.title" means relation "article" and column "title".
      */
     'relation_column_separator' => '.',
+
+    /**
+     * The default join type.
+     * Supported: "join", "leftJoin", "rightJoin"
+     */
+    'default_join_type' => 'leftJoin',
 
 ];

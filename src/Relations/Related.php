@@ -126,7 +126,7 @@ class Related
 
     private function getJoin(): string
     {
-        return $this->options['join_type'] ?? 'leftJoin';
+        return $this->options['join_type'] ?? config('larasort.default_join_type');
     }
 
     /*
