@@ -37,7 +37,7 @@ $customers = Customer::whereNotNull('confirmed_at')
     ->paginate();
 ```
 
-* Example in view (with Blade):
+* Example in the View (in blade template):
 
 ```html
 @sortableLink('email', 'Email')
@@ -69,6 +69,7 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
     * [One To One](#one-to-one)
     * [One To Many](#one-to-many)
     * [Belongs To](#belongs-to)
+    * [Example in the view](#example-in-the-view)
     * [Relationships - Conventions](#relationships---conventions)
   * [For a column, specify its table](#for-a-column-specify-its-table)
   * [Put "desc" or "asc" by default for some columns](#put-desc-or-asc-by-default-for-some-columns)
@@ -339,7 +340,7 @@ class Customer extends Model
 }
 ```
 
-* Example in View (in blade template):
+* Example in the View (in blade template):
 
 ```html
 @sortableLink('article_title', 'Article Title')
@@ -349,12 +350,6 @@ class Customer extends Model
 ## Relationships
 
 With **Larasort** you can automate the ```ORDER BY``` of your relations One To One and One To Many.
-
-* Example in view (with Blade):
-
-```html
-@sortableLink('article.title', 'Article Title')
-...
 
 ### One To One
 
@@ -473,6 +468,18 @@ $articles = Article::active()
         'related_columns' => ['email AS user_email', 'first_name'], // Optional - "*" by default.
     ])
     ->paginate();
+```
+
+### Example in the view:
+
+Convention:
+
+```@sortableLink('{relationship name}.{column in this relationship table}', '{relationship label}')```.
+
+For a One To One relationship, example in the View (in blade template):
+
+```html
+@sortableLink('article.title', 'Article Title')
 ```
 
 ### Relationships - Conventions
