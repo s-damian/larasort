@@ -81,17 +81,18 @@ class Related
      */
     private function getRelatedKeys(Relation $relation): array
     {
-        if ($relation instanceof HasOne) {
-            $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
-            $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
-        } elseif ($relation instanceof HasMany) {
-            $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
-            $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
-        } elseif ($relation instanceof BelongsTo) {
-            $relatedPrimaryKey = $relation->getQualifiedOwnerKeyName(); // foreign_key of the table of this Model.
-            $modelPrimaryKey  = $relation->getQualifiedForeignKeyName();  // primary_key of the table of the related Model.
-        } else {
-            throw new LarasortException('Error with relation instanceof.');
+        switch (true) {
+            case $relation instanceof HasOne:
+            case $relation instanceof HasMany:
+                $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
+                $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
+                break;
+            case $relation instanceof BelongsTo:
+                $relatedPrimaryKey = $relation->getQualifiedOwnerKeyName(); // foreign_key of the table of this Model.
+                $modelPrimaryKey  = $relation->getQualifiedForeignKeyName();  // primary_key of the table of the related Model.
+                break;
+            default:
+                throw new LarasortException('Error with relation instanceof.');
         }
 
         return [$relatedPrimaryKey, $modelPrimaryKey];
