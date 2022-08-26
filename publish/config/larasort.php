@@ -14,8 +14,8 @@ return [
     'default_order' => 'asc',
 
     /**
-     * Default relationship column separator.
-     * Example: "article.title" means relation "article" and column "title".
+     * The default relationship column separator.
+     * Example: "articles.title" means relation "articles" and column "title".
      */
     'relation_column_separator' => '.',
 
