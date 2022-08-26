@@ -4,6 +4,7 @@ namespace SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models;
 
 use SDamian\Larasort\AutoSortable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Factories\UserFactory;
 
@@ -36,9 +37,21 @@ class User extends Model
      */
     private array $sortablesRelated = [
         // Convention: {relationship name}{separator}{column in this relationship table}.
-        'articles.title',
+        'article.title', // UTILE pour tester la relation "One To One".
+        'articles.title', // UTILE pour tester la relation "One To Many".
     ];
 
+    /**
+     * UTILE pour tester la relation "One To One".
+     */
+    public function article(): HasOne
+    {
+        return $this->hasOne(Article::class, 'user_id_created_at', 'id');
+    }
+
+    /**
+     * UTILE pour tester la relation "One To Many".
+     */
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class, 'user_id_created_at', 'id');

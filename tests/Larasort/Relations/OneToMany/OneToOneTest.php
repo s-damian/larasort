@@ -9,7 +9,7 @@ use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
 use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models\User;
 use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models\Article;
 
-class OneToManyTest extends TestCase
+class OneToOneTest extends TestCase
 {
     use ForAllTestsTrait;
 
@@ -33,29 +33,28 @@ class OneToManyTest extends TestCase
 
         User::storeUsers();
 
-        Article::storeArticles_forOneToMany();
+        Article::storeArticles_forOneToOne();
 
         // On a besoin de ces déonnes pour nos tests de cette class
         $this->verifyDataInDb();
     }
 
     /**
-     * Pour tester la relation One To Many, on insert 5 articles et 3 users.
+     * Pour tester la relation One To One, on insert 3 articles et 3 users.
      * On veut :
-     * - 3 articles joints à "$user1".
+     * - 1 article joint à "$user1".
      * - 1 article joint à "$user2".
-     * - 0 article joint à "$user3".
-     * - et le 3è article n'aura pas de user joint..
+     * - et le 2è article n'aura pas de user joint..
      */
     private function verifyDataInDb(): void
     {
         $this->assertSame(3, User::count());
-        $this->assertSame(5, Article::count());
+        $this->assertSame(3, Article::count());
 
         $user1 = User::find(1);
-        $this->assertSame(3, $user1->articles()->count());
+        $this->assertSame(1, $user1->articles()->count());
 
-        $this->assertTrue($user1->articles instanceof Collection); // On en profite pour tester la méthode de relation "articles".
+        $this->assertTrue($user1->article instanceof Article); // On en profite pour tester la méthode de relation "article".
 
         $user2 = User::find(2);
         $this->assertSame(1, $user2->articles()->count());
@@ -63,8 +62,8 @@ class OneToManyTest extends TestCase
         $user3 = User::find(3);
         $this->assertSame(0, $user3->articles()->count());
 
-        $article3 = Article::find(3);
-        $this->assertTrue($article3->user_id_created_at === null);
+        $article2 = Article::find(2);
+        $this->assertTrue($article2->user_id_created_at === null);
     }
 
     /*
@@ -81,7 +80,7 @@ class OneToManyTest extends TestCase
         $this->verifyInAllTests();
 
         $users = User::autosort([
-                'related' => 'articles', // Required - name of the relation.
+                'related' => 'article', // Required - name of the relation.
                 'join_type' => 'join', // Optional - "leftJoin" by default.
             ])
             ->get();
@@ -95,7 +94,8 @@ class OneToManyTest extends TestCase
             )
             ->get();
 
-        $this->assertSame(4, $users->count());
+        // Seul 2 des 3 users sont joint à un article.
+        $this->assertSame(2, $users->count());
         $this->assertSame($usersB->count(), $users->count());
     }
 
@@ -107,7 +107,7 @@ class OneToManyTest extends TestCase
         $this->verifyInAllTests();
 
         $users = User::autosort([
-                'related' => 'articles', // Required - name of the relation.
+                'related' => 'article', // Required - name of the relation.
                 'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
             ])
             ->get();
@@ -121,7 +121,8 @@ class OneToManyTest extends TestCase
             )
             ->get();
 
-        $this->assertSame(5, $users->count());
+        // Seul 2 des 3 users sont joint à un article, mais avec le "leftJoin" ça retourne tout de même 3 lignes (car il y a 3 articles dans la BDD).
+        $this->assertSame(3, $users->count());
         $this->assertSame($usersB->count(), $users->count());
     }
 
@@ -145,10 +146,10 @@ class OneToManyTest extends TestCase
         $userFirst = $users->first();
         $userLast = $users->last();
 
-        // Req avec JOIN retourne 4 rows :
-        // 3 fois l'user "user-1" car il est joint à 3 articles.
+        // Req avec JOIN retourne 2 rows :
+        // 1 fois l'user "user-1" car il est joint à 1 article.
         // 1 fois l'user "user-2" car il est joint à 1 article.
-        $this->assertSame(4, $users->count());
+        $this->assertSame(2, $users->count());
         $this->assertSame('user-1@gmail.com', $userFirst->email);
         $this->assertSame('user-2@gmail.com', $userLast->email); // ICI
 
@@ -159,11 +160,11 @@ class OneToManyTest extends TestCase
         $userFirst = $users->first();
         $userLast = $users->last();
 
-        // Req avec LEFT JOIN retourne 5 rows :
-        // 3 fois l'user "user-1" car il est joint à 3 articles.
+        // Req avec LEFT JOIN retourne 3 rows :
+        // 1 fois l'user "user-1" car il est joint à 1 article.
         // 1 fois l'user "user-2" car il est joint à 1 article.
         // 1 fois l'user "user-3" car ici on fait un "leftJoin".
-        $this->assertSame(5, $users->count());
+        $this->assertSame(3, $users->count());
         $this->assertSame('user-1@gmail.com', $userFirst->email);
         $this->assertSame('user-3@gmail.com', $userLast->email); // ICI
     }
@@ -172,7 +173,7 @@ class OneToManyTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        Request::offsetSet('orderby', 'articles.title'); // ICI
+        Request::offsetSet('orderby', 'article.title'); // ICI
         Request::offsetSet('order', 'asc'); // ICI
 
         // Tester avec JOIN :
@@ -182,12 +183,12 @@ class OneToManyTest extends TestCase
         $userFirst = $users->first();
         $userLast = $users->last();
 
-        // Req avec JOIN retourne 4 rows :
-        // 3 fois l'user "user-1" car il est joint à 3 articles.
+        // Req avec JOIN retourne 2 rows :
+        // 1 fois l'user "user-1" car il est joint à 1 article.
         // 1 fois l'user "user-2" car il est joint à 1 article.
-        $this->assertSame(4, $users->count());
-        $this->assertSame('user-1@gmail.com', $userFirst->email);
-        $this->assertSame('user-1@gmail.com', $userLast->email); // ICI - "user-1" est joint à l'article 5 (le dernier article)
+        $this->assertSame(2, $users->count());
+        $this->assertSame('user-1@gmail.com', $userFirst->email); // ICI - "user-1" est joint à l'article 1 (le premier article)
+        $this->assertSame('user-2@gmail.com', $userLast->email); // ICI - "user-2" est joint à l'article 3 (le dernier article)
 
         // Tester avec LEFT JOIN :
 
@@ -196,20 +197,20 @@ class OneToManyTest extends TestCase
         $userFirst = $users->first();
         $userLast = $users->last();
 
-        // Req avec LEFT JOIN retourne 5 rows :
-        // 3 fois l'user "user-1" car il est joint à 3 articles.
+        // Req avec LEFT JOIN retourne 3 rows :
+        // 1 fois l'user "user-1" car il est joint à 1 article.
         // 1 fois l'user "user-2" car il est joint à 1 article.
         // 1 fois l'user "user-3" car ici on fait un "leftJoin".
-        $this->assertSame(5, $users->count());
+        $this->assertSame(3, $users->count());
         $this->assertSame('user-3@gmail.com', $userFirst->email); // ICI - "user-3" est joint à AUCUN article (donc son title vaut null)
-        $this->assertSame('user-1@gmail.com', $userLast->email); // ICI - "user-1" est joint à l'article 5 (le dernier article)
+        $this->assertSame('user-2@gmail.com', $userLast->email); // ICI - "user-2" est joint à l'article 3 (le dernier article)
     }
 
     public function testWithOrderByArticleTitleDesc(): void
     {
         $this->verifyInAllTests();
 
-        Request::offsetSet('orderby', 'articles.title'); // ICI
+        Request::offsetSet('orderby', 'article.title'); // ICI
         Request::offsetSet('order', 'desc'); // ICI
 
         // Tester avec JOIN :
@@ -219,12 +220,12 @@ class OneToManyTest extends TestCase
         $userFirst = $users->first();
         $userLast = $users->last();
 
-        // Req avec JOIN retourne 4 rows :
-        // 3 fois l'user "user-1" car il est joint à 3 articles.
+        // Req avec JOIN retourne 2 rows :
+        // 1 fois l'user "user-1" car il est joint à 1 article.
         // 1 fois l'user "user-2" car il est joint à 1 article.
-        $this->assertSame(4, $users->count());
-        $this->assertSame('user-1@gmail.com', $userFirst->email); // ICI - "user-1" est joint à l'article 5 (le dernier article)
-        $this->assertSame('user-1@gmail.com', $userLast->email);
+        $this->assertSame(2, $users->count());
+        $this->assertSame('user-2@gmail.com', $userFirst->email); // ICI - "user-2" est joint à l'article 3 (le dernier article)
+        $this->assertSame('user-1@gmail.com', $userLast->email); // ICI - "user-1" est joint à l'article 1 (le premier article)
 
         // Tester avec LEFT JOIN :
 
@@ -233,12 +234,12 @@ class OneToManyTest extends TestCase
         $userFirst = $users->first();
         $userLast = $users->last();
 
-        // Req avec LEFT JOIN retourne 5 rows :
-        // 3 fois l'user "user-1" car il est joint à 3 articles.
+        // Req avec LEFT JOIN retourne 3 rows :
+        // 1 fois l'user "user-1" car il est joint à 1 article.
         // 1 fois l'user "user-2" car il est joint à 1 article.
         // 1 fois l'user "user-3" car ici on fait un "leftJoin".
-        $this->assertSame(5, $users->count());
-        $this->assertSame('user-1@gmail.com', $userFirst->email); // ICI - "user-1" est joint à l'article 5 (le dernier article)
+        $this->assertSame(3, $users->count());
+        $this->assertSame('user-2@gmail.com', $userFirst->email); // ICI - "user-2" est joint à l'article 3 (le dernier article)
         $this->assertSame('user-3@gmail.com', $userLast->email); // ICI - "user-3" est joint à AUCUN article (donc son title vaut null)
     }
 
@@ -251,7 +252,7 @@ class OneToManyTest extends TestCase
     private function getUsersJoinToArticles(): Collection
     {
         return User::autosort([
-                'related' => 'articles', // Required - name of the relation.
+                'related' => 'article', // Required - name of the relation.
                 'join_type' => 'join', // Optional - "leftJoin" by default.
                 'columns' => ['id', 'email', 'username'], // Optional - "*" by default.
                 'related_columns' => ['title AS article_title', 'content'], // Optional -"*" by default.
@@ -262,7 +263,7 @@ class OneToManyTest extends TestCase
     private function getUsersLeftJoinToArticles(): Collection
     {
         return User::autosort([
-                'related' => 'articles', // Required - name of the relation.
+                'related' => 'article', // Required - name of the relation.
                 'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
                 'columns' => ['id', 'email', 'username'], // Optional - "*" by default.
                 'related_columns' => ['title AS article_title', 'content'], // Optional -"*" by default.

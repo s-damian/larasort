@@ -28,7 +28,36 @@ class Article extends Model
         'title',
     ];
 
-    public static function storeArticles(): void
+    /**
+     * UTILE pour tester la relation "One To One".
+     */
+    public static function storeArticles_forOneToOne(): void
+    {
+        $nb = 3;
+        for ($i=1; $i <= $nb; $i++) {
+            switch ($i) {
+                case 1:
+                    $user_id_created_at = 1;
+                    break;
+                case 2:
+                    $user_id_created_at = null;
+                    break;
+                case 3:
+                    $user_id_created_at = 2;
+                    break;
+            }
+
+            ArticleFactory::new()->create([
+                'user_id_created_at' => $user_id_created_at ?? null,
+                'title' => 'Title-'.$i,
+            ]);
+        }
+    }
+
+    /**
+     * UTILE pour tester la relation "One To Many".
+     */
+    public static function storeArticles_forOneToMany(): void
     {
         $nb = 5;
         for ($i=1; $i <= $nb; $i++) {
