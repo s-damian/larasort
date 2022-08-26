@@ -63,8 +63,7 @@ class OneToOneTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        $users = User::autosort([
-                'related' => 'article', // Required - name of the relation.
+        $users = User::autosortWith('article', [
                 'join_type' => 'join', // Optional - "leftJoin" by default.
             ])
             ->get();
@@ -85,8 +84,7 @@ class OneToOneTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        $users = User::autosort([
-                'related' => 'article', // Required - name of the relation.
+        $users = User::autosortWith('article', [
                 'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
             ])
             ->get();
@@ -230,8 +228,7 @@ class OneToOneTest extends TestCase
 
     private function getUsersJoinToArticles(): Collection
     {
-        return User::autosort([
-                'related' => 'article', // Required - name of the relation.
+        return User::autosortWith('article', [
                 'join_type' => 'join', // Optional - "leftJoin" by default.
                 'columns' => ['id', 'email', 'username'], // Optional - "*" by default.
                 'related_columns' => ['title AS article_title', 'content'], // Optional -"*" by default.
@@ -241,8 +238,7 @@ class OneToOneTest extends TestCase
 
     private function getUsersLeftJoinToArticles(): Collection
     {
-        return User::autosort([
-                'related' => 'article', // Required - name of the relation.
+        return User::autosortWith('article', [
                 'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
                 'columns' => ['id', 'email', 'username'], // Optional - "*" by default.
                 'related_columns' => ['title AS article_title', 'content'], // Optional -"*" by default.

@@ -351,6 +351,8 @@ class Customer extends Model
 
 With **Larasort** you can automate the ```ORDER BY``` of your relations One To One and One To Many.
 
+to do this, you can use the **autosortWith** method.
+
 ### One To One
 
 In this example, a **user** has created one **article**, and an **article** has been created by a single **user**.
@@ -384,8 +386,7 @@ public function article()
 <?php
 
 $users = User::active()
-    ->autosort([
-        'related' => 'article', // Required - name of the relation.
+    ->autosortWith('article', [
         'join_type' => 'join', // Optional - "leftJoin" by default.
         'columns' => ['id', 'username', 'email', 'role'], // Optional - "*" by default.
         'related_columns' => ['title AS article_title', 'h1'], // Optional - "*" by default.
@@ -426,11 +427,10 @@ public function articles()
 <?php
 
 $users = User::active()
-    ->autosort([
-        'related' => 'articles', // Required - name of the relation.
+    ->autosortWith('articles', [
         'join_type' => 'join', // Optional - "leftJoin" by default.
         'columns' => ['id', 'username', 'email', 'role'], // Optional - "*" by default.
-        'related_columns' => ['title AS article_title', 'h1'], // Optional -"*" by default.
+        'related_columns' => ['title AS article_title', 'h1'], // Optional - "*" by default.
     ])
     ->paginate();
 ```
@@ -461,8 +461,7 @@ public function user()
 <?php
 
 $articles = Article::active()
-    ->autosort([
-        'related' => 'user', // Required - name of the relation.
+    ->autosortWith('user', [
         'join_type' => 'join', // Optional - "leftJoin" by default.
         'columns' => ['id', 'slug', 'h1', 'updated_at'], // Optional - "*" by default.
         'related_columns' => ['email AS user_email', 'first_name'], // Optional - "*" by default.
@@ -493,17 +492,17 @@ Larasort will use **{relationship name}** to do the ```ORDER BY``` on its table.
 
 By default the separator is a period. If you wish, you can change it in the config with **relation_column_separator**.
 
-#### ->autosort() method options
+#### ->autosortWith() method options
 
 * "related" (required):
 
-To do the join, you must specify the **related** option to **->autosort()**.
+To do the join, you must specify the name of the relation in the first parameter of **->autosortWith()**.
 
 In **related**, you must pass the name of your relation (the name of the relation method that you put in your Model).
 Larasort will use this name to do the **join**.
 
 PS:
-If at the option **related** of **->autosort()** you put a relation name different from what you had put at **{relationship name}** of the property **$sortablesRelated* *,
+If at the first parameter of **->autosortWith()** you put a relation name different from what you had put at **{relationship name}** of the property **$sortablesRelated* *,
 the ```ORDER BY``` simply won't happen on the relationship.
 
 * "join_type" (optional):

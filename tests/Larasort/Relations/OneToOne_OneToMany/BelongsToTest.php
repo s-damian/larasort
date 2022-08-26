@@ -70,8 +70,7 @@ class BelongsToTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        $articles = Article::autosort([
-                'related' => 'user', // Required - name of the relation.
+        $articles = Article::autosortWith('user', [
                 'join_type' => 'join', // Optional - "leftJoin" by default.
             ])
             ->get();
@@ -92,8 +91,7 @@ class BelongsToTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        $articles = Article::autosort([
-                'related' => 'user', // Required - name of the relation.
+        $articles = Article::autosortWith('user', [
                 'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
             ])
             ->get();
@@ -225,8 +223,7 @@ class BelongsToTest extends TestCase
 
     private function getArticlesJoinToUsers(): Collection
     {
-        return Article::autosort([
-                'related' => 'user', // Required - name of the relation.
+        return Article::autosortWith('user', [
                 'join_type' => 'join', // Optional - "leftJoin" by default.
                 'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
                 'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
@@ -236,9 +233,8 @@ class BelongsToTest extends TestCase
 
     private function getArticlesLeftJoinToUsers(): Collection
     {
-        return Article::autosort([
-                'related' => 'user', // Required - name of the relation.
-                'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
+        return Article::autosortWith('user', [
+            'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
                 'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
                 'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
             ])

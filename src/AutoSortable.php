@@ -32,19 +32,23 @@ trait AutoSortable
     /**
      * @param array<mixed> $options
      */
-    final public function scopeAutosort(Builder|BuilderE $query, array $options = []): Builder|BuilderE
+    final public function scopeAutosortWith(Builder|BuilderE $query, string $relation, array $options = []): Builder|BuilderE
     {
-        $this->verifySortablesProperty();
         Security::verifyScopeAutosortOptions($options);
 
-        if (isset($options['related'])) {
-            $related = new Related($this, $query, $options);
-            $related->makeRelationship();
+        $related = new Related($this, $query, $relation, $options);
+        $related->makeRelationship();
 
-            if ($related->verifyRequestOrderBy($this->hasRequestStr(), $this->sortablesRelated ?? [])) {
-                $orderByRelated = $related->getTableColumnByUrl();
-            }
+        if ($related->verifyRequestOrderBy($this->hasRequestStr(), $this->sortablesRelated ?? [])) {
+            $orderByRelated = $related->getTableColumnByUrl();
         }
+
+        return $query->autosort($orderByRelated ?? null);
+    }
+
+    final public function scopeAutosort(Builder|BuilderE $query, string $orderByRelated = null): Builder|BuilderE
+    {
+        $this->verifySortablesProperty();
 
         // "$this->getSqlOrderBy()" can be null (it is if in the "$sortables" property we have asked that it is not ordered by by default).
         $orderBy = $orderByRelated ?? $this->getSqlOrderBy();

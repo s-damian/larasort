@@ -23,6 +23,8 @@ class Related
 
     private Builder|BuilderE $query;
 
+    private string $relation;
+
     /**
      * @var array<mixed>
      */
@@ -31,10 +33,11 @@ class Related
     /**
      * @param array<mixed> $options
      */
-    public function __construct(object $model, Builder|BuilderE $query, array $options)
+    public function __construct(object $model, Builder|BuilderE $query, string $relation, array $options)
     {
         $this->model = $model;
         $this->query = $query;
+        $this->relation = $relation;
         $this->options = $options;
     }
 
@@ -145,7 +148,7 @@ class Related
 
     private function getRelationByOptions(): string
     {
-        return $this->options['related'];
+        return $this->relation;
     }
 
     private function getRelationByUrl(): string
@@ -157,7 +160,7 @@ class Related
 
     final public function getTableColumnByUrl(): ?string
     {
-        // We do the ORDER BY on the relation only if: if the relation name passed in $options['related'] is the same as the one in the URL.
+        // We do the ORDER BY on the relation only if: if the relation name passed in $this->relation is the same as the one in the URL.
         if ($this->getRelationByUrl() !== $this->getRelationByOptions()) {
             return null;
         }

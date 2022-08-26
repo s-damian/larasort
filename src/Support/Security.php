@@ -16,7 +16,7 @@ class Security
      */
     public static function verifyScopeAutosortOptions(array $options = []): void
     {
-        $allowedOptions = ['related', 'columns', 'related_columns', 'join_type'];
+        $allowedOptions = ['columns', 'related_columns', 'join_type'];
         foreach ($options as $key => $values) {
             if (! in_array($key, $allowedOptions)) {
                 throw new LarasortException($key.' is not an option allowed.');
