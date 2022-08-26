@@ -47,6 +47,10 @@ class BelongsToTest extends TestCase
 
         // On a besoin de ces déonnes pour nos tests de cette class
         $this->verifyDataInDb();
+
+        // Spécifique pour "Belongs To"
+        $article1 = Article::find(1);
+        $this->assertTrue($article1->user instanceof User); // On en profite pour tester la méthode de relation "user".
     }
 
     /*
@@ -55,18 +59,96 @@ class BelongsToTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testA(): void
+    /**
+     * On test que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
+     */
+    public function testJoin(): void
     {
         $this->verifyInAllTests();
 
         $articles = Article::autosort([
                 'related' => 'user', // Required - name of the relation.
                 'join_type' => 'join', // Optional - "leftJoin" by default.
+            ])
+            ->get();
+
+        $articlesB = Article::select('articles.title')
+            ->join(
+                'users',
+                'articles.user_id_created_at',
+                '=',
+                'users.id'
+            )
+            ->get();
+
+        // Seul 2 des 3 users sont joint à un article.
+        $this->assertSame(2, $articles->count());
+        $this->assertSame($articlesB->count(), $articles->count());
+    }
+
+    /**
+     * On test que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
+     */
+    public function testLeftJoin(): void
+    {
+        $this->verifyInAllTests();
+
+        $articles = Article::autosort([
+                'related' => 'user', // Required - name of the relation.
+                'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
+            ])
+            ->get();
+
+        $articlesB = Article::select('articles.title')
+            ->leftJoin(
+                'users',
+                'articles.user_id_created_at',
+                '=',
+                'users.id'
+            )
+            ->get();
+
+        // Seul 2 des 3 users sont joint à un article, mais avec le "leftJoin" ça retourne tout de même 3 lignes (car il y a 3 articles dans la BDD).
+        $this->assertSame(3, $articles->count());
+        $this->assertSame($articlesB->count(), $articles->count());
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | On test les order by
+    |--------------------------------------------------------------------------
+    */
+
+
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | On "range" les req SQL qu'on a besoin dans plusieurs tests
+    |--------------------------------------------------------------------------
+    */
+
+    private function getArticlesJoinToUsers(): Collection
+    {
+        return Article::autosort([
+                'related' => 'user', // Required - name of the relation.
+                'join_type' => 'join', // Optional - "leftJoin" by default.
                 'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
                 'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
             ])
             ->get();
+    }
 
-        //dd( $articles );
+    private function getArticlesLeftJoinToUsers(): Collection
+    {
+        return Article::autosort([
+                'related' => 'user', // Required - name of the relation.
+                'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
+                'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
+                'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
+            ])
+            ->get();
     }
 }
