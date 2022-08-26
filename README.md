@@ -346,18 +346,6 @@ class Customer extends Model
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## Relationships
 
 With **Larasort** you can automate the ```ORDER BY``` of your relations One To One and One To Many.
@@ -367,10 +355,6 @@ With **Larasort** you can automate the ```ORDER BY``` of your relations One To O
 ```html
 @sortableLink('article.title', 'Article Title')
 ...
-
-
-
-
 
 ### One To One
 
@@ -406,18 +390,13 @@ public function article()
 
 $users = User::active()
     ->autosort([
-        'related' => 'article', // Required - this is the name of the (here it is HasOne).
-        'join_type' => 'join' // Optional - by default it will do a "leftJoin".
-        'columns' => ['id', 'username', 'email', 'role'], // Optional - by default it will be "*" (SELECT all columns of this Model).
-        'related_columns' => ['title AS article_title', 'h1'], // Optional - by default it will be "*" (SELECT all columns of relation).
+        'related' => 'article', // Required - name of the relation.
+        'join_type' => 'join' // Optional - "leftJoin" by default.
+        'columns' => ['id', 'username', 'email', 'role'], // Optional - "*" by default.
+        'related_columns' => ['title AS article_title', 'h1'], // Optional - "*" by default.
     ])
     ->paginate();
 ```
-
-
-
-
-
 
 ### One To Many
 
@@ -453,18 +432,13 @@ public function articles()
 
 $users = User::active()
     ->autosort([
-        'related' => 'articles', // Required - this is the name of the relationship (here it is HasMany).
-        'join_type' => 'join' // Optional - by default it will do a "leftJoin".
-        'columns' => ['id', 'username', 'email', 'role'], // Optional - by default it will be "*" (SELECT all columns of this Model).
-        'related_columns' => ['title AS article_title', 'h1'], // Optional - by default it will be "*" (SELECT all columns of relation).
+        'related' => 'articles', // Required - name of the relation.
+        'join_type' => 'join' // Optional - "leftJoin" by default.
+        'columns' => ['id', 'username', 'email', 'role'], // Optional - "*" by default.
+        'related_columns' => ['title AS article_title', 'h1'], // Optional -"*" by default.
     ])
     ->paginate();
 ```
-
-
-
-
-
 
 ### Belongs To
 
@@ -493,49 +467,53 @@ public function user()
 
 $articles = Article::active()
     ->autosort([
-        'related' => 'user', // Required - this is the name of the relationship (here it is HasMany).
-        'join_type' => 'join' // Optional - by default it will do a "leftJoin".
-        'columns' => ['id', 'slug', 'h1', 'updated_at'], // Optional - by default it will be "*" (SELECT all columns of this Model).
-        'related_columns' => ['email AS user_email', 'first_name'], // Optional - by default it will be "*" (SELECT all columns of relation).
+        'related' => 'user', // Required - name of the relation.
+        'join_type' => 'join' // Optional - "leftJoin" by default.
+        'columns' => ['id', 'slug', 'h1', 'updated_at'], // Optional - "*" by default.
+        'related_columns' => ['email AS user_email', 'first_name'], // Optional - "*" by default.
     ])
     ->paginate();
 ```
 
-
-
-
-
 ### Relationships - Conventions
 
-#### Propriété $sortablesRelated du Model
+#### Model $sortablesRelated property
 
-Pour les colonnes que vous mettez dans la dans la propriété **$sortablesRelated**,
-la convention est ```{relationship name}{separator}{column in this relationship table}```.
+For the columns you put in the in the **$sortablesRelated** property,
+the onventions is: ```{relationship name}{separator}{column in this relationship table}```
 
-Larasort se servira de **{relationship name}** pour faire le ```ORDER BY``` sur sa table.
+Larasort will use **{relationship name}** to do the ```ORDER BY``` on its table.
 
-Par défaut le séparaeur est un point. Si vous le souhaitez, vous pouvez le changer dans la config avec **relation_column_separator**.
+By default the separator is a period. If you wish, you can change it in the config with **relation_column_separator**.
 
-#### Méthode ->autosort()
+#### ->autosort() method options
 
-Pour faire le join, vous devez obligatoirement spécifier l'options **related** à **->autosort()**.
-Dans **related**, vous devez passer le nom de votre relation (le nom de la méthode que vous mettez dans votre Model).
-Larasort se servira de ce nom pour faire le **join**.
+* "related" (required):
 
-PS :
-Si à l'option **related** de **->autosort()** vous mettez un nom de relation différent de ce que vous avez mis à **{relationship name}** de la propriété **$sortablesRelated**,
-le ```ORDER BY``` ne se fera tout simplement pas sur la relation.
+To do the join, you must specify the **related** option to **->autosort()**.
 
+In **related**, you must pass the name of your relation (the name of the relation method that you put in your Model).
+Larasort will use this name to do the **join**.
 
+PS:
+If at the option **related** of **->autosort()** you put a relation name different from what you had put at **{relationship name}** of the property **$sortablesRelated* *,
+the ```ORDER BY``` simply won't happen on the relationship.
 
+* "join_type" (optional):
 
+To make another joint than default (the one specified in the config), you can specify the **join_type** option.
 
+* "columns" (optional):
 
+If you want to specify the columns to ```SELECT``` for your Model, you can specify the **columns** option.
 
+By default the ```SELECT``` will be done on all the columns.
 
+* "related_columns" (optional):
 
+If you want to specify which columns to ```SELECT``` for your Model's relationship, you can specify the **related_columns** option.
 
-
+By default the ```SELECT``` will be done on all the columns.
 
 
 ## For a column, specify its table
