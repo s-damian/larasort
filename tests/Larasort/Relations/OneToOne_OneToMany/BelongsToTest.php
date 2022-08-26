@@ -8,20 +8,24 @@ use Illuminate\Database\Eloquent\Collection;
 use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\Article;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Traits\ForOneToOneTrait;
 
 /**
  * Ici on test le "Belongs To".
  * Le "Belongs To" fonctionne identiquement avec "One To One" et avec "One To Many".
- * Dans cette class de test, on va le "simuler" avec "One To Many".
+ * Dans cette class de test, on va le "simuler" avec les mêmes données en BDD qu'avec le "One To One".
  */
 class BelongsToTest extends TestCase
 {
     use ForAllTestsTrait;
+    use ForOneToOneTrait;
 
     public function setUp(): void
     {
         parent::setUp();
 
+        // ***** On prépare la BDD (migrations, etc.). *****
+        // On prépare la BDD (migrations, etc.).
         // Pour ces tests, on veut les contraintes de clés étrangères.
         config(['database.connections.testing.foreign_key_constraints' => true]);
 
@@ -38,38 +42,11 @@ class BelongsToTest extends TestCase
 
         User::storeUsers();
 
-        Article::storeArticles_forOneToMany();
+        Article::storeArticles_forOneToOne();
+        // ***** /On prépare la BDD (migrations, etc.). *****
 
         // On a besoin de ces déonnes pour nos tests de cette class
         $this->verifyDataInDb();
-    }
-
-    /**
-     * Pour tester la relation One To Many, on insert 5 articles et 3 users.
-     * On veut :
-     * - 3 articles joints à "$user1".
-     * - 1 article joint à "$user2".
-     * - 0 article joint à "$user3".
-     * - et le 3è article n'aura pas de user joint..
-     */
-    private function verifyDataInDb(): void
-    {
-        $this->assertSame(3, User::count());
-        $this->assertSame(5, Article::count());
-
-        $user1 = User::find(1);
-        $this->assertSame(3, $user1->articles()->count());
-
-        $this->assertTrue($user1->articles instanceof Collection); // On en profite pour tester la méthode de relation "articles".
-
-        $user2 = User::find(2);
-        $this->assertSame(1, $user2->articles()->count());
-
-        $user3 = User::find(3);
-        $this->assertSame(0, $user3->articles()->count());
-
-        $article3 = Article::find(3);
-        $this->assertTrue($article3->user_id_created_at === null);
     }
 
     /*
@@ -81,5 +58,15 @@ class BelongsToTest extends TestCase
     public function testA(): void
     {
         $this->verifyInAllTests();
+
+        $articles = Article::autosort([
+                'related' => 'user', // Required - name of the relation.
+                'join_type' => 'join', // Optional - "leftJoin" by default.
+                'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
+                'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
+            ])
+            ->get();
+
+        //dd( $articles );
     }
 }
