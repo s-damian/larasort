@@ -5,7 +5,7 @@ namespace SDamian\Tests\Larasort;
 use SDamian\Tests\TestCase;
 use SDamian\Larasort\Larasort;
 use Illuminate\Support\Facades\Request;
-use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
+use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\Larasort\Fixtures\Models\Address;
 use SDamian\Tests\Larasort\Fixtures\Models\Customer;
 

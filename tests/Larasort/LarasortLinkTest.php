@@ -6,7 +6,7 @@ use SDamian\Tests\TestCase;
 use SDamian\Larasort\Larasort;
 use SDamian\Larasort\LarasortLink;
 use Illuminate\Support\Facades\Request;
-use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
+use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 
 /**
  * Ici on test :

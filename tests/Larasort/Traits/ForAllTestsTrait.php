@@ -1,6 +1,6 @@
 <?php
 
-namespace SDamian\Tests\Larasort\Utils;
+namespace SDamian\Tests\Larasort\Traits;
 
 use Illuminate\Support\Facades\Request;
 
