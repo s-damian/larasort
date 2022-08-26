@@ -490,7 +490,7 @@ public function user()
 ```php
 <?php
 
-$articles = self::active()
+$articles = Article::active()
     ->autosort([
         'related' => 'user', // Required - this is the name of the relationship (here it is HasMany).
         'columns' => ['id', 'slug', 'h1', 'updated_at'], // Optional - by default it will be "*" (SELECT all columns of this Model).
