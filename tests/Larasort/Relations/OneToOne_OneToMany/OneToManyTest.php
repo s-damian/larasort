@@ -11,7 +11,7 @@ use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\Article;
 
 /**
  * Ici on test le "One To Many".
- * 
+ *
  * Ici on "simule" qu'on est dans un Controller User,
  * et qu'on travail sur un Model User qui a une relation "One To Many" avec un Model Article.
  * Un user peut avoir créé plusieurs article, un article peut avoir été créé par qu'un seul user.
@@ -94,12 +94,7 @@ class OneToManyTest extends TestCase
             ->get();
 
         $usersB = User::select('users.email')
-            ->join(
-                'articles',
-                'users.id',
-                '=',
-                'articles.user_id_created_at'
-            )
+            ->join('articles', 'users.id', '=', 'articles.user_id_created_at')
             ->get();
 
         $this->assertSame(4, $users->count());
