@@ -11,6 +11,7 @@ parameters:
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Fixtures\\Models\\Customer::select\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\Article::find\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\Article::count\(\)#'
+    - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\Article::select\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\Article::autosort\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\User::find\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\User::count\(\)#'
