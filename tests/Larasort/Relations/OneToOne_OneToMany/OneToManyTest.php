@@ -9,6 +9,9 @@ use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\Article;
 
+/**
+ * Ici on test le "One To Many".
+ */
 class OneToManyTest extends TestCase
 {
     use ForAllTestsTrait;
