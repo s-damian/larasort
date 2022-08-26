@@ -1,12 +1,12 @@
 <?php
 
-namespace SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models;
+namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models;
 
 use SDamian\Larasort\AutoSortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Factories\UserFactory;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Factories\UserFactory;
 
 class User extends Model
 {

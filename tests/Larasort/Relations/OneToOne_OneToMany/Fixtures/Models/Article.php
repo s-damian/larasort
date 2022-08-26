@@ -1,10 +1,10 @@
 <?php
 
-namespace SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models;
+namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models;
 
 use SDamian\Larasort\AutoSortable;
 use Illuminate\Database\Eloquent\Model;
-use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Factories\ArticleFactory;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Factories\ArticleFactory;
 
 class Article extends Model
 {

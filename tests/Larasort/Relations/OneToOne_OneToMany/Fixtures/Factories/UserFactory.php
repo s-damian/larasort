@@ -1,9 +1,9 @@
 <?php
 
-namespace SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Factories;
+namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models\User;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
 
 class UserFactory extends Factory
 {

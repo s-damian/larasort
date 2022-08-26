@@ -1,13 +1,13 @@
 <?php
 
-namespace SDamian\Tests\Larasort\Relations\OneToMany;
+namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany;
 
 use SDamian\Tests\TestCase;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Collection;
 use SDamian\Tests\Larasort\Utils\ForAllTestsTrait;
-use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models\User;
-use SDamian\Tests\Larasort\Relations\OneToMany\Fixtures\Models\Article;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\Article;
 
 class OneToOneTest extends TestCase
 {
