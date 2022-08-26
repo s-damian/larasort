@@ -81,7 +81,7 @@ class Related
         if ($relation instanceof HasOne) {
             $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
             $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
-        } if ($relation instanceof HasMany) {
+        } elseif ($relation instanceof HasMany) {
             $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
             $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
         } elseif ($relation instanceof BelongsTo) {
