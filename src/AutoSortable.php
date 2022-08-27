@@ -5,6 +5,7 @@ namespace SDamian\Larasort;
 use Illuminate\Database\Query\Builder;
 use SDamian\Larasort\Support\Security;
 use SDamian\Larasort\Relations\Related;
+use SDamian\Larasort\Relations\OrderByRelated;
 use SDamian\Larasort\Exception\LarasortException;
 use Illuminate\Database\Eloquent\Builder as BuilderE;
 
@@ -40,18 +41,20 @@ trait AutoSortable
         $related->makeRelationship();
 
         if ($related->verifyRequestOrderBy($this->hasRequestStr(), $this->sortablesRelated ?? [])) {
-            $orderByRelated = $related->getTableColumnByUrl();
+            OrderByRelated::setOrderByRelated($related->getTableColumnByUrl());
         }
 
-        return $query->autosort($orderByRelated ?? null);
+        return $query->autosort();
     }
 
-    final public function scopeAutosort(Builder|BuilderE $query, string $orderByRelated = null): Builder|BuilderE
+    final public function scopeAutosort(Builder|BuilderE $query): Builder|BuilderE
     {
         $this->verifySortablesProperty();
 
         // "$this->getSqlOrderBy()" can be null (it is if in the "$sortables" property we have asked that it is not ordered by by default).
-        $orderBy = $orderByRelated ?? $this->getSqlOrderBy();
+        $orderBy = OrderByRelated::getOrderByRelated() ?? $this->getSqlOrderBy();
+
+        OrderByRelated::clearOrderByRelated();
 
         if ($orderBy) {
             return $query->orderBy($orderBy, $this->getSqlOrder());
