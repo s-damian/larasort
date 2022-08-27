@@ -51,7 +51,7 @@ class LarasortLinkTest extends TestCase
             LarasortLink::getLink('email', 'Customer Email')
         );
 
-        // Et on en profite pour test la méthode "getLink" (sans passer de label)
+        // Et on en profite pour test la méthode "getLink" (SANS passer de label)
         $this->assertSame(
             '<a href="http://localhost/?orderby=email&order=asc">Email<span class="larasort-icon-2"></span></a>',
             LarasortLink::getLink('email')
@@ -60,7 +60,7 @@ class LarasortLinkTest extends TestCase
         Request::offsetSet('orderby', 'user_name');
         Request::offsetSet('order', 'desc');
 
-        // Et on en profite pour test la méthode "getLink" (sans passer de label, avec une colonen qui contient un underscore)
+        // Et on en profite pour test la méthode "getLink" (SANS passer de label, AVEC une colonne qui contient un underscore)
         $this->assertSame(
             '<a href="http://localhost/?orderby=user_name&order=asc">User name<span class="larasort-icon-2"></span></a>',
             LarasortLink::getLink('user_name')
