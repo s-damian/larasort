@@ -77,7 +77,7 @@ trait AutoSortable
 
     final public function getSqlOrderBy(): ?string
     {
-        if ($this->hasRequestStr() && property_exists($this, 'sortablesAs') && in_array(request()->orderby, $this->sortablesAs)) {
+        if ($this->hasRequestStr() && in_array(request()->orderby, $this->sortablesAs ?? [])) {
             return request()->orderby; // If is an alias: we don't want a prefix table.
         } elseif ($this->hasRequestStr() && in_array(request()->orderby, $this->sortables)) {
             $orderBy = request()->orderby;
