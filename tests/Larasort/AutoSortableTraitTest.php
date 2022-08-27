@@ -85,7 +85,7 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('desc', $this->customer->getSqlOrder());
     }
 
-    public function testSortables(): void
+    public function testSortablesGettersForCustomerModel(): void
     {
         // La prop "$sortables" du Model "Customer" a bien fonctionnée.
         $this->assertSame($this->customer->getSortables(), [
@@ -95,6 +95,14 @@ class AutoSortableTraitTest extends TestCase
             'last_name',
             'price',
         ]);
+
+        // La prop "$sortablesAs" du Model "Customer" a bien fonctionnée.
+        $this->assertSame($this->customer->getSortablesAs(), [
+            'article_title',
+        ]);
+
+        // La prop "$sortablesRelated" du Model "Customer" a bien fonctionnée.
+        $this->assertSame($this->customer->getSortablesRelated(), []);
     }
 
     /*
@@ -267,5 +275,23 @@ class AutoSortableTraitTest extends TestCase
 
         $this->assertTrue($address->getSqlOrderBy() === null);
         // Par défaut sa prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
+    }
+
+    public function testSortablesGettersForAddressModel(): void
+    {
+        $address = new Address();
+
+        // La prop "$sortables" du Model "Address" a bien fonctionnée.
+        $this->assertSame($address->getSortables(), [
+            null,
+            'id',
+            'name',
+        ]);
+
+        // La prop "$sortablesAs" du Model "Address" a bien fonctionnée.
+        $this->assertSame($address->getSortablesAs(), []);
+
+        // La prop "$sortablesRelated" du Model "Address" a bien fonctionnée.
+        $this->assertSame($address->getSortablesRelated(), []);
     }
 }
