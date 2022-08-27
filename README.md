@@ -85,7 +85,7 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
   * [LarasortManual - API Doc](#larasortmanual---api-doc)
     * [LarasortManual class](#larasortmanual-class)
 * [Support](#support)
-* [License Open Source](#license-open-source)
+* [Open Source License](#open-source-license)
 
 
 ## Installation
@@ -884,6 +884,6 @@ If you discover a bug or a security vulnerability, please send a message to Step
 All bugs and all security vulnerabilities will be promptly addressed.
 
 
-## License Open Source
+## Open Source License
 
 **Larasort** is Open Source software licensed under the MIT license.
