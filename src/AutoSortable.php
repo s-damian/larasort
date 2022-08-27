@@ -30,6 +30,12 @@ use Illuminate\Database\Eloquent\Builder as BuilderE;
  */
 trait AutoSortable
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Scopes:
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * @param array<mixed> $options
      */
@@ -62,6 +68,12 @@ trait AutoSortable
 
         return $query;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Utils:
+    |--------------------------------------------------------------------------
+    */
 
     final public function getSqlOrderBy(): ?string
     {
@@ -116,6 +128,17 @@ trait AutoSortable
         return in_array($orderBy, Larasort::getSortablesDefaultOrder()['desc']) ? 'desc' : 'asc';
     }
 
+    private function hasRequestStr(): bool
+    {
+        return request()->has('orderby') && request()->orderby !== null;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Getters:
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * @return array<null|string>
      */
@@ -124,9 +147,20 @@ trait AutoSortable
         return $this->sortables;
     }
 
-    private function hasRequestStr(): bool
+    /**
+     * @return array<string>
+     */
+    final public function getSortablesAs(): array
     {
-        return request()->has('orderby') && request()->orderby !== null;
+        return $this->sortablesAs ?? [];
+    }
+
+    /**
+     * @return array<string>
+     */
+    final public function getSortablesRelated(): array
+    {
+        return $this->sortablesRelated ?? [];
     }
 
     /*
