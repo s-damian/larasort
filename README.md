@@ -69,7 +69,6 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
     * [One To One](#one-to-one)
     * [One To Many](#one-to-many)
     * [Belongs To](#belongs-to)
-    * [Example in the view](#example-in-the-view)
     * [Relationships - Conventions](#relationships---conventions)
   * [For a column, specify its table](#for-a-column-specify-its-table)
   * [Put "desc" or "asc" by default for some columns](#put-desc-or-asc-by-default-for-some-columns)
@@ -351,7 +350,7 @@ class Customer extends Model
 
 With **Larasort** you can automate the ```ORDER BY``` of your relations One To One and One To Many.
 
-to do this, you can use the **autosortWith** method.
+To do this, you can use the **autosortWith** method.
 
 ### One To One
 
@@ -370,7 +369,7 @@ This therefore makes a **One To One** relationship between **users** and **artic
  * @var array
  */
 private array $sortablesRelated = [
-    // Convention: {relationship name}.{column in this relationship table}.
+    // Convention: {relationship name}{separator}{column in this relationship table}.
     'article.title',
 ];
 
@@ -392,6 +391,13 @@ $users = User::autosortWith('article', [
     ])
     ->paginate();
 ```
+
+* Example in the View (in blade template):
+
+```html
+@sortableLink('article.title', 'Article Title')
+```
+(for the 1st argument of "@sortableLink", use the same convention as in the **$sortablesRelated** property of the Model)
 
 ### One To Many
 
@@ -433,6 +439,13 @@ $users = User::autosortWith('articles', [
     ->paginate();
 ```
 
+* Example in the View (in blade template):
+
+```html
+@sortableLink('articles.title', 'Article Title')
+```
+(for the 1st argument of "@sortableLink", use the same convention as in the **$sortablesRelated** property of the Model)
+
 ### Belongs To
 
 Whether for a **One To One** or **One To Many** relationship, you must put the **belongsTo** method in the Article Model.
@@ -466,17 +479,18 @@ $articles = Article::autosortWith('user', [
     ->paginate();
 ```
 
-### Example in the view:
+* Example in the View (in blade template):
 
-Convention:
-
-```@sortableLink('{relationship name}.{column in this relationship table}', '{relationship label}')```.
+```html
+@sortableLink('user.email', 'User Email')
+```
 
 For a One To One relationship, example in the View (in blade template):
 
 ```html
 @sortableLink('article.title', 'Article Title')
 ```
+(for the 1st argument of "@sortableLink", use the same convention as in the **$sortablesRelated** property of the Model)
 
 ### Relationships - Conventions
 
