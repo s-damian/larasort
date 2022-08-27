@@ -397,7 +397,8 @@ $users = User::autosortWith('article', [
 ```html
 @sortableLink('article.title', 'Article Title')
 ```
-(for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model)
+
+PS: for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model.
 
 ### One To Many
 
@@ -444,7 +445,8 @@ $users = User::autosortWith('articles', [
 ```html
 @sortableLink('articles.title', 'Article Title')
 ```
-(for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model)
+
+PS: for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model.
 
 ### Belongs To
 
@@ -484,7 +486,8 @@ $articles = Article::autosortWith('user', [
 ```html
 @sortableLink('user.email', 'User Email')
 ```
-(for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model)
+
+PS: for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model.
 
 ### Relationships - Conventions
 
@@ -510,11 +513,11 @@ PS:
 If at the first parameter of ```->autosortWith()``` you put a relation name different from what you had put at ```{relationship name}``` of the property ```$sortablesRelated```,
 the ```ORDER BY``` simply won't happen on the relationship.
 
-* "join_type" (optional):
+* "```join_type```" (optional):
 
 To make another joint than default (the one specified in the config), you can specify the ```join_type``` option.
 
-* "columns" (optional):
+* "```columns```" (optional):
 
 If you want to specify the columns to ```SELECT``` for your Model, you can specify the ```columns``` option.
 
@@ -523,7 +526,7 @@ Example with an array: ```['id', 'email', 'username']``` Example with a string: 
 
 By default the ```SELECT``` will be done on all the columns.
 
-* "related_columns" (optional):
+* "```related_columns```" (optional):
 
 If you want to specify which columns to ```SELECT``` for your Model's relationship, you can specify the ```related_columns``` option.
 
