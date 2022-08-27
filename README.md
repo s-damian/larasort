@@ -101,13 +101,13 @@ composer require s-damian/larasort
 
 ### Custom Config and Lang and CSS
 
-After installing the package, you have to run the **vendor:publish** command:
+After installing the package, you have to run the ```vendor:publish``` command:
 
 ```
 php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider"
 ```
 
-The **vendor:publish** command will generate these files:
+The ```vendor:publish``` command will generate these files:
 
 * config/larasort.php
 
@@ -144,12 +144,12 @@ php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider"
 
 ## Basic usage
 
-First, your Model must use the **AutoSortable** Trait.
+First, your Model must use the ```AutoSortable``` Trait.
 
-Then it is necessary that in your Model you declare **$sortables**.
+Then it is necessary that in your Model you declare ```$sortables```.
 This property is useful for defining the columns (columns in your DB table) allowed to be sorted in the ```ORDER BY```.
 
-PS: the 1st column of the array **$sortables** will be the column used by default for the SQL ```ORDER BY```.
+PS: the 1st column of the array ```$sortables``` will be the column used by default for the SQL ```ORDER BY```.
 
 Example:
 
@@ -178,7 +178,7 @@ class Customer extends Model
 
 You can override the column used by default for ```ORDER BY``` with this static method:
 
-PS: the advantage of using the **setDefaultSortable** method is that even if in the URL there are no ```?orderby={column}&order={direction}```,
+PS: the advantage of using the ```setDefaultSortable``` method is that even if in the URL there are no ```?orderby={column}&order={direction}```,
 the icon will appear the same in the link of the default column.
 
 ```php
@@ -215,7 +215,7 @@ class Customer extends Model
 }
 ```
 
-Then with eloquent, you can use the **->autosort()** magic method:
+Then with eloquent, you can use the ```->autosort()``` magic method:
 
 ```php
 <?php
@@ -259,7 +259,7 @@ And in the view you can do this in the **thead** of a **table** for example:
 PS: 1st parameter is the **column** in database, 2nd parameter is the **title** (**label**).
 The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
 
-If you need to keep more control inside a **th**, as an equivalent you can replace **@sortableLink** by **@sortableHref** and **@sortableIcon**. Example:
+If you need to keep more control inside a **th**, as an equivalent you can replace ```@sortableLink``` by ```@sortableHref``` and ```@sortableIcon```. Example:
 
 ```html
 <th>
@@ -272,7 +272,7 @@ If you need to keep more control inside a **th**, as an equivalent you can repla
 
 ## Aliasing
 
-If for some columns you do not want to specify the table in prefix, you must use the **$sortablesAs** property.
+If for some columns you do not want to specify the table in prefix, you must use the ```$sortablesAs``` property.
 
 In a concrete case, aliases are especially useful when you make an SQL query with a join.
 
@@ -350,7 +350,7 @@ class Customer extends Model
 
 With **Larasort** you can automate the ```ORDER BY``` of your relations One To One and One To Many.
 
-To do this, you can use the **autosortWith** method.
+To do this, you can use the ```*autosortWith``` method.
 
 ### One To One
 
@@ -397,7 +397,7 @@ $users = User::autosortWith('article', [
 ```html
 @sortableLink('article.title', 'Article Title')
 ```
-(for the 1st argument of "@sortableLink", use the same convention as in the **$sortablesRelated** property of the Model)
+(for the 1st argument of "@sortableLink", use the same convention as in the ```$sortablesRelated``` property of the Model)
 
 ### One To Many
 
@@ -444,7 +444,7 @@ $users = User::autosortWith('articles', [
 ```html
 @sortableLink('articles.title', 'Article Title')
 ```
-(for the 1st argument of "@sortableLink", use the same convention as in the **$sortablesRelated** property of the Model)
+(for the 1st argument of "@sortableLink", use the same convention as in the ```$sortablesRelated``` property of the Model)
 
 ### Belongs To
 
@@ -484,13 +484,13 @@ $articles = Article::autosortWith('user', [
 ```html
 @sortableLink('user.email', 'User Email')
 ```
-(for the 1st argument of "@sortableLink", use the same convention as in the **$sortablesRelated** property of the Model)
+(for the 1st argument of "@sortableLink", use the same convention as in the ```$sortablesRelated``` property of the Model)
 
 ### Relationships - Conventions
 
 #### Model $sortablesRelated property
 
-For the columns you put in the in the **$sortablesRelated** property,
+For the columns you put in the in the ```$sortablesRelated``` property,
 the onventions is: ```{relationship name}{separator}{column in this relationship table}```
 
 Larasort will use **{relationship name}** to do the ```ORDER BY``` on its table.
@@ -501,13 +501,13 @@ By default the separator is a period. If you wish, you can change it in the conf
 
 * "related" (required):
 
-To do the join, you must specify the name of the relation in the first parameter of **->autosortWith()**.
+To do the join, you must specify the name of the relation in the first parameter of ```->autosortWith()```.
 
 In **related**, you must pass the name of your relation (the name of the relation method that you put in your Model).
 Larasort will use this name to do the **join**.
 
 PS:
-If at the first parameter of **->autosortWith()** you put a relation name different from what you had put at **{relationship name}** of the property **$sortablesRelated* *,
+If at the first parameter of ```->autosortWith()``` you put a relation name different from what you had put at **{relationship name}** of the property **$sortablesRelated* *,
 the ```ORDER BY``` simply won't happen on the relationship.
 
 * "join_type" (optional):
@@ -537,7 +537,7 @@ By default the ```SELECT``` will be done on all the columns.
 
 With **Larasort** you can for columns, specify their table (this is useful when you make a SQL query with join).
 
-By default, Larasort will do the ```ORDER BY``` on the table where the **AutoSortable** trait is included.
+By default, Larasort will do the ```ORDER BY``` on the table where the ```AutoSortable``` trait is included.
 
 Let's take an example where in an SQL query you want to retrieve articles (from a **articles** table) and categories (from a **categories** table),
 and that for these 2 tables you want to retrieve the **id** column. But you want to do ```ORDER BY id``` on the **categories** table instead of on the **articles** table.
@@ -581,7 +581,7 @@ class Article extends Model
 
 #### Solution 2 - With Larasort::setSortablesToTables(array $sortablesToTables)
 
-The **Larasort::setSortablesToTables(array $sortablesToTables)** method can optionally be put just before the SQL query where you will use **->autosort()**
+The ```Larasort::setSortablesToTables(array $sortablesToTables)``` method can optionally be put just before the SQL query where you will use ```->autosort()```
 (in the Controller or in the Model, for example).
 
 Example in a ArticleController:
@@ -603,8 +603,8 @@ class ArticleController extends Controller
 }
 ```
 
-If the **$sortablesToTables** property and the **Larasort::setSortablesToTables(array $sortablesToTables)** method are used at the same time for the same column,
-the **Larasort::setSortablesToTables(array $sortablesToTables)** metho method will override the **$sortablesToTables** property.
+If the ```$sortablesToTables``` property and the ```Larasort::setSortablesToTables(array $sortablesToTables)``` method are used at the same time for the same column,
+the ```Larasort::setSortablesToTables(array $sortablesToTables)``` metho method will override the ```$sortablesToTables``` property.
 
 With these 2 solutions, the result of the SQL queries will be: ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `articles`.`id` ASC ```
 
@@ -613,7 +613,7 @@ With these 2 solutions, the result of the SQL queries will be: ```ORDER BY `cate
 It is possible for some columns,
 that the order (the direction of the ```ORDER BY```) to want it to be by default (or on the 1st click on its link) at **desc** instead of **asc**.
 
-This can optionally be put just before the SQL query where you will use **->autosort()** (in the Controller or in the Model, for example).
+This can optionally be put just before the SQL query where you will use ```->autosort()``` (in the Controller or in the Model, for example).
 
 Example in a InvoiceController:
 
@@ -726,7 +726,7 @@ If you want to do a manual SQL query (or if you want to do a file listing), an a
 
 ## LarasortManual - Basic usage
 
-With **LarasortManual**, the method **setSortables(array $sortables)** is useful to define the columns allowed to be sorted in the ```ORDER BY```. Simple example:
+With **LarasortManual**, the ```setSortables(array $sortables)``` method is useful to define the columns allowed to be sorted in the ```ORDER BY```. Simple example:
 
 ```php
 <?php
@@ -788,7 +788,7 @@ PS: if you wish, you can also have access to ```$larasortManAttrs['column_name']
 
 With **LarasortManual** also you can for columns, specify their table (this is useful when you make a SQL query with join).
 
-Unlike **Larasort** which makes the SQL query on the table where the **AutoSortable** trait is included,
+Unlike **Larasort** which makes the SQL query on the table where the ```AutoSortable``` trait is included,
 by default, **LarasortManual** will do the ```ORDER BY column``` without specifying a table in prefix.
 
 So, when you join multiple tables, if you ```SELECT``` the same column name on several tables, you can end up with an error like: *"Integrity constraint violation: 1052 Column '{colomn}' in order clause is ambiguous"*.
@@ -796,7 +796,7 @@ So, when you join multiple tables, if you ```SELECT``` the same column name on s
 Let's take an example where in an SQL query you want to retrieve articles (from a **articles** table) and categories (from a **categories** table),
 and that for these 2 tables you want to retrieve the **id** column. And you want to do ```ORDER BY id``` on the **categories** table.
 
-You can do this with the **$larasortMan->setSortablesToTables(array $sortablesToTables)** method. Example:
+You can do this with the ```$larasortMan->setSortablesToTables(array $sortablesToTables)``` method. Example:
 
 ```php
 <?php
@@ -818,13 +818,13 @@ class ArticleController extends Controller
 }
 ```
 
-**$resultLarasortMan['order_by']** will generate the SQL query ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `id` ASC```
+```$resultLarasortMan['order_by']``` will generate the SQL query ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `id` ASC```
 
 ## LarasortManual - Put "desc" or "asc" by default for some columns
 
 With **LarasortManual** also you can for some columns, have the order (the direction of ORDER BY) default (or on the 1st click on its link) to **desc** instead of **asc**.
 
-You can do this with the **$larasortMan->setSortablesDefaultOrder(array $sortablesDefaultOrder)** method. Example:
+You can do this with the ```$larasortMan->setSortablesDefaultOrder(array $sortablesDefaultOrder)``` method. Example:
 
 ```php
 <?php
