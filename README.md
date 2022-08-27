@@ -350,7 +350,7 @@ class Customer extends Model
 
 With **Larasort** you can automate the ```ORDER BY``` of your relations One To One and One To Many.
 
-To do this, you can use the ```*autosortWith``` method.
+To do this, you can use the ```autosortWith``` method.
 
 ### One To One
 
@@ -397,7 +397,7 @@ $users = User::autosortWith('article', [
 ```html
 @sortableLink('article.title', 'Article Title')
 ```
-(for the 1st argument of "@sortableLink", use the same convention as in the ```$sortablesRelated``` property of the Model)
+(for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model)
 
 ### One To Many
 
@@ -444,7 +444,7 @@ $users = User::autosortWith('articles', [
 ```html
 @sortableLink('articles.title', 'Article Title')
 ```
-(for the 1st argument of "@sortableLink", use the same convention as in the ```$sortablesRelated``` property of the Model)
+(for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model)
 
 ### Belongs To
 
@@ -484,7 +484,7 @@ $articles = Article::autosortWith('user', [
 ```html
 @sortableLink('user.email', 'User Email')
 ```
-(for the 1st argument of "@sortableLink", use the same convention as in the ```$sortablesRelated``` property of the Model)
+(for the 1st argument of ```@sortableLink```, use the same convention as in the ```$sortablesRelated``` property of the Model)
 
 ### Relationships - Conventions
 
@@ -493,18 +493,18 @@ $articles = Article::autosortWith('user', [
 For the columns you put in the in the ```$sortablesRelated``` property,
 the onventions is: ```{relationship name}{separator}{column in this relationship table}```
 
-Larasort will use **{relationship name}** to do the ```ORDER BY``` on its table.
+Larasort will use ```{relationship name}``` to do the ```ORDER BY``` on its table.
 
-By default the separator is a period. If you wish, you can change it in the config with **relation_column_separator**.
+By default the separator is a period. If you wish, you can change it in the config with ```relation_column_separator```.
 
 #### ->autosortWith() method options
-
-* "related" (required):
 
 To do the join, you must specify the name of the relation in the first parameter of ```->autosortWith()```.
 
 In **related**, you must pass the name of your relation (the name of the relation method that you put in your Model).
 Larasort will use this name to do the **join**.
+
+##### Options
 
 PS:
 If at the first parameter of ```->autosortWith()``` you put a relation name different from what you had put at **{relationship name}** of the property **$sortablesRelated* *,
