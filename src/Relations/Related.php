@@ -6,18 +6,17 @@ use Illuminate\Database\Query\Builder;
 use SDamian\Larasort\Exception\LarasortException;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder as BuilderE;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Larasort - This Trait is useful for generate the href and CSS class attributes.
+ * Larasort - This class is useful for generate the href and CSS class attributes.
  *
  * @author  Stephen Damian <contact@devandweb.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
  * @link    https://github.com/s-damian/larasort
  */
-class Related
+final class Related
 {
     private object $model;
 

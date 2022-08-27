@@ -3,7 +3,7 @@
 namespace SDamian\Larasort;
 
 /**
- * Larasort - This Trait is useful for generate the href and CSS class attributes.
+ * Larasort - This class is useful for generate the href and CSS class attributes.
  *
  * @author  Stephen Damian <contact@devandweb.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT

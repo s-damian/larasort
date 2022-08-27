@@ -9,7 +9,7 @@ namespace SDamian\Larasort\Relations;
  * @license http://www.opensource.org/licenses/mit-license.php MIT
  * @link    https://github.com/s-damian/larasort
  */
-class OrderByRelated
+final class OrderByRelated
 {
     private static ?string $orderByRelated = null;
 
