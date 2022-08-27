@@ -354,9 +354,9 @@ To do this, you can use the ```autosortWith``` method.
 
 ### One To One
 
-In this example, a **user** has created one **article**, and an **article** has been created by a single **user**.
+In this example, a ```user``` has created one ```article```, and an ```article``` has been created by a single ```user```.
 
-This therefore makes a **One To One** relationship between **users** and **articles**.
+This therefore makes a **One To One** relationship between ```users``` and ```articles```.
 
 * Example in User Model:
 
@@ -401,9 +401,9 @@ $users = User::autosortWith('article', [
 
 ### One To Many
 
-In this example, a **user** has created multiple **articles**, and an **article** has been created by a single **user**.
+In this example, a ```user``` has created multiple ```articles```, and an ```article``` has been created by a single ```user```.
 
-This therefore makes a **One To Many** relationship between **users** and **articles** (several articles per user, and only one user per article).
+This therefore makes a **One To Many** relationship between ```users``` and ```articles``` (several articles per user, and only one user per article).
 
 * Example in User Model:
 
