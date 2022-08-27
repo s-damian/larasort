@@ -3,6 +3,7 @@
 namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany;
 
 use SDamian\Tests\TestCase;
+use SDamian\Larasort\LarasortLink;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Collection;
 use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
@@ -218,6 +219,25 @@ class OneToOneTest extends TestCase
         $this->assertSame(3, $users->count());
         $this->assertSame('user-2@gmail.com', $userFirst->email); // ICI - "user-2" est joint à l'article 3 (le dernier article)
         $this->assertSame('user-3@gmail.com', $userLast->email); // ICI - "user-3" est joint à AUCUN article (donc son title vaut null)
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tester LarasortLink::getLink avec une relation
+    |--------------------------------------------------------------------------
+    */
+
+    public function testLarasortLinkGetLinkWithRelation(): void
+    {
+        // Et on en profite pour test la méthode "getLink" (SANS passer de label, AVEC une colonne qui contient le SEPARATOR) :
+
+        Request::offsetSet('orderby', 'article'.config('larasort.relation_column_separator').'title');
+        Request::offsetSet('order', 'desc');
+
+        $this->assertSame(
+            '<a href="http://localhost/?orderby=article'.config('larasort.relation_column_separator').'title&order=asc">Article title<span class="larasort-icon-2"></span></a>',
+            LarasortLink::getLink('article'.config('larasort.relation_column_separator').'title')
+        );
     }
 
     /*
