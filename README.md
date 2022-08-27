@@ -510,11 +510,17 @@ To make another joint than default (the one specified in the config), you can sp
 
 If you want to specify the columns to ```SELECT``` for your Model, you can specify the **columns** option.
 
+You can put either an array or a string.
+Example with an array: ```['id', 'email', 'username']``` Example with a string: ```'id, email, username'```
+
 By default the ```SELECT``` will be done on all the columns.
 
 * "related_columns" (optional):
 
 If you want to specify which columns to ```SELECT``` for your Model's relationship, you can specify the **related_columns** option.
+
+You can put either an array or a string.
+Example with an array: ```['title AS article_title', 'content']``` Example with a string: ```'title AS article_title, content'```
 
 By default the ```SELECT``` will be done on all the columns.
 

@@ -100,7 +100,7 @@ class Related
 
     private function setColumnsToModel(): self
     {
-        $columns = $this->setColumns($this->model->getTable(), $this->options['columns'] ?? []);
+        $columns = $this->setColumns($this->model->getTable(), $this->options['columns'] ?? null);
 
         $this->query->select($columns);
 
@@ -109,7 +109,7 @@ class Related
 
     private function setColumnsToRelated(): void
     {
-        $columns = $this->setColumns($this->getRelatedTable(), $this->options['related_columns'] ?? []);
+        $columns = $this->setColumns($this->getRelatedTable(), $this->options['related_columns'] ?? null);
 
         $this->query->addSelect($columns);
     }
@@ -118,12 +118,14 @@ class Related
      * @param array<string> $columns
      * @return array<string>
      */
-    private function setColumns(string $table, array $columns = []): array
+    private function setColumns(string $table, array|string $columns = null): array
     {
-        if ($columns !== []) {
+        if ($columns !== null) {
+            $columns = ! is_array($columns) ? explode(',', $columns) : $columns;
+
             $columnsToReturn = [];
             foreach ($columns as $column) {
-                $columnsToReturn[] = $table.'.'.$column;
+                $columnsToReturn[] = $table.'.'.trim($column);
             }
         } else {
             $columnsToReturn = [$table.'.*'];

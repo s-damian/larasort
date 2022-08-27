@@ -225,8 +225,8 @@ class BelongsToTest extends TestCase
     {
         return Article::autosortWith('user', [
                 'join_type' => 'join', // Optional - "leftJoin" by default.
-                'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
-                'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
+                'columns' => 'id, title, content', // Optional - "*" by default.
+                'related_columns' => 'email AS user_email, username', // Optional -"*" by default.
             ])
             ->get();
     }

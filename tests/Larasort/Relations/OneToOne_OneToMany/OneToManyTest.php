@@ -252,8 +252,8 @@ class OneToManyTest extends TestCase
     {
         return User::autosortWith('articles', [
                 'join_type' => 'join', // Optional - "leftJoin" by default.
-                'columns' => ['id', 'email', 'username'], // Optional - "*" by default.
-                'related_columns' => ['title AS article_title', 'content'], // Optional -"*" by default.
+                'columns' => 'id, email, username', // Optional - "*" by default.
+                'related_columns' => 'title AS article_title, content', // Optional -"*" by default.
             ])
             ->get();
     }
