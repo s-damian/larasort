@@ -85,7 +85,7 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
   * [LarasortManual - API Doc](#larasortmanual---api-doc)
     * [LarasortManual class](#larasortmanual-class)
 * [Support](#support)
-* [License](#license)
+* [License Open Source](#license-open-source)
 
 
 ## Installation
@@ -119,19 +119,19 @@ You can of course customize these files.
 
 ### "vendor:publish" with "--tag" argument
 
-Publish only **config** file:
+Publish only ```config``` file:
 
 ```
 php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider" --tag=config
 ```
 
-Publish only **CSS** file:
+Publish only ```CSS``` file:
 
 ```
 php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider" --tag=css
 ```
 
-Publish only **images** file:
+Publish only ```images``` file:
 
 ```
 php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider" --tag=images
@@ -256,7 +256,7 @@ And in the view you can do this in the **thead** of a **table** for example:
 </thead>
 ```
 
-PS: 1st parameter is the **column** in database, 2nd parameter is the **title** (**label**).
+PS: 1st parameter is the ```column``` in database, 2nd parameter is the ```title``` (```label```).
 The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
 
 If you need to keep more control inside a **th**, as an equivalent you can replace ```@sortableLink``` by ```@sortableHref``` and ```@sortableIcon```. Example:
@@ -501,22 +501,22 @@ By default the separator is a period. If you wish, you can change it in the conf
 
 To do the join, you must specify the name of the relation in the first parameter of ```->autosortWith()```.
 
-In **related**, you must pass the name of your relation (the name of the relation method that you put in your Model).
-Larasort will use this name to do the **join**.
+Inside, you must pass the name of your relation (the name of the relation method that you put in your Model).
+Larasort will use this name to do the ```join```.
 
-##### Options
+##### Options:
 
 PS:
-If at the first parameter of ```->autosortWith()``` you put a relation name different from what you had put at **{relationship name}** of the property **$sortablesRelated* *,
+If at the first parameter of ```->autosortWith()``` you put a relation name different from what you had put at ```{relationship name}``` of the property ```$sortablesRelated```,
 the ```ORDER BY``` simply won't happen on the relationship.
 
 * "join_type" (optional):
 
-To make another joint than default (the one specified in the config), you can specify the **join_type** option.
+To make another joint than default (the one specified in the config), you can specify the ```join_type``` option.
 
 * "columns" (optional):
 
-If you want to specify the columns to ```SELECT``` for your Model, you can specify the **columns** option.
+If you want to specify the columns to ```SELECT``` for your Model, you can specify the ```columns``` option.
 
 You can put either an array or a string.
 Example with an array: ```['id', 'email', 'username']``` Example with a string: ```'id, email, username'```
@@ -525,7 +525,7 @@ By default the ```SELECT``` will be done on all the columns.
 
 * "related_columns" (optional):
 
-If you want to specify which columns to ```SELECT``` for your Model's relationship, you can specify the **related_columns** option.
+If you want to specify which columns to ```SELECT``` for your Model's relationship, you can specify the ```related_columns``` option.
 
 You can put either an array or a string.
 Example with an array: ```['title AS article_title', 'content']``` Example with a string: ```'title AS article_title, content'```
@@ -539,14 +539,15 @@ With **Larasort** you can for columns, specify their table (this is useful when 
 
 By default, Larasort will do the ```ORDER BY``` on the table where the ```AutoSortable``` trait is included.
 
-Let's take an example where in an SQL query you want to retrieve articles (from a **articles** table) and categories (from a **categories** table),
-and that for these 2 tables you want to retrieve the **id** column. But you want to do ```ORDER BY id``` on the **categories** table instead of on the **articles** table.
+Let's take an example where in an SQL query you want to retrieve articles (from a ```articles``` table) and categories (from a ```categories``` table),
+and that for these 2 tables you want to retrieve the ```id``` column.
+But you want to do ```ORDER BY id``` on the ```categories``` table instead of on the ```articles``` table.
 
 ### You can solve this problem with these 2 solutions
 
-#### Solution 1 - With **$sortablesToTables** property
+#### Solution 1 - With $sortablesToTables property
 
-The **$sortablesToTables** property can optionally be put in the Model:
+The ```$sortablesToTables``` property can optionally be put in the Model:
 
 ```php
 <?php
@@ -611,7 +612,7 @@ With these 2 solutions, the result of the SQL queries will be: ```ORDER BY `cate
 ## Put "desc" or "asc" by default for some columns
 
 It is possible for some columns,
-that the order (the direction of the ```ORDER BY```) to want it to be by default (or on the 1st click on its link) at **desc** instead of **asc**.
+that the order (the direction of the ```ORDER BY```) to want it to be by default (or on the 1st click on its link) at ```desc``` instead of ```asc```.
 
 This can optionally be put just before the SQL query where you will use ```->autosort()``` (in the Controller or in the Model, for example).
 
@@ -638,9 +639,9 @@ class InvoiceController extends Controller
 
 ### If you change "default_order" at "config/larasort.php" file - Put "asc" by default for some columns
 
-In the **larasort.php** cong file, you can change the value of **default_order** (which defaults to **asc**).
+In the ```config/larasort.php``` config file, you can change the value of ```default_order``` (which defaults to ```asc```).
 
-If you do this: it is possible for some columns, than the order of wanting it to be at **asc** instead of **desc**.
+If you do this: it is possible for some columns, than the order of wanting it to be at ```asc``` instead of ```desc```.
 
 Example in a InvoiceController:
 
@@ -793,8 +794,8 @@ by default, **LarasortManual** will do the ```ORDER BY column``` without specify
 
 So, when you join multiple tables, if you ```SELECT``` the same column name on several tables, you can end up with an error like: *"Integrity constraint violation: 1052 Column '{colomn}' in order clause is ambiguous"*.
 
-Let's take an example where in an SQL query you want to retrieve articles (from a **articles** table) and categories (from a **categories** table),
-and that for these 2 tables you want to retrieve the **id** column. And you want to do ```ORDER BY id``` on the **categories** table.
+Let's take an example where in an SQL query you want to retrieve articles (from a ```articles``` table) and categories (from a ```categories``` table),
+and that for these 2 tables you want to retrieve the ```id``` column. And you want to do ```ORDER BY id``` on the ```categories``` table.
 
 You can do this with the ```$larasortMan->setSortablesToTables(array $sortablesToTables)``` method. Example:
 
@@ -822,7 +823,7 @@ class ArticleController extends Controller
 
 ## LarasortManual - Put "desc" or "asc" by default for some columns
 
-With **LarasortManual** also you can for some columns, have the order (the direction of ORDER BY) default (or on the 1st click on its link) to **desc** instead of **asc**.
+With **LarasortManual** also you can for some columns, have the order (the direction of ORDER BY) default (or on the 1st click on its link) to ```desc``` instead of ```asc```.
 
 You can do this with the ```$larasortMan->setSortablesDefaultOrder(array $sortablesDefaultOrder)``` method. Example:
 
@@ -883,6 +884,6 @@ If you discover a bug or a security vulnerability, please send a message to Step
 All bugs and all security vulnerabilities will be promptly addressed.
 
 
-## License
+## License Open Source
 
 **Larasort** is Open Source software licensed under the MIT license.
