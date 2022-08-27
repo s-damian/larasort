@@ -37,7 +37,7 @@ $customers = Customer::whereNotNull('confirmed_at')
     ->paginate();
 ```
 
-* Example in the View (in blade template):
+* Example in View (in blade template):
 
 ```html
 @sortableLink('email', 'Email')
@@ -339,7 +339,7 @@ class Customer extends Model
 }
 ```
 
-* Example in the View (in blade template):
+* Example in View (in blade template):
 
 ```html
 @sortableLink('article_title', 'Article Title')
@@ -392,7 +392,7 @@ $users = User::autosortWith('article', [
     ->paginate();
 ```
 
-* Example in the View (in blade template):
+* Example in View (in blade template):
 
 ```html
 @sortableLink('article.title', 'Article Title')
@@ -439,7 +439,7 @@ $users = User::autosortWith('articles', [
     ->paginate();
 ```
 
-* Example in the View (in blade template):
+* Example in View (in blade template):
 
 ```html
 @sortableLink('articles.title', 'Article Title')
@@ -479,16 +479,10 @@ $articles = Article::autosortWith('user', [
     ->paginate();
 ```
 
-* Example in the View (in blade template):
+* Example in View (in blade template):
 
 ```html
 @sortableLink('user.email', 'User Email')
-```
-
-For a One To One relationship, example in the View (in blade template):
-
-```html
-@sortableLink('article.title', 'Article Title')
 ```
 (for the 1st argument of "@sortableLink", use the same convention as in the **$sortablesRelated** property of the Model)
 
