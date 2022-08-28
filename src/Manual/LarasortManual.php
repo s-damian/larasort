@@ -16,7 +16,7 @@ class LarasortManual
     use UtilsTrait;
 
     /**
-     * @var array<string>
+     * @var array<null|string>
      */
     private array $sortables = [];
 
@@ -40,7 +40,7 @@ class LarasortManual
      * PS:
      * - To the columns passed to "$sortables", you must not specify their table as a prefix.
      *
-     * @param array<string> $sortables
+     * @param array<null|string> $sortables
      */
     final public function setSortables(array $sortables): void
     {
