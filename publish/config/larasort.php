@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Defautl config.
+ * Default config.
  * 
  * @author  Stephen Damian <contact@devandweb.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
@@ -10,7 +10,7 @@
 return [
 
     /**
-     * The default order (direction) of ORDER BY.
+     * The default order (direction) of the ORDER BY.
      * Supported: "asc", "desc"
      */
     'default_order' => 'asc',
@@ -23,7 +23,8 @@ return [
 
     /**
      * The default join type.
-     * Supported: "join", "leftJoin", "rightJoin"
+     * Supported - With MySQL and PostgreSQL: "join", "leftJoin", "rightJoin"
+     * Supported - SQLite: "join", "leftJoin"
      */
     'default_join_type' => 'leftJoin',
 
