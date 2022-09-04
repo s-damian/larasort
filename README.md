@@ -109,11 +109,11 @@ php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider"
 
 The ```vendor:publish``` command will generate these files:
 
-* config/larasort.php
+* ```config/larasort.php```
 
-* public/vendor/larasort/css/larasort.css (**you must include this CSS in your website**)
+* ```public/vendor/larasort/css/larasort.css``` (**you must include this CSS in your website**)
 
-* public/vendor/larasort/images/order.webp
+* ```public/vendor/larasort/images/order.webp```
 
 You can of course customize these files.
 
@@ -278,33 +278,6 @@ In a concrete case, aliases are especially useful when you make an SQL query wit
 
 ### Example with ->join()
 
-* Example in a CustomerController:
-
-```php
-<?php
-
-class CustomerController extends Controller
-{
-    public function index()
-    {
-        $customers = Customer::select([
-                'customers.*',
-                'articles.title AS article_title', // Here.
-            ])
-            ->join(
-                'articles',
-                'customers.id', '=', 'articles.customer_id'
-            )
-            ->autosort() // Automate ORDER BY and its direction.
-            ->paginate();
-
-        return view('customer.index', [
-            'customers' => $customers,
-        ]);
-    }
-}
-```
-
 * Example in a Customer Model:
 
 ```php
@@ -336,6 +309,33 @@ class Customer extends Model
     private array $sortablesAs = [
         'article_title', // Here.
     ];
+}
+```
+
+* Example in a CustomerController:
+
+```php
+<?php
+
+class CustomerController extends Controller
+{
+    public function index()
+    {
+        $customers = Customer::select([
+                'customers.*',
+                'articles.title AS article_title', // Here.
+            ])
+            ->join(
+                'articles',
+                'customers.id', '=', 'articles.customer_id'
+            )
+            ->autosort() // Automate ORDER BY and its direction.
+            ->paginate();
+
+        return view('customer.index', [
+            'customers' => $customers,
+        ]);
+    }
 }
 ```
 
