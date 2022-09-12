@@ -240,7 +240,7 @@ class CustomerController extends Controller
 
 And in the view you can do this in the ```thead``` of a ```table``` for example:
 
-PS: You must put the CSS class ```with-larasort``` on in the ```table``` or ```thead``` ta.g
+PS: You must put the CSS class ```with-larasort``` on the ```table``` or on the ```thead``` tag which encloses the blade directive.
 
 ```html
 <thead class="with-larasort">
