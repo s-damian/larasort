@@ -238,10 +238,12 @@ class CustomerController extends Controller
 
 ```
 
-And in the view you can do this in the **thead** of a **table** for example:
+And in the view you can do this in the ```thead``` of a ```table``` for example:
+
+PS: You must put the CSS class ```with-larasort``` on in the ```table``` or ```thead``` ta.g
 
 ```html
-<thead>
+<thead class="with-larasort">
     <tr>
         <th>
             @sortableLink('first_name', 'First name')
@@ -762,7 +764,7 @@ class CustomerController extends Controller
 And in the view you can do this in the **thead** of a **table** for example:
 
 ```html
-<thead>
+<thead class="with-larasort">
     <tr>
         <th>
             <a {!! $larasortManAttrs['first_name']['href'] !!}>
