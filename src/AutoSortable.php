@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Builder as BuilderE;
  *   PS: If "$sortablesToTables" property and "Larasort::setSortablesToTables" method are used at the same time for the same column,
  *       "Larasort::setSortablesToTables" method will override "$sortablesToTables" property.
  *
- * @author  Stephen Damian <contact@devandweb.fr>
+ * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
  * @link    https://github.com/s-damian/larasort
  */

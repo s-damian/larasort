@@ -7,12 +7,12 @@
     "authors": [
         {
             "name": "Stephen Damian",
-            "email": "contact@devandweb.fr",
+            "email": "contact@damian-freelance.fr",
             "homepage": "https://github.com/s-damian"
         }
     ],
     "support": {
-        "email": "contact@devandweb.fr",
+        "email": "contact@damian-freelance.fr",
         "issues": "https://github.com/s-damian/larasort/issues",
         "source": "https://github.com/s-damian/larasort",
         "docs": "https://github.com/s-damian/larasort/blob/main/README.md"
