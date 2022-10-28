@@ -1,3 +1,9 @@
+<p align="center">
+<a href="https://github.com/s-damian/larasort">
+<img src="https://raw.githubusercontent.com/s-damian/medias/main/package-logos/larasort.png" width="400">
+</a>
+</p>
+
 # Column sorting for Laravel - Sortable - Sort by
 
 [![Tests](https://github.com/s-damian/larasort/actions/workflows/tests.yml/badge.svg)](https://github.com/s-damian/larasort/actions/workflows/tests.yml)
@@ -85,7 +91,7 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
   * [LarasortManual - API Doc](#larasortmanual---api-doc)
     * [LarasortManual class](#larasortmanual-class)
 * [Support](#support)
-* [Open Source License](#open-source-license)
+* [License](#license)
 
 
 ## Installation
@@ -889,6 +895,6 @@ If you discover a bug or a security vulnerability, please send a message to Step
 All bugs and all security vulnerabilities will be promptly addressed.
 
 
-## Open Source License
+## License
 
-**Larasort** is Open Source software licensed under the MIT license.
+This project is an Open Source package under the MIT license. See the LICENSE file for details.
