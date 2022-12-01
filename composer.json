@@ -23,8 +23,7 @@
     "require-dev": {
         "laravel/framework": "^8 || ^9",
         "phpunit/phpunit": "9.5.*",
-        "orchestra/testbench": "^6",
-        "phpstan/phpstan": "1.8.*"
+        "orchestra/testbench": "^6"
     },
     "autoload": {
         "psr-4" : {
@@ -46,7 +45,7 @@
     "scripts": {
         "test": "php ./vendor/phpunit/phpunit/phpunit",
         "test-f": "php ./vendor/phpunit/phpunit/phpunit --filter",
-        "phpstan": "php ./vendor/bin/phpstan --configuration='tools/phpstan/phpstan.neon'",
+        "stan": "php8.1 ./tools/phpstan/vendor/bin/phpstan --configuration='tools/phpstan/phpstan.neon'",
         "fix-all": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config=tools/php-cs-fixer/.php-cs-fixer.dist.php",
         "fix-all-dry": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config=tools/php-cs-fixer/.php-cs-fixer.dist.php -vv --dry-run --diff"
     },
