@@ -273,7 +273,7 @@ class AutoSortableTraitTest extends TestCase
         Request::offsetSet('orderby', 'aaazzz');
         Request::offsetSet('order', 'asc');
 
-        $this->assertTrue($address->getSqlOrderBy() === null);
+        $this->assertTrue(is_null($address->getSqlOrderBy()));
         // Par défaut sa prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
     }
 
