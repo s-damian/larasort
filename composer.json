@@ -18,7 +18,7 @@
         "docs": "https://github.com/s-damian/larasort/blob/main/README.md"
     },
     "require": {
-        "php": "^8.0 || ^8.1"
+        "php": "^8.0"
     },
     "require-dev": {
         "laravel/framework": "^8 || ^9",
@@ -44,9 +44,9 @@
         }
     },
     "scripts": {
-        "test": "php ./vendor/phpunit/phpunit/phpunit",
-        "test-f": "php ./vendor/phpunit/phpunit/phpunit --filter",
-        "phpstan": "php8.1 ./vendor/bin/phpstan --configuration='tools/phpstan/phpstan.neon'",
+        "test": "php8.0 ./vendor/phpunit/phpunit/phpunit",
+        "test-f": "php8.0 ./vendor/phpunit/phpunit/phpunit --filter",
+        "phpstan": "php8.2 ./vendor/bin/phpstan --configuration='tools/phpstan/phpstan.neon'",
         "fix-all": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config=tools/php-cs-fixer/.php-cs-fixer.dist.php",
         "fix-all-dry": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --config=tools/php-cs-fixer/.php-cs-fixer.dist.php -vv --dry-run --diff"
     },
