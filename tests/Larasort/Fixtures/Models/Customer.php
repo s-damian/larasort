@@ -63,12 +63,15 @@ class Customer extends Model
             switch ($i) {
                 case 1:
                     $first_name = 'aaa';
+
                     break;
                 case 2:
                     $first_name = 'ccc';
+
                     break;
                 case 3:
                     $first_name = 'bbb';
+
                     break;
             }
 

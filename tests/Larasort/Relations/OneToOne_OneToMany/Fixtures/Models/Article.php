@@ -57,12 +57,15 @@ class Article extends Model
             switch ($i) {
                 case 1:
                     $user_id_created_at = 1;
+
                     break;
                 case 2:
                     $user_id_created_at = null;
+
                     break;
                 case 3:
                     $user_id_created_at = 2;
+
                     break;
             }
 
@@ -83,18 +86,23 @@ class Article extends Model
             switch ($i) {
                 case 1:
                     $user_id_created_at = 1;
+
                     break;
                 case 2:
                     $user_id_created_at = 1;
+
                     break;
                 case 3:
                     $user_id_created_at = null;
+
                     break;
                 case 4:
                     $user_id_created_at = 2;
+
                     break;
                 case 5:
                     $user_id_created_at = 1;
+
                     break;
             }
 
