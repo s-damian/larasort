@@ -14,5 +14,7 @@ parameters:
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\(.*)::select\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\(.*)::autosortWith\(\)#'
     # From PHP 8.2 :
-    #- '#Access to an undefined property SDamian\\Tests\\Larasort\\(.*)::\$sortablesAs#'
-    #- '#Access to an undefined property SDamian\\Tests\\Larasort\\(.*)::\$sortablesRelated#'
+    #- '#Access to an undefined property SDamian\\Tests\\Larasort\\Fixtures\\Models\\(.*)::\$sortablesAs.#'
+    #- '#Access to an undefined property SDamian\\Tests\\Larasort\\Fixtures\\Models\\(.*)::\$sortablesRelated.#'
+    #- '#SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\(.*)::\$sortablesAs.#'
+    #- "Call to function property_exists() with $this(SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User) and 'sortablesToTables' will always evaluate to false.#"
