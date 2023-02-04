@@ -170,8 +170,6 @@ class Customer extends Model
     
     /**
      * The attributes that are sortable.
-     *
-     * @var array
      */
     private array $sortables = [
         'id', // "id" column will be the default column for the ORDER BY.
@@ -208,8 +206,6 @@ class Customer extends Model
     
     /**
      * The attributes that are sortable.
-     *
-     * @var array
      */
     private array $sortables = [
         null, // Will be null by default (by default there will be no ORDER BY).
@@ -299,8 +295,6 @@ class Customer extends Model
     
     /**
      * The attributes that are sortable.
-     *
-     * @var array
      */
     private array $sortables = [
         'id',
@@ -311,8 +305,6 @@ class Customer extends Model
 
     /**
      * The attributes that are sortable without table in prefix.
-     *
-     * @var array
      */
     private array $sortablesAs = [
         'article_title', // Here.
@@ -373,8 +365,6 @@ This therefore makes a **One To One** relationship between ```users``` and ```ar
 
 /**
  * The attributes of its sortable relations.
- *
- * @var array
  */
 private array $sortablesRelated = [
     // Convention: {relationship name}{separator}{column in this relationship table}.
@@ -421,8 +411,6 @@ This therefore makes a **One To Many** relationship between ```users``` and ```a
 
 /**
  * The attributes of its sortable relations.
- *
- * @var array
  */
 private array $sortablesRelated = [
     // Convention: {relationship name}{separator}{column in this relationship table}.
@@ -571,8 +559,6 @@ class Article extends Model
     
     /**
      * The attributes that are sortable.
-     *
-     * @var array
      */
     private array $sortables = [
         'id',
@@ -582,8 +568,6 @@ class Article extends Model
 
     /**
      * The sortable attributes to which their table is specified.
-     *
-     * @var array
      */
     private array $sortablesToTables = [
         'id' => 'categories.id', // Here.
