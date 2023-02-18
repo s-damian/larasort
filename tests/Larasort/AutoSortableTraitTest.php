@@ -36,7 +36,7 @@ class AutoSortableTraitTest extends TestCase
     /**
      * On test "Case 1" de la méthode "getSqlOrder" du trait "AutoSortable". (this case = "Request" has "order").
      */
-    public function testSqlOrderCase1(): void
+    public function test_sql_order_case_1(): void
     {
         $this->verifyInAllTests();
 
@@ -67,7 +67,7 @@ class AutoSortableTraitTest extends TestCase
     /**
      * On test "Case 3" de la méthode "getSqlOrder" du trait "AutoSortable". (this case = "Request" n'a pas "order").
      */
-    public function testSqlOrderCase3(): void
+    public function test_sql_order_case_3(): void
     {
         $this->verifyInAllTests();
 
@@ -85,7 +85,7 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('desc', $this->customer->getSqlOrder());
     }
 
-    public function testSortablesGettersForCustomerModel(): void
+    public function test_sortablesG_getters_for_customer_model(): void
     {
         // La prop "$sortables" du Model "Customer" a bien fonctionnée.
         $this->assertSame($this->customer->getSortables(), [
@@ -114,7 +114,7 @@ class AutoSortableTraitTest extends TestCase
     /**
      * Teser l'aliasing
      */
-    public function testSortablesAsProperty(): void
+    public function test_sortables_as_property(): void
     {
         $this->verifyInAllTests();
 
@@ -138,7 +138,7 @@ class AutoSortableTraitTest extends TestCase
      * On test "Case 1" de la méthode "getSqlOrder" du trait "AutoSortable".
      * (this case = "Request" n'a pas "order", et colonne de "orderby" est dans "Larasort::setSortablesDefaultOrder").
      */
-    public function testSqlOrderCase2(): void
+    public function test_sql_order_case_2(): void
     {
         $this->verifyInAllTests();
 
@@ -161,7 +161,7 @@ class AutoSortableTraitTest extends TestCase
     /**
      * A la class Larasort, tester ces méthodes : "setDefaultSortable" et "getDefaultSortable" et "clearDefaultSortable".
      */
-    public function testDefaultSortable(): void
+    public function test_default_sortable(): void
     {
         $this->verifyInAllTests();
 
@@ -192,7 +192,7 @@ class AutoSortableTraitTest extends TestCase
     /**
      * A la class Larasort, tester ces méthodes : "setSortablesToTables" et "getSortablesToTables".
      */
-    public function testSortablesToTables(): void
+    public function test_sortables_to_tables(): void
     {
         $this->verifyInAllTests();
 
@@ -220,7 +220,7 @@ class AutoSortableTraitTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testWrongColumnInOrderByUrl(): void
+    public function test_wrong_column_in_order_by_url(): void
     {
         $this->verifyInAllTests();
 
@@ -245,7 +245,7 @@ class AutoSortableTraitTest extends TestCase
      * Ici on test juste la propriété "$sortables" lorsqu'on lui met null en première "colonne".
      * C'est utile si par défaut (lorsque dans l'URL il n'y a pas de $_GET actif) qu'on ne veut pas mettre de ORDER BY à la requête SQL.
      */
-    public function testSortablesPropWithNullInFirstPosWithoutRequest(): void
+    public function test_sortables_prop_with_null_in_first_pos_without_request(): void
     {
         $this->verifyInAllTests();
 
@@ -254,7 +254,7 @@ class AutoSortableTraitTest extends TestCase
         $this->assertTrue($address->getSqlOrderBy() === null);
     }
 
-    public function testSortablesPropWithNullInFirstPosWithRequest(): void
+    public function test_sortables_prop_with_nullIn_first_pos_with_request(): void
     {
         $this->verifyInAllTests();
 
@@ -277,7 +277,7 @@ class AutoSortableTraitTest extends TestCase
         // Par défaut sa prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
     }
 
-    public function testSortablesGettersForAddressModel(): void
+    public function test_sortables_getters_for_address_model(): void
     {
         $address = new Address();
 

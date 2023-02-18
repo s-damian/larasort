@@ -19,7 +19,7 @@ class LarasortLinkTest extends TestCase
     /**
      * Ici ça passera tout le temps dans le if : (request()->has('orderby') && request()->orderby === $column)
      */
-    public function testLarasortLinkIf(): void
+    public function test_larasort_link_if(): void
     {
         $this->verifyInAllTests();
 
@@ -40,7 +40,7 @@ class LarasortLinkTest extends TestCase
         $this->assertSame('<span class="larasort-icon-2"></span>', LarasortLink::getIcon('email'));
     }
 
-    public function testLarasortLinkGetLink(): void
+    public function test_larasort_link_get_link(): void
     {
         Request::offsetSet('orderby', 'email');
         Request::offsetSet('order', 'desc');
@@ -70,7 +70,7 @@ class LarasortLinkTest extends TestCase
     /**
      * Ici ça passera tout le temps dans le elseif : (! request()->has('orderby') && $column === self::getDefaultSortableWithoutTable())
      */
-    public function testLarasortLinkElseif(): void
+    public function test_larasort_link_elseif(): void
     {
         $this->verifyInAllTests();
 
@@ -99,7 +99,7 @@ class LarasortLinkTest extends TestCase
     /**
      * Ici ça passera tout le temps dans le else
      */
-    public function testLarasortLinkElse(): void
+    public function test_larasort_link_else(): void
     {
         $this->verifyInAllTests();
 

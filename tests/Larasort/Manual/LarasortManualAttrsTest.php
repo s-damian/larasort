@@ -24,7 +24,7 @@ class LarasortManualAttrsTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testAttrsWithoutGetInUrl(): void
+    public function test_attrs_without_get_in_url(): void
     {
         $this->verifyInAllTests();
 
@@ -49,7 +49,7 @@ class LarasortManualAttrsTest extends TestCase
         // Donc (contrairement aux 2 autres colonnes) : il a son href (lien cliquable) sur "desc".
     }
 
-    public function testAttrsWithGetInUrlOrderAsc(): void
+    public function test_attrs_with_get_in_url_order_asc(): void
     {
         $this->verifyInAllTests();
 
@@ -77,7 +77,7 @@ class LarasortManualAttrsTest extends TestCase
         // Donc (contrairement aux 2 autres colonnes) : il a son href (lien cliquable) sur "desc".
     }
 
-    public function testAttrsWithGetInUrlOrderDesc(): void
+    public function test_attrs_with_get_in_url_order_desc(): void
     {
         $this->verifyInAllTests();
 
@@ -112,7 +112,7 @@ class LarasortManualAttrsTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testsetSortablesDefaultOrderWithoutGetInUrl(): void
+    public function test_set_sortables_default_order_without_get_in_url(): void
     {
         $this->verifyInAllTests();
 
@@ -140,7 +140,7 @@ class LarasortManualAttrsTest extends TestCase
         // Mais là il a son order à "desc" (car on l'a mis dans la méthode "setSortablesDefaultOrder").
     }
 
-    public function testsetSortablesDefaultOrderWithGetInUrlOrderAsc(): void
+    public function test_set_sortables_default_order_with_get_in_url_order_asc(): void
     {
         $this->verifyInAllTests();
 
@@ -171,7 +171,7 @@ class LarasortManualAttrsTest extends TestCase
         // Et vu qu'on a mis "created_at" dans la méthode "setSortablesDefaultOrder" : "created_at" a son href (lien cliquable) sur "desc" au lieu de "asc".
     }
 
-    public function testsetSortablesDefaultOrderWithGetInUrlOrderDesc(): void
+    public function test_set_sortables_default_order_with_get_in_url_order_desc(): void
     {
         $this->verifyInAllTests();
 

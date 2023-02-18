@@ -18,7 +18,7 @@ class LarasortManualTest extends TestCase
 {
     use ForAllTestsTrait;
 
-    public function testOrderBy(): void
+    public function test_order_by(): void
     {
         $this->verifyInAllTests();
 
@@ -47,7 +47,7 @@ class LarasortManualTest extends TestCase
         $this->assertSame('desc', $resultLarasortMan['order']);
     }
 
-    public function testOrderByWithTable(): void
+    public function test_order_by_with_table(): void
     {
         $this->verifyInAllTests();
 

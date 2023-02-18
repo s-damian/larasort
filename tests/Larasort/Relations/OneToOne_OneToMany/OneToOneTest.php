@@ -60,7 +60,7 @@ class OneToOneTest extends TestCase
     /**
      * On test que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
      */
-    public function testJoin(): void
+    public function test_join(): void
     {
         $this->verifyInAllTests();
 
@@ -81,7 +81,7 @@ class OneToOneTest extends TestCase
     /**
      * On test que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
      */
-    public function testLeftJoin(): void
+    public function test_left_join(): void
     {
         $this->verifyInAllTests();
 
@@ -110,7 +110,7 @@ class OneToOneTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testWithOrderByUserEmail(): void
+    public function test_with_order_by_user_email(): void
     {
         $this->verifyInAllTests();
 
@@ -147,7 +147,7 @@ class OneToOneTest extends TestCase
         $this->assertSame('user-3@gmail.com', $userLast->email); // ICI
     }
 
-    public function testWithOrderByArticleTitleAsc(): void
+    public function test_with_order_by_article_title_asc(): void
     {
         $this->verifyInAllTests();
 
@@ -184,7 +184,7 @@ class OneToOneTest extends TestCase
         $this->assertSame('user-2@gmail.com', $userLast->email); // ICI - "user-2" est joint à l'article 3 (le dernier article)
     }
 
-    public function testWithOrderByArticleTitleDesc(): void
+    public function test_with_order_by_article_title_desc(): void
     {
         $this->verifyInAllTests();
 
@@ -227,7 +227,7 @@ class OneToOneTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testLarasortLinkGetLinkWithRelation(): void
+    public function test_larasort_link_get_link_with_relation(): void
     {
         // Et on en profite pour test la méthode "getLink" (SANS passer de label, AVEC une colonne qui contient le SEPARATOR) :
 

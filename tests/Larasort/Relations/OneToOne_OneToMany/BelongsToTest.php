@@ -66,7 +66,7 @@ class BelongsToTest extends TestCase
     /**
      * On test que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
      */
-    public function testJoin(): void
+    public function test_join(): void
     {
         $this->verifyInAllTests();
 
@@ -87,7 +87,7 @@ class BelongsToTest extends TestCase
     /**
      * On test que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
      */
-    public function testLeftJoin(): void
+    public function test_left_join(): void
     {
         $this->verifyInAllTests();
 
@@ -116,7 +116,7 @@ class BelongsToTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testWithOrderByArticleTitle(): void
+    public function test_with_order_by_article_title(): void
     {
         $this->verifyInAllTests();
 
@@ -149,7 +149,7 @@ class BelongsToTest extends TestCase
         $this->assertSame('Title-3', $articleLast->title); // ICI
     }
 
-    public function testWithOrderByUserEmailAsc(): void
+    public function test_with_order_by_user_email_asc(): void
     {
         $this->verifyInAllTests();
 
@@ -182,7 +182,7 @@ class BelongsToTest extends TestCase
         $this->assertSame('Title-3', $articleLast->title); // Car "Article 3" est joint à "user 2".
     }
 
-    public function testWithOrderByUserEmailDesc(): void
+    public function test_with_order_by_user_email_desc(): void
     {
         $this->verifyInAllTests();
 

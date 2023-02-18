@@ -83,7 +83,7 @@ class OneToManyTest extends TestCase
     /**
      * On test que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
      */
-    public function testJoin(): void
+    public function test_join(): void
     {
         $this->verifyInAllTests();
 
@@ -103,7 +103,7 @@ class OneToManyTest extends TestCase
     /**
      * On test que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
      */
-    public function testLeftJoin(): void
+    public function test_left_join(): void
     {
         $this->verifyInAllTests();
 
@@ -131,7 +131,7 @@ class OneToManyTest extends TestCase
     |--------------------------------------------------------------------------
     */
 
-    public function testWithOrderByUserEmail(): void
+    public function test_with_order_by_user_email(): void
     {
         $this->verifyInAllTests();
 
@@ -168,7 +168,7 @@ class OneToManyTest extends TestCase
         $this->assertSame('user-3@gmail.com', $userLast->email); // ICI
     }
 
-    public function testWithOrderByArticleTitleAsc(): void
+    public function test_with_order_by_article_title_asc(): void
     {
         $this->verifyInAllTests();
 
@@ -205,7 +205,7 @@ class OneToManyTest extends TestCase
         $this->assertSame('user-1@gmail.com', $userLast->email); // ICI - "user-1" est joint à l'article 5 (le dernier article)
     }
 
-    public function testWithOrderByArticleTitleDesc(): void
+    public function test_with_order_by_article_title_desc(): void
     {
         $this->verifyInAllTests();
 

@@ -53,7 +53,7 @@ class AutosortScopeTest extends TestCase
         ]);
     }
 
-    public function testAutosortScopeWithoutRequest(): void
+    public function test_autosort_scope_without_request(): void
     {
         $this->verifyInAllTests();
 
@@ -90,7 +90,7 @@ class AutosortScopeTest extends TestCase
         // En faisant des asserts sur "email", on constate que la req SQL a bien fait le ORDER BY sur "email" à DESC
     }
 
-    public function testAutosortScopeWithRequest(): void
+    public function test_autosort_scope_with_request(): void
     {
         $this->verifyInAllTests();
 
