@@ -2,13 +2,13 @@
 
 namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany;
 
-use SDamian\Tests\TestCase;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Database\Eloquent\Collection;
-use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
-use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
+use Illuminate\Support\Facades\Request;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\Article;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Traits\ForOneToOneTrait;
+use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
+use SDamian\Tests\TestCase;
 
 /**
  * Ici on test le "Belongs To".
@@ -71,8 +71,8 @@ class BelongsToTest extends TestCase
         $this->verifyInAllTests();
 
         $articles = Article::autosortWith('user', [
-                'join_type' => 'join', // Optional - "leftJoin" by default.
-            ])
+            'join_type' => 'join', // Optional - "leftJoin" by default.
+        ])
             ->get();
 
         $articlesB = Article::select('articles.title')
@@ -92,8 +92,8 @@ class BelongsToTest extends TestCase
         $this->verifyInAllTests();
 
         $articles = Article::autosortWith('user', [
-                'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
-            ])
+            'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
+        ])
             ->get();
 
         $articlesB = Article::select('articles.title')
@@ -224,10 +224,10 @@ class BelongsToTest extends TestCase
     private function getArticlesJoinToUsers(): Collection
     {
         return Article::autosortWith('user', [
-                'join_type' => 'join', // Optional - "leftJoin" by default.
-                'columns' => 'id, title, content', // Optional - "*" by default.
-                'related_columns' => 'email AS user_email, username', // Optional -"*" by default.
-            ])
+            'join_type' => 'join', // Optional - "leftJoin" by default.
+            'columns' => 'id, title, content', // Optional - "*" by default.
+            'related_columns' => 'email AS user_email, username', // Optional -"*" by default.
+        ])
             ->get();
     }
 
@@ -235,9 +235,9 @@ class BelongsToTest extends TestCase
     {
         return Article::autosortWith('user', [
             'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
-                'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
-                'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
-            ])
+            'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
+            'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
+        ])
             ->get();
     }
 }

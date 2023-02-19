@@ -2,10 +2,10 @@
 
 namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models;
 
-use SDamian\Larasort\AutoSortable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use SDamian\Larasort\AutoSortable;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Factories\UserFactory;
 
 class User extends Model
@@ -60,7 +60,7 @@ class User extends Model
     public static function storeUsers(): void
     {
         $nb = 3;
-        for ($i=1; $i <= $nb; $i++) {
+        for ($i = 1; $i <= $nb; $i++) {
             UserFactory::new()->create([
                 'email' => 'user-'.$i.'@gmail.com',
             ]);

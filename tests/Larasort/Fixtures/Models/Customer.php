@@ -2,9 +2,9 @@
 
 namespace SDamian\Tests\Larasort\Fixtures\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use SDamian\Larasort\AutoSortable;
-use Illuminate\Database\Eloquent\Model;
 use SDamian\Tests\Larasort\Fixtures\Factories\CustomerFactory;
 
 class Customer extends Model
@@ -59,7 +59,7 @@ class Customer extends Model
 
     public static function storeCustomers(int $nb): void
     {
-        for ($i=1; $i <= $nb; $i++) {
+        for ($i = 1; $i <= $nb; $i++) {
             switch ($i) {
                 case 1:
                     $first_name = 'aaa';

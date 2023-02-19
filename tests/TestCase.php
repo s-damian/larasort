@@ -16,6 +16,6 @@ class TestCase extends BaseTestCase
     {
         return [
             LarasortServiceProvider::class,
-       ];
+        ];
     }
 }

@@ -7,6 +7,7 @@ namespace SDamian\Larasort;
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
+ *
  * @link    https://github.com/s-damian/larasort
  */
 class LarasortLink
@@ -85,8 +86,8 @@ class LarasortLink
         $html = '';
 
         $html .= '<a '.self::getHref($column).'>';
-        $html .=     $labelToShow;
-        $html .=     self::getIcon($column);
+        $html .= $labelToShow;
+        $html .= self::getIcon($column);
         $html .= '</a>';
 
         return $html;

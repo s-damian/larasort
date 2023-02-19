@@ -2,10 +2,10 @@
 
 namespace SDamian\Tests\Larasort\Manual;
 
-use SDamian\Tests\TestCase;
 use Illuminate\Support\Facades\Request;
 use SDamian\Larasort\Manual\LarasortManual;
 use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
+use SDamian\Tests\TestCase;
 
 /**
  * Ici on test :

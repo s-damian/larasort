@@ -2,8 +2,8 @@
 
 namespace SDamian\Tests\Larasort\Fixtures\Models;
 
-use SDamian\Larasort\AutoSortable;
 use Illuminate\Database\Eloquent\Model;
+use SDamian\Larasort\AutoSortable;
 
 /**
  * Model without table.

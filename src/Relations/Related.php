@@ -2,18 +2,19 @@
 
 namespace SDamian\Larasort\Relations;
 
-use Illuminate\Database\Query\Builder;
-use SDamian\Larasort\Exception\LarasortException;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder as BuilderE;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Query\Builder;
+use SDamian\Larasort\Exception\LarasortException;
 
 /**
  * Larasort - This class is useful for generate the href and CSS class attributes.
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
+ *
  * @link    https://github.com/s-damian/larasort
  */
 final class Related
@@ -30,7 +31,7 @@ final class Related
     private array $options;
 
     /**
-     * @param array<mixed> $options
+     * @param  array<mixed>  $options
      */
     public function __construct(object $model, Builder|BuilderE $query, string $relation, array $options)
     {
@@ -47,7 +48,7 @@ final class Related
     */
 
     /**
-     * @param array<string> $sortablesRelated
+     * @param  array<string>  $sortablesRelated
      */
     final public function verifyRequestOrderBy(bool $hasRequestStr, array $sortablesRelated): bool
     {
@@ -84,12 +85,12 @@ final class Related
             case $relation instanceof HasOne:
             case $relation instanceof HasMany:
                 $relatedPrimaryKey = $relation->getQualifiedForeignKeyName(); // foreign_key of the table of the related Model.
-                $modelPrimaryKey  = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
+                $modelPrimaryKey = $relation->getQualifiedParentKeyName(); // primary_key of the table of this Model.
 
                 break;
             case $relation instanceof BelongsTo:
                 $relatedPrimaryKey = $relation->getQualifiedOwnerKeyName(); // foreign_key of the table of this Model.
-                $modelPrimaryKey  = $relation->getQualifiedForeignKeyName();  // primary_key of the table of the related Model.
+                $modelPrimaryKey = $relation->getQualifiedForeignKeyName();  // primary_key of the table of the related Model.
 
                 break;
             default:
@@ -116,7 +117,7 @@ final class Related
     }
 
     /**
-     * @param array<string> $columns
+     * @param  array<string>  $columns
      * @return array<string>
      */
     private function setColumns(string $table, array|string $columns = null): array

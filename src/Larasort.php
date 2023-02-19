@@ -10,6 +10,7 @@ use SDamian\Larasort\Traits\UtilsTrait;
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
+ *
  * @link    https://github.com/s-damian/larasort
  */
 final class Larasort
@@ -67,7 +68,7 @@ final class Larasort
      * For column(s), specify its table.
      * This function is especially useful for SQL queries with joins.
      *
-     * @param array<string, string> $sortablesToTables
+     * @param  array<string, string>  $sortablesToTables
      * - In keys: column of the "orderby"
      * - In values: 'table_name.column'
      *   # Example with an "articles" table and its "id" column:
@@ -112,7 +113,7 @@ final class Larasort
      *   we can optionally specify their table as a prefix (but the table will be ignored thanks to the strpos).
      * - At "$sortablesDefaultOrder", if we put a column that does not exist in the table, it will not crash the program (it will just be ignored).
      *
-     * @param array<mixed> $sortablesDefaultOrder
+     * @param  array<mixed>  $sortablesDefaultOrder
      */
     final public static function setSortablesDefaultOrder(array $sortablesDefaultOrder): void
     {

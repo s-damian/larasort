@@ -2,9 +2,9 @@
 
 namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models;
 
-use SDamian\Larasort\AutoSortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use SDamian\Larasort\AutoSortable;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Factories\ArticleFactory;
 
 class Article extends Model
@@ -53,7 +53,7 @@ class Article extends Model
     public static function storeArticles_forOneToOne(): void
     {
         $nb = 3;
-        for ($i=1; $i <= $nb; $i++) {
+        for ($i = 1; $i <= $nb; $i++) {
             switch ($i) {
                 case 1:
                     $user_id_created_at = 1;
@@ -82,7 +82,7 @@ class Article extends Model
     public static function storeArticles_forOneToMany(): void
     {
         $nb = 5;
-        for ($i=1; $i <= $nb; $i++) {
+        for ($i = 1; $i <= $nb; $i++) {
             switch ($i) {
                 case 1:
                     $user_id_created_at = 1;

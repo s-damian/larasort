@@ -2,11 +2,11 @@
 
 namespace SDamian\Tests\Larasort;
 
-use SDamian\Tests\TestCase;
+use Illuminate\Support\Facades\Request;
 use SDamian\Larasort\Larasort;
 use SDamian\Larasort\LarasortLink;
-use Illuminate\Support\Facades\Request;
 use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
+use SDamian\Tests\TestCase;
 
 /**
  * Ici on test :

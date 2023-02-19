@@ -2,12 +2,12 @@
 
 namespace SDamian\Larasort;
 
-use Illuminate\Database\Query\Builder;
-use SDamian\Larasort\Support\Security;
-use SDamian\Larasort\Relations\Related;
-use SDamian\Larasort\Relations\OrderByRelated;
-use SDamian\Larasort\Exception\LarasortException;
 use Illuminate\Database\Eloquent\Builder as BuilderE;
+use Illuminate\Database\Query\Builder;
+use SDamian\Larasort\Exception\LarasortException;
+use SDamian\Larasort\Relations\OrderByRelated;
+use SDamian\Larasort\Relations\Related;
+use SDamian\Larasort\Support\Security;
 
 /**
  * Larasort - To do sorting with Eloquent ORM.
@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Builder as BuilderE;
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
+ *
  * @link    https://github.com/s-damian/larasort
  */
 trait AutoSortable
@@ -37,7 +38,7 @@ trait AutoSortable
     */
 
     /**
-     * @param array<mixed> $options
+     * @param  array<mixed>  $options
      */
     final public function scopeAutosortWith(Builder|BuilderE $query, string $relation, array $options = []): Builder|BuilderE
     {

@@ -2,8 +2,8 @@
 
 namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Traits;
 
-use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
 use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\Article;
+use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
 
 trait ForOneToOneTrait
 {

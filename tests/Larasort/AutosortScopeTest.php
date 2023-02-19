@@ -2,10 +2,10 @@
 
 namespace SDamian\Tests\Larasort;
 
-use SDamian\Tests\TestCase;
 use Illuminate\Support\Facades\Request;
-use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\Larasort\Fixtures\Models\Customer;
+use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
+use SDamian\Tests\TestCase;
 
 /**
  * Ici on test le scope "scopeAutosort" du trait AutoSortable.
@@ -40,8 +40,8 @@ class AutosortScopeTest extends TestCase
     private function verifyRowsDataInDb(): void
     {
         $this->assertDatabaseHas('customers', [
-                'email' => 'customer-1@gmail.com',
-                'first_name' => 'aaa',
+            'email' => 'customer-1@gmail.com',
+            'first_name' => 'aaa',
         ]);
         $this->assertDatabaseHas('customers', [
             'email' => 'customer-2@gmail.com',

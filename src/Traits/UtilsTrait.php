@@ -7,12 +7,13 @@ namespace SDamian\Larasort\Traits;
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
+ *
  * @link    https://github.com/s-damian/larasort
  */
 trait UtilsTrait
 {
     /**
-     * @param array<string> $sortablesDefaultOrder
+     * @param  array<string>  $sortablesDefaultOrder
      * @return array<string>
      */
     private static function getSortablesDefaultOrderWithoutTable(array $sortablesDefaultOrder): array
