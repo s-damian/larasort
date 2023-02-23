@@ -2,6 +2,7 @@
 
 namespace SDamian\Larasort;
 
+use Illuminate\Support\Facades\App;
 use SDamian\Larasort\Support\Security;
 use SDamian\Larasort\Traits\UtilsTrait;
 
@@ -87,7 +88,7 @@ final class Larasort
      */
     final public static function getSortablesToTables(): array
     {
-        if (config('app.env') === 'testing') {
+        if (App::runningUnitTests()) {
             return [];
         }
 
@@ -128,7 +129,7 @@ final class Larasort
      */
     final public static function getSortablesDefaultOrder(): array
     {
-        if (config('app.env') === 'testing') {
+        if (App::runningUnitTests()) {
             return [
                 'desc' => [],
                 'asc' => [],

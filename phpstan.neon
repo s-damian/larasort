@@ -1,8 +1,8 @@
 parameters:
   level: 8
   paths:
-    - "../../src"
-    - "../../tests"
+    - "./src"
+    - "./tests"
   ignoreErrors:
     - '#Call to an undefined method object::getTable\(\).#'
     - '#Cannot call method has\(\) on array|Illuminate\\Http\\Request\|string\|null.#'

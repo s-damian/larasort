@@ -47,9 +47,9 @@
     "scripts": {
         "test": "php8.0 ./vendor/phpunit/phpunit/phpunit",
         "test-f": "php8.0 ./vendor/phpunit/phpunit/phpunit --filter",
-        "fix-all": "php8.2 ./vendor/bin/pint",
-        "fix-all-dry": "php8.2 ./vendor/bin/pint --test",
-        "phpstan": "php8.2 ./vendor/bin/phpstan --configuration='tools/phpstan/phpstan.neon'"
+        "pint": "php8.2 ./vendor/bin/pint",
+        "pint-t": "php8.2 ./vendor/bin/pint --test",
+        "phpstan": "php8.2 ./vendor/bin/phpstan analyse -c phpstan.neon"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
