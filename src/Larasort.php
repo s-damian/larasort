@@ -88,7 +88,7 @@ final class Larasort
      */
     final public static function getSortablesToTables(): array
     {
-        if (App::runningUnitTests()) {
+        if (config('app.env') === 'testing') {
             return [];
         }
 
@@ -129,7 +129,7 @@ final class Larasort
      */
     final public static function getSortablesDefaultOrder(): array
     {
-        if (App::runningUnitTests()) {
+        if (config('app.env') === 'testing') {
             return [
                 'desc' => [],
                 'asc' => [],
