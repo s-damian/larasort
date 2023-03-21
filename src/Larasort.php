@@ -2,7 +2,6 @@
 
 namespace SDamian\Larasort;
 
-use Illuminate\Support\Facades\App;
 use SDamian\Larasort\Support\Security;
 use SDamian\Larasort\Traits\UtilsTrait;
 

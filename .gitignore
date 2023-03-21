@@ -1,4 +1,5 @@
 # Base
+/tests/coverage
 /vendor
 .phpunit.result.cache
 composer.lock
