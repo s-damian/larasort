@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SDamian\Larasort;
 
 use SDamian\Larasort\Support\Security;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SDamian\Larasort\Relations;
 
 use Illuminate\Database\Eloquent\Builder as BuilderE;
