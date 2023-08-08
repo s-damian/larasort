@@ -178,6 +178,6 @@ final class Related
 
         $ex = explode(config('larasort.relation_column_separator'), request()->orderby);
 
-        return  $this->getRelatedTable().'.'.$ex[1];
+        return $this->getRelatedTable().'.'.$ex[1];
     }
 }

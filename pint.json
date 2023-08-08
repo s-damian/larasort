@@ -1,6 +1,25 @@
 {
     "preset": "laravel",
     "rules": {
+        "explicit_string_variable" : true,
+        "new_with_braces": {
+            "anonymous_class": true,
+            "named_class": true
+        },
+        "ordered_class_elements" : {
+            "order" : [
+                "use_trait",
+                "case",
+                "constant",
+                "property",
+                "construct",
+                "destruct",
+                "magic",
+                "phpunit",
+                "method_abstract",
+                "method"
+            ]
+        },
         "ordered_traits": true
     }
 }

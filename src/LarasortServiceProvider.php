@@ -39,22 +39,22 @@ class LarasortServiceProvider extends ServiceProvider
         // Blade Directives:
 
         Blade::directive('sortableUrl', function ($expression) {
-            return "<?php echo \SDamian\Larasort\LarasortLink::getUrl($expression); ?>";
+            return "<?php echo \SDamian\Larasort\LarasortLink::getUrl({$expression}); ?>";
         });
 
         Blade::directive('sortableHref', function ($expression) {
-            return "<?php echo \SDamian\Larasort\LarasortLink::getHref($expression); ?>";
+            return "<?php echo \SDamian\Larasort\LarasortLink::getHref({$expression}); ?>";
         });
 
         Blade::directive('sortableIcon', function ($expression) {
-            return "<?php echo \SDamian\Larasort\LarasortLink::getIcon($expression); ?>";
+            return "<?php echo \SDamian\Larasort\LarasortLink::getIcon({$expression}); ?>";
         });
 
         Blade::directive('sortableLink', function ($expression) {
             $ex = explode(', ', $expression);
             $label = $ex[1] ?? null;
 
-            return "<?php echo \SDamian\Larasort\LarasortLink::getLink($ex[0], $label); ?>";
+            return "<?php echo \SDamian\Larasort\LarasortLink::getLink({$ex[0]}, {$label}); ?>";
         });
     }
 
