@@ -8,6 +8,7 @@
 
 [![Tests](https://github.com/s-damian/larasort/actions/workflows/tests.yml/badge.svg)](https://github.com/s-damian/larasort/actions/workflows/tests.yml)
 [![Static analysis](https://github.com/s-damian/larasort/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/s-damian/larasort/actions/workflows/static-analysis.yml)
+[![Total Downloads](http://poser.pugx.org/s-damian/larasort/downloads)](https://packagist.org/packages/s-damian/larasort)
 [![Latest Stable Version](https://poser.pugx.org/s-damian/larasort/v/stable)](https://packagist.org/packages/s-damian/larasort)
 [![License](https://poser.pugx.org/s-damian/larasort/license)](https://packagist.org/packages/s-damian/larasort)
 
