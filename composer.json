@@ -45,9 +45,9 @@
         }
     },
     "scripts": {
-        "test": "php8.0 ./vendor/phpunit/phpunit/phpunit",
-        "test-f": "php8.0 ./vendor/phpunit/phpunit/phpunit --filter",
-        "phpstan": "php8.2 ./vendor/bin/phpstan analyse -c phpstan.neon",
+        "test": "php8.3 ./vendor/phpunit/phpunit/phpunit",
+        "test-f": "php8.3 ./vendor/phpunit/phpunit/phpunit --filter",
+        "phpstan": "php8.3 ./vendor/bin/phpstan analyse -c phpstan.neon",
         "pint": "php8.2 ./vendor/bin/pint",
         "pint-t": "php8.2 ./vendor/bin/pint --test"
     },
