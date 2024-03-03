@@ -60,7 +60,7 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
 
 ### Requirements
 
-* PHP 8.0 || 8.1 || 8.2
+* PHP 8.0 || 8.1 || 8.2 || 8.3
 * Laravel 8 || 9 || 10
 
 
@@ -710,7 +710,7 @@ For ```SDamian\Larasort\AutoSortable``` trait:
 | Return type | Directive                                    | Description                                     | Return example |
 | ----------- | -------------------------------------------- | ----------------------------------------------- |--- |
 | string      | @sortableUrl(string $column)                | Returns the URL of a column.            | ```http://www.website.com/utilisateurs?orderby=email&order=asc``` |
-| string      | @sortableHref(string $column)                | Returns the href (with its URL in it )of a column.            | ```href='http://www.website.com/utilisateurs?orderby=email&order=asc'``` |
+| string      | @sortableHref(string $column)                | Returns the href (with its URL in it) of a column.            | ```href='http://www.website.com/utilisateurs?orderby=email&order=asc'``` |
 | string      | @sortableIcon(string $column)                | Returns the icon (image) of a column, in the correct order. | ```<span class="larasort-icon-n-1"></span>``` |
 | string      | @sortableLink(string $column, string $label) | Return link of a column = href + label + icon.              | ```<a href="http://www.website.com/utilisateurs?orderby=email&amp;order=asc">Email<span class="larasort-icon-n-1"></span></a>``` |
 
