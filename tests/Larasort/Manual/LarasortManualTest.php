@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SDamian\Tests\Larasort\Manual;
 
 use Illuminate\Support\Facades\Request;

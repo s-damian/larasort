@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SDamian\Tests\Larasort\Fixtures\Models;
 
 use Illuminate\Database\Eloquent\Model;

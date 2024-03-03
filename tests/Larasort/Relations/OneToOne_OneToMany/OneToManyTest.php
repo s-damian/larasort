@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SDamian\Tests\Larasort\Relations\OneToOne_OneToMany;
 
 use Illuminate\Database\Eloquent\Collection;
