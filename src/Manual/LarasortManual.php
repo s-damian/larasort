@@ -55,13 +55,13 @@ class LarasortManual
      * This function is especially useful for SQL queries with joins.
      *
      * @param  array<string, string>  $sortablesToTables
-     * - In keys: column of the "orderby"
-     * - In values: 'table_name.column'
-     *   # Example with an "articles" table and its "id" column:
-     *   // When we do an order by "id" (in URL: "?orderby=id"), we want SQL to do it on the "id" of the "articles" table.
-     *   Larasort::setSortablesToTables([
-     *       'id' => 'articles.id',
-     *   ]);
+     *                                                    - In keys: column of the "orderby"
+     *                                                    - In values: 'table_name.column'
+     *                                                    # Example with an "articles" table and its "id" column:
+     *                                                    // When we do an order by "id" (in URL: "?orderby=id"), we want SQL to do it on the "id" of the "articles" table.
+     *                                                    Larasort::setSortablesToTables([
+     *                                                    'id' => 'articles.id',
+     *                                                    ]);
      */
     final public function setSortablesToTables(array $sortablesToTables): void
     {

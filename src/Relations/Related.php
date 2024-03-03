@@ -122,7 +122,7 @@ final class Related
      * @param  array<string>  $columns
      * @return array<string>
      */
-    private function setColumns(string $table, array|string $columns = null): array
+    private function setColumns(string $table, array|string|null $columns = null): array
     {
         if ($columns !== null) {
             $columns = ! is_array($columns) ? explode(',', $columns) : $columns;

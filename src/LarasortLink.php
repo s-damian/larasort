@@ -81,7 +81,7 @@ class LarasortLink
         return '<span class="'.$class.'"></span>';
     }
 
-    final public static function getLink(string $column, string $label = null): string
+    final public static function getLink(string $column, ?string $label = null): string
     {
         $labelToShow = $label ?? ucfirst(str_replace(['_', config('larasort.relation_column_separator')], ' ', $column));
 
