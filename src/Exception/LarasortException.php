@@ -12,6 +12,4 @@ use Exception;
  *
  * @link    https://github.com/s-damian/larasort
  */
-final class LarasortException extends Exception
-{
-}
+final class LarasortException extends Exception {}
