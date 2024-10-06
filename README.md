@@ -24,6 +24,8 @@ You have two packages in one: **Larasort** (for sorting **with** Eloquent ORM) a
 
 > Sort easily in an automated way 🚀
 
+> If you find this package useful, please star it on my GitHub repository ✨
+
 ### Simple example with Larasort
 
 * Example in Model:
@@ -62,10 +64,6 @@ This package is developed by [Stephen Damian](https://github.com/s-damian)
 
 * PHP 8.0 || 8.1 || 8.2 || 8.3
 * Laravel 8 || 9 || 10 || 11
-
-### Star it on GitHub
-
-If you find this package useful, please star it on my GitHub repository ✨
 
 
 ## Summary
