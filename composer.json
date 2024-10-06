@@ -45,6 +45,12 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [
+            "@php -r \"echo PHP_EOL . 'Thank you for using Larasort! Please star it on GitHub: https://github.com/s-damian/larasort' . PHP_EOL;\""
+        ],
+        "post-update-cmd": [
+            "@php -r \"echo PHP_EOL . 'Thank you for using Larasort! Please star it on GitHub: https://github.com/s-damian/larasort' . PHP_EOL;\""
+        ],
         "test": "php8.3 ./vendor/phpunit/phpunit/phpunit",
         "test-f": "php8.3 ./vendor/phpunit/phpunit/phpunit --filter",
         "phpstan": "php8.3 ./vendor/bin/phpstan analyse -c phpstan.neon",
