@@ -24,7 +24,7 @@ You have two packages in one: **Larasort** (for sorting **with** Eloquent ORM) a
 
 > Sort easily in an automated way 🚀
 
-> If you find this package useful, please star it on my GitHub repository ✨
+> If you find this package useful, please **star it** on my GitHub repository ✨
 
 ### Simple example with Larasort
 
