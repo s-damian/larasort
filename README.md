@@ -884,4 +884,4 @@ All bugs and all security vulnerabilities will be promptly addressed.
 
 ## License
 
-This project is an Open Source package under the MIT license. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
