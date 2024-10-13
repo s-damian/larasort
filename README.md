@@ -4,7 +4,7 @@
 </a>
 </p>
 
-# Column sorting for Laravel - Sortable - Sort by
+# Column Sorting for Laravel - Sortable - Sort By
 
 [![Tests](https://github.com/s-damian/larasort/actions/workflows/tests.yml/badge.svg)](https://github.com/s-damian/larasort/actions/workflows/tests.yml)
 [![Static analysis](https://github.com/s-damian/larasort/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/s-damian/larasort/actions/workflows/static-analysis.yml)
@@ -12,7 +12,7 @@
 [![Latest Stable Version](https://poser.pugx.org/s-damian/larasort/v/stable)](https://packagist.org/packages/s-damian/larasort)
 [![License](https://poser.pugx.org/s-damian/larasort/license)](https://packagist.org/packages/s-damian/larasort)
 
-## Larasort : Column sorting for Laravel - Sort easily
+## Larasort : Column Sorting For Laravel - Sort Easily
 
 ### Introduction - Larasort
 
@@ -106,7 +106,7 @@ composer require s-damian/larasort
 ```
 
 
-## Customization with "vendor:publish"
+## Customization With "vendor:publish"
 
 ### Custom Config and Lang and CSS
 
@@ -149,7 +149,7 @@ php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider"
 
 **Larasort** is useful when using the Eloquent ORM.
 
-## Basic usage
+## Basic Usage
 
 First, your Model must use the `AutoSortable` Trait.
 
@@ -264,7 +264,7 @@ Note: You must put the CSS class `with-larasort` on a HTML tag which encloses th
 Note: 1st parameter is the `column` in database, 2nd parameter is the `title` (`label`).
 The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
 
-If you need to keep more control inside a **th**, for more control you can replace `@sortableLink` by `@sortableHref` and `@sortableIcon`. Example:
+If you need to keep more control inside a `th`, for more control you can replace `@sortableLink` by `@sortableHref` and `@sortableIcon`. Example:
 
 ```html
 <th>
@@ -533,7 +533,7 @@ Example with an array: `['title AS article_title', 'content']` Example with a st
 By default the `SELECT` will be done on all the columns.
 
 
-## For a column, specify its table
+## For a Column, Specify its Table
 
 With **Larasort** you can for columns, specify their table (this is useful when you make a SQL query with join).
 
@@ -603,9 +603,9 @@ class ArticleController extends Controller
 If the `$sortablesToTables` property and the `Larasort::setSortablesToTables(array $sortablesToTables)` method are used at the same time for the same column,
 the `Larasort::setSortablesToTables(array $sortablesToTables)` method will override the `$sortablesToTables` property.
 
-Using either of these solutions, the result of the SQL query will be: ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `articles`.`id` ASC ```
+Using either of these solutions, the result of the SQL query will be: ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `articles`.`id` ASC ```.
 
-## Put "desc" or "asc" by default for some columns
+## Put "desc" or "asc" by Default For Some Columns
 
 It is possible for some columns,
 that the order (the direction of the `ORDER BY`) to want it to be by default (or on the 1st click on its link) at `desc` instead of `asc`.
@@ -715,13 +715,13 @@ For `SDamian\Larasort\AutoSortable` trait:
 | string      | @sortableLink(string $column, string $label) | Return link of a column = href + label + icon.              | `<a href="http://www.website.com/utilisateurs?orderby=email&amp;order=asc">Email<span class="larasort-icon-n-1"></span></a>` |
 
 
-# LarasortManual - For without Eloquent ORM
+# LarasortManual - For Without Eloquent ORM
 
 **Larasort** is useful when you weren't using the Eloquent ORM.
 
-If you want to do a manual SQL query (or if you want to do a file listing), an alternative exists: **LarasortManual**
+If you want to do a manual SQL query (or if you want to do a file listing), an alternative exists: **LarasortManual**.
 
-## LarasortManual - Basic usage
+## LarasortManual - Basic Usage
 
 With **LarasortManual**, the `setSortables(array $sortables)` method is useful to define the columns allowed to be sorted in the `ORDER BY`. Simple example:
 
@@ -779,9 +779,10 @@ And in the view you can do this in the **thead** of a **table** for example:
     </tr>
 </thead>
 ```
-Note: if you wish, you can also have access to `$larasortManAttrs['column_name']['url']`
 
-## LarasortManual - For a column, specify its table
+Note: if you wish, you can also have access to `$larasortManAttrs['column_name']['url']`.
+
+## LarasortManual - For a Column, Specify its Table
 
 With **LarasortManual** also you can for columns, specify their table (this is useful when you make a SQL query with join).
 
@@ -815,9 +816,9 @@ class ArticleController extends Controller
 }
 ```
 
-`$resultLarasortMan['order_by']` will generate the SQL query ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `id` ASC```
+`$resultLarasortMan['order_by']` will generate the SQL query ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `id` ASC```.
 
-## LarasortManual - Put "desc" or "asc" by default for some columns
+## LarasortManual - Put "desc" or "asc" by Default for Some Columns
 
 With **LarasortManual** also you can for some columns, have the order (the direction of ORDER BY) default (or on the 1st click on its link) to `desc` instead of `asc`.
 
