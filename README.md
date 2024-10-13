@@ -153,8 +153,7 @@ php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider"
 
 First, your Model must use the `AutoSortable` Trait.
 
-Then it is necessary that in your Model you declare `$sortables`.
-This property is useful for defining the columns (columns in your DB table) allowed to be sorted in the `ORDER BY`.
+Then it is necessary that in your Model you declare `$sortables`. This property is useful for defining the columns (columns in your DB table) allowed to be sorted in the `ORDER BY`.
 
 Note: the first column of the array `$sortables` will be the column used by default for the SQL `ORDER BY`.
 
@@ -183,8 +182,7 @@ class Customer extends Model
 
 You can override the column used by default for `ORDER BY` with this static method:
 
-Note: the advantage of using the `setDefaultSortable` method is that even if in the URL there are no `?orderby={column}&order={direction}`,
-the icon will still appear in the link for the default column.
+Note: the advantage of using the `setDefaultSortable` method is that even if in the URL there are no `?orderby={column}&order={direction}`, the icon will still appear in the link for the default column.
 
 ```php
 <?php
@@ -261,10 +259,11 @@ Note: You must put the CSS class `with-larasort` on a HTML tag which encloses th
 </thead>
 ```
 
-Note: 1st parameter is the `column` in database, 2nd parameter is the `title` (`label`).
-The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
+Note: 1st parameter is the `column` in database, 2nd parameter is the `title` (`label`). The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
 
-If you need to keep more control inside a `th`, for more control you can replace `@sortableLink` by `@sortableHref` and `@sortableIcon`. Example:
+If you need to keep more control inside a `th`, for more control you can replace `@sortableLink` by `@sortableHref` and `@sortableIcon`.
+
+Example:
 
 ```html
 <th>
@@ -500,8 +499,7 @@ By default the separator is a period. If you wish, you can change it in the conf
 
 To do the join, you must specify the name of the relation in the first parameter of `->autosortWith()`.
 
-Inside, you must pass the name of your relation (the name of the relation method that you put in your Model).
-Larasort will use this name to do the `join`.
+Inside, you must pass the name of your relation (the name of the relation method that you put in your Model). Larasort will use this name to do the `join`.
 
 ##### Options:
 
@@ -524,8 +522,7 @@ By default the `SELECT` will be done on all the columns.
 
 If you want to specify which columns to `SELECT` for your Model's relationship, you can specify the `related_columns` option.
 
-You can put either an array or a string.
-Example with an array: `['title AS article_title', 'content']` Example with a string: `'title AS article_title, content'`
+You can put either an array or a string. Example with an array: `['title AS article_title', 'content']`. Example with a string: `'title AS article_title, content'`.
 
 By default the `SELECT` will be done on all the columns.
 
@@ -536,9 +533,7 @@ With **Larasort** you can for columns, specify their table (this is useful when 
 
 By default, Larasort will do the `ORDER BY` on the table where the `AutoSortable` trait is included.
 
-Let's take an example where in an SQL query you want to retrieve articles (from a `articles` table) and categories (from a `categories` table),
-and that for these 2 tables you want to retrieve the `id` column.
-But you want to do `ORDER BY id` on the `categories` table instead of the `articles` table.
+Let's take an example where in an SQL query you want to retrieve articles (from a `articles` table) and categories (from a `categories` table), and that for these 2 tables you want to retrieve the `id` column. But you want to do `ORDER BY id` on the `categories` table instead of the `articles` table.
 
 ### You can solve this problem with these 2 solutions
 
@@ -575,8 +570,7 @@ class Article extends Model
 
 #### Solution 2 - With Larasort::setSortablesToTables(array $sortablesToTables)
 
-The `Larasort::setSortablesToTables(array $sortablesToTables)` method can optionally be put just before the SQL query where you will use `->autosort()`
-(in the Controller or in the Model, for example).
+The `Larasort::setSortablesToTables(array $sortablesToTables)` method can optionally be put just before the SQL query where you will use `->autosort()` (in the Controller or in the Model, for example).
 
 Example in a ArticleController:
 
@@ -597,15 +591,13 @@ class ArticleController extends Controller
 }
 ```
 
-If the `$sortablesToTables` property and the `Larasort::setSortablesToTables(array $sortablesToTables)` method are used at the same time for the same column,
-the `Larasort::setSortablesToTables(array $sortablesToTables)` method will override the `$sortablesToTables` property.
+If the `$sortablesToTables` property and the `Larasort::setSortablesToTables(array $sortablesToTables)` method are used at the same time for the same column, the `Larasort::setSortablesToTables(array $sortablesToTables)` method will override the `$sortablesToTables` property.
 
 Using either of these solutions, the result of the SQL query will be: ```ORDER BY `categories`.`id` ASC``` instead of ```ORDER BY `articles`.`id` ASC ```.
 
 ## Put "desc" or "asc" by Default For Some Columns
 
-It is possible for some columns,
-that the order (the direction of the `ORDER BY`) to want it to be by default (or on the 1st click on its link) at `desc` instead of `asc`.
+It is possible for some columns, that the order (the direction of the `ORDER BY`) to want it to be by default (or on the 1st click on its link) at `desc` instead of `asc`.
 
 This can optionally be put just before the SQL query where you will use `->autosort()` (in the Controller or in the Model, for example).
 
@@ -720,7 +712,9 @@ If you want to do a manual SQL query (or if you want to do a file listing), an a
 
 ## LarasortManual - Basic Usage
 
-With **LarasortManual**, the `setSortables(array $sortables)` method is useful to define the columns allowed to be sorted in the `ORDER BY`. Simple example:
+With **LarasortManual**, the `setSortables(array $sortables)` method is useful to define the columns allowed to be sorted in the `ORDER BY`.
+
+Simple example:
 
 ```php
 <?php
@@ -749,7 +743,7 @@ class CustomerController extends Controller
 }
 ```
 
-And in the view you can do this in the **thead** of a **table** for example:
+And in the view you can do this in the `thead` of a `table` for example:
 
 ```html
 <thead class="with-larasort">
@@ -783,15 +777,15 @@ Note: if you wish, you can also have access to `$larasortManAttrs['column_name']
 
 With **LarasortManual** also you can for columns, specify their table (this is useful when you make a SQL query with join).
 
-Unlike **Larasort** which makes the SQL query on the table where the `AutoSortable` trait is included,
-by default, **LarasortManual** will do the `ORDER BY column` without specifying a table in prefix.
+Unlike **Larasort** which makes the SQL query on the table where the `AutoSortable` trait is included, by default, **LarasortManual** will do the `ORDER BY column` without specifying a table in prefix.
 
 So, when you join multiple tables, if you `SELECT` the same column name on several tables, you can end up with an error like: *"Integrity constraint violation: 1052 Column '{colomn}' in order clause is ambiguous"*.
 
-Let's take an example where in an SQL query you want to retrieve articles (from a `articles` table) and categories (from a `categories` table),
-and that for these 2 tables you want to retrieve the `id` column. And you want to do `ORDER  id` on the `categories` table.
+Let's take an example where in an SQL query you want to retrieve articles (from a `articles` table) and categories (from a `categories` table), and that for these 2 tables you want to retrieve the `id` column. And you want to do `ORDER  id` on the `categories` table.
 
-You can use the `$larasortMan->setSortablesToTables(array $sortablesToTables)` method to achieve this. Example:
+You can use the `$larasortMan->setSortablesToTables(array $sortablesToTables)` method to achieve this.
+
+Example:
 
 ```php
 <?php
@@ -819,7 +813,9 @@ class ArticleController extends Controller
 
 With **LarasortManual** also you can for some columns, have the order (the direction of ORDER BY) default (or on the 1st click on its link) to `desc` instead of `asc`.
 
-You can do this with the `$larasortMan->setSortablesDefaultOrder(array $sortablesDefaultOrder)` method. Example:
+You can do this with the `$larasortMan->setSortablesDefaultOrder(array $sortablesDefaultOrder)` method.
+
+Example:
 
 ```php
 <?php
