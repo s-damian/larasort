@@ -490,8 +490,7 @@ Note: for the 1st argument of `@sortableLink`, use the same convention as in the
 
 #### Model $sortablesRelated property
 
-For the columns you put in the `$sortablesRelated` property,
-the convention is: `{relationship name}{separator}{column in this relationship table}`
+For the columns you put in the `$sortablesRelated` property, the convention is: `{relationship name}{separator}{column in this relationship table}`.
 
 Larasort will use `{relationship name}` to do the `ORDER BY` on its table.
 
@@ -507,8 +506,7 @@ Larasort will use this name to do the `join`.
 ##### Options:
 
 PS:
-If at the first parameter of `->autosortWith()` you put a relation name different from what you had put at `{relationship name}` of the property `$sortablesRelated`,
-the `ORDER BY` simply won't happen on the relationship.
+If at the first parameter of `->autosortWith()` you put a relation name different from what you had put at `{relationship name}` of the property `$sortablesRelated`, the `ORDER BY` simply won't happen on the relationship.
 
 - "`join_type`" (optional):
 
@@ -518,8 +516,7 @@ To make another join than the default (the one specified in the config), you can
 
 If you want to specify the columns to `SELECT` for your Model, you can specify the `columns` option.
 
-You can put either an array or a string.
-Example with an array: `['id', 'email', 'username']` Example with a string: `'id, email, username'`
+You can put either an array or a string. Example with an array: `['id', 'email', 'username']`. Example with a string: `'id, email, username'`.
 
 By default the `SELECT` will be done on all the columns.
 
@@ -792,7 +789,7 @@ by default, **LarasortManual** will do the `ORDER BY column` without specifying 
 So, when you join multiple tables, if you `SELECT` the same column name on several tables, you can end up with an error like: *"Integrity constraint violation: 1052 Column '{colomn}' in order clause is ambiguous"*.
 
 Let's take an example where in an SQL query you want to retrieve articles (from a `articles` table) and categories (from a `categories` table),
-and that for these 2 tables you want to retrieve the `id` column. And you want to do ```ORDER  id` on the `categories` table.
+and that for these 2 tables you want to retrieve the `id` column. And you want to do `ORDER  id` on the `categories` table.
 
 You can use the `$larasortMan->setSortablesToTables(array $sortablesToTables)` method to achieve this. Example:
 
