@@ -41,7 +41,7 @@ final class Larasort
     */
 
     /**
-     * PS:
+     * Note:
      * - At the column passed to "$sortable", it is mandatory to put a column that exists in the table.
      *   We can optionally specify its table as a prefix (in this case, "Larasort::setSortablesDefaultOrder" method will just be ignored for this column).
      */
@@ -110,7 +110,7 @@ final class Larasort
     /**
      * To possibly specify the columns which are by default at order desc during the 1st click on its link.
      *
-     * PS:
+     * Note:
      * - To the columns passed to "$sortablesDefaultOrder",
      *   we can optionally specify their table as a prefix (but the table will be ignored thanks to the strpos).
      * - At "$sortablesDefaultOrder", if we put a column that does not exist in the table, it will not crash the program (it will just be ignored).

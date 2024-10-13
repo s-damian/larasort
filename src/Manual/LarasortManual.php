@@ -40,7 +40,7 @@ class LarasortManual
      * To specify sortable columns.
      * The default column must be put in the 1st position.
      *
-     * PS:
+     * Note:
      * - To the columns passed to "$sortables", you must not specify their table as a prefix.
      *
      * @param  array<null|string>  $sortables
@@ -71,7 +71,7 @@ class LarasortManual
     /**
      * To possibly specify the columns which are by default at order desc during the 1st click on its link.
      *
-     * PS:
+     * Note:
      * - To the columns passed to "$sortablesDefaultOrder",
      *   we can optionally specify their table as a prefix (but the table will be ignored thanks to the strpos).
      * - At "$sortablesDefaultOrder", if we put a column that does not exist in the table, it will not crash the program (it will just be ignored).
@@ -187,7 +187,7 @@ class LarasortManual
     private function getSqlOrder(): string
     {
         if (request()->has('order')) {
-            return strtolower(request()->order) === 'desc' ? 'desc' : 'asc';
+            return mb_strtolower(request()->order) === 'desc' ? 'desc' : 'asc';
         }
 
         $orderBy = $this->getSqlOrderBy();

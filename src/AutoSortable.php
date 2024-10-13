@@ -12,19 +12,19 @@ use SDamian\Larasort\Relations\Related;
 use SDamian\Larasort\Support\Security;
 
 /**
- * Larasort - To do sorting with Eloquent ORM.
+ * Larasort - For sorting with Eloquent ORM.
  * This Trait is useful for automating the "ORDER BY `{column}` {direction}" of SQL queries with Eloquent ORM.
  *
  * # In Models that use this Trait, you can use 2 properties:
  * - $sortables property (must be an array):
- *   This property must be present.
+ *   This property is required.
  *   In values, it must be given the columns of the Model table.
  *   To the columns passed to "$sortables", you must not specify their table as a prefix.
  * - $sortablesToTables property (must be an array):
  *   This property is optional.
  *   Instead of this property, you can use "Larasort::setSortablesToTables" method.
- *   PS: If "$sortablesToTables" property and "Larasort::setSortablesToTables" method are used at the same time for the same column,
- *       "Larasort::setSortablesToTables" method will override "$sortablesToTables" property.
+ *   Note: If "$sortablesToTables" property and "Larasort::setSortablesToTables" method are used at the same time for the same column,
+ *         "Larasort::setSortablesToTables" method will override "$sortablesToTables" property.
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
@@ -103,7 +103,7 @@ trait AutoSortable
         // Case 1:
 
         if (request()->has('order')) {
-            return strtolower(request()->order) === 'desc' ? 'desc' : 'asc';
+            return mb_strtolower(request()->order) === 'desc' ? 'desc' : 'asc';
         }
 
         $orderBy = $this->getSqlOrderBy();

@@ -12,7 +12,7 @@ use Illuminate\Database\Query\Builder;
 use SDamian\Larasort\Exception\LarasortException;
 
 /**
- * Larasort - This class is useful for generate the href and CSS class attributes.
+ * Larasort - This class is used to generate href and CSS class attributes.
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT

@@ -156,7 +156,7 @@ First, your Model must use the `AutoSortable` Trait.
 Then it is necessary that in your Model you declare `$sortables`.
 This property is useful for defining the columns (columns in your DB table) allowed to be sorted in the `ORDER BY`.
 
-PS: the first column of the array `$sortables` will be the column used by default for the SQL `ORDER BY`.
+Note: the first column of the array `$sortables` will be the column used by default for the SQL `ORDER BY`.
 
 Example:
 
@@ -183,7 +183,7 @@ class Customer extends Model
 
 You can override the column used by default for `ORDER BY` with this static method:
 
-PS: the advantage of using the `setDefaultSortable` method is that even if in the URL there are no `?orderby={column}&order={direction}`,
+Note: the advantage of using the `setDefaultSortable` method is that even if in the URL there are no `?orderby={column}&order={direction}`,
 the icon will still appear in the link for the default column.
 
 ```php
@@ -243,7 +243,7 @@ class CustomerController extends Controller
 
 And in the view you can do this in the `thead` of a `table` for example:
 
-PS: You must put the CSS class `with-larasort` on a HTML tag which encloses the blade directive (on the `table` or `thead` tag by example).
+Note: You must put the CSS class `with-larasort` on a HTML tag which encloses the blade directive (on the `table` or `thead` tag by example).
 
 ```html
 <thead class="with-larasort">
@@ -261,7 +261,7 @@ PS: You must put the CSS class `with-larasort` on a HTML tag which encloses the 
 </thead>
 ```
 
-PS: 1st parameter is the `column` in database, 2nd parameter is the `title` (`label`).
+Note: 1st parameter is the `column` in database, 2nd parameter is the `title` (`label`).
 The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
 
 If you need to keep more control inside a **th**, for more control you can replace `@sortableLink` by `@sortableHref` and `@sortableIcon`. Example:
@@ -397,7 +397,7 @@ $users = User::autosortWith('article', [
 @sortableLink('article.title', 'Article Title')
 ```
 
-PS: for the 1st argument of `@sortableLink`, use the same convention as in the `$sortablesRelated` property of the Model.
+Note: for the 1st argument of `@sortableLink`, use the same convention as in the `$sortablesRelated` property of the Model.
 
 ### One To Many
 
@@ -443,7 +443,7 @@ $users = User::autosortWith('articles', [
 @sortableLink('articles.title', 'Article Title')
 ```
 
-PS: for the 1st argument of `@sortableLink`, use the same convention as in the `$sortablesRelated` property of the Model.
+Note: for the 1st argument of `@sortableLink`, use the same convention as in the `$sortablesRelated` property of the Model.
 
 ### Belongs To
 
@@ -484,7 +484,7 @@ $articles = Article::autosortWith('user', [
 @sortableLink('user.email', 'User Email')
 ```
 
-PS: for the 1st argument of `@sortableLink`, use the same convention as in the `$sortablesRelated` property of the Model.
+Note: for the 1st argument of `@sortableLink`, use the same convention as in the `$sortablesRelated` property of the Model.
 
 ### Relationships - Conventions
 
@@ -779,7 +779,7 @@ And in the view you can do this in the **thead** of a **table** for example:
     </tr>
 </thead>
 ```
-PS: if you wish, you can also have access to `$larasortManAttrs['column_name']['url']`
+Note: if you wish, you can also have access to `$larasortManAttrs['column_name']['url']`
 
 ## LarasortManual - For a column, specify its table
 

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SDamian\Larasort;
 
 /**
- * Larasort - This class is useful for generate the href and CSS class attributes.
+ * Larasort - This class is useful for generating the href and CSS class attributes.
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
@@ -17,7 +17,7 @@ class LarasortLink
     final public static function getUrl(string $column): string
     {
         if (request()->has('orderby') && request()->orderby === $column) {
-            $order = request()->has('order') && strtolower(request()->order) === 'asc'
+            $order = request()->has('order') && mb_strtolower(request()->order) === 'asc'
                 ? 'desc'
                 : 'asc';
         } elseif (! request()->has('orderby') && $column === self::getDefaultSortableWithoutTable()) {
@@ -53,7 +53,7 @@ class LarasortLink
     final public static function getIcon(string $column): string
     {
         if (request()->has('orderby') && request()->orderby === $column) {
-            $class = request()->has('order') && strtolower(request()->order) === 'asc'
+            $class = request()->has('order') && mb_strtolower(request()->order) === 'asc'
                 ? 'larasort-icon-1'
                 : 'larasort-icon-2';
         } elseif (! request()->has('orderby') && $column === self::getDefaultSortableWithoutTable()) {

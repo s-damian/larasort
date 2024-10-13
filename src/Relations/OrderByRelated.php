@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SDamian\Larasort\Relations;
 
 /**
- * Larasort - This class works with the "autosortWith" scope and with the "Related" class.
+ * Larasort - This class interacts with the "autosortWith" scope and the "Related" class.
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
