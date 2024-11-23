@@ -62,7 +62,7 @@ This package is developed by [Stephen Damian](https://github.com/s-damian).
 
 ### Requirements
 
-- PHP 8.0 || 8.1 || 8.2 || 8.3
+- PHP 8.0 || 8.1 || 8.2 || 8.3 || 8.4
 - Laravel 8 || 9 || 10 || 11
 
 
