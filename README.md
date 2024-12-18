@@ -58,8 +58,6 @@ Example rendering of a link in a table:
 
 This package is developed by [Stephen Damian](https://github.com/s-damian).
 
-> ✨ If you find this package useful, please **star it** on the GitHub repository.
-
 ### Requirements
 
 - PHP `8.0` || `8.1` || `8.2` || `8.3` || `8.4`
