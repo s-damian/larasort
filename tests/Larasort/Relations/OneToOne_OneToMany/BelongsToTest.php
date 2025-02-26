@@ -26,7 +26,7 @@ class BelongsToTest extends TestCase
     use ForAllTestsTrait;
     use ForOneToOneTrait;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 

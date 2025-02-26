@@ -22,7 +22,7 @@ class AutoSortableTraitTest extends TestCase
 
     private Customer $customer;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -87,7 +87,7 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('desc', $this->customer->getSqlOrder());
     }
 
-    public function test_sortablesG_getters_for_customer_model(): void
+    public function test_sortables_g_getters_for_customer_model(): void
     {
         // La prop "$sortables" du Model "Customer" a bien fonctionnée.
         $this->assertSame($this->customer->getSortables(), [
@@ -256,7 +256,7 @@ class AutoSortableTraitTest extends TestCase
         $this->assertTrue($address->getSqlOrderBy() === null);
     }
 
-    public function test_sortables_prop_with_nullIn_first_pos_with_request(): void
+    public function test_sortables_prop_with_null_in_first_pos_with_request(): void
     {
         $this->verifyInAllTests();
 

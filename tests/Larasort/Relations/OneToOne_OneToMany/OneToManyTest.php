@@ -22,7 +22,7 @@ class OneToManyTest extends TestCase
 {
     use ForAllTestsTrait;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
