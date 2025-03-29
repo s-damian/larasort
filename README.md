@@ -239,22 +239,29 @@ class CustomerController extends Controller
 
 And in the view you can do this in the `thead` of a `table` for example:
 
-Note: You must put the CSS class `with-larasort` on a HTML tag which encloses the blade directive (on the `table` or `thead` tag by example).
+Note: You must put the `with-larasort` CSS class on the `table` tag which encloses the blade directive (important: `with-larasort` CSS class on the `table` tag by example. And you also need the `thead` tag).
 
 ```html
-<thead class="with-larasort">
-    <tr>
-        <th>
-            @sortableLink('first_name', 'First name')
-        </th>
-        <th>
-            @sortableLink('email', 'Email')
-        </th>
-        <th>
-            @sortableLink('created_at', 'Register on')
-        </th>
-    </tr>
-</thead>
+<table class="with-larasort">
+    <thead>
+        <tr>
+            <th>
+                @sortableLink('first_name', 'First name')
+            </th>
+            <th>
+                @sortableLink('email', 'Email')
+            </th>
+            <th>
+                @sortableLink('created_at', 'Register on')
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($rows as $row)
+
+        @endforeach
+    </tbody>
+</table>
 ```
 
 Note: 1st parameter is the `column` in database, 2nd parameter is the `title` (`label`). The 2nd parameter is optional. If you don't specify pass, the label will be generated automatically based on the column name.
@@ -744,29 +751,36 @@ class CustomerController extends Controller
 And in the view you can do this in the `thead` of a `table` for example:
 
 ```html
-<thead class="with-larasort">
-    <tr>
-        <th>
-            <a {!! $larasortManAttrs['first_name']['href'] !!}>
-                First name
-                {!! $larasortManAttrs['first_name']['icon'] !!}
-            </a>
-        </th>
-        <th>
-            <a {!! $larasortManAttrs['email']['href'] !!}>
-                Email
-                {!! $larasortManAttrs['email']['icon'] !!}
-            </a>
-        </th>
-        <th>
-            <a {!! $larasortManAttrs['created_at']['href'] !!}>
-                Register on
-                {!! $larasortManAttrs['created_at']['icon'] !!}
-            </a>
-        </th>
-        <th>Actions</th>
-    </tr>
-</thead>
+<table class="with-larasort">
+    <thead>
+        <tr>
+            <th>
+                <a {!! $larasortManAttrs['first_name']['href'] !!}>
+                    First name
+                    {!! $larasortManAttrs['first_name']['icon'] !!}
+                </a>
+            </th>
+            <th>
+                <a {!! $larasortManAttrs['email']['href'] !!}>
+                    Email
+                    {!! $larasortManAttrs['email']['icon'] !!}
+                </a>
+            </th>
+            <th>
+                <a {!! $larasortManAttrs['created_at']['href'] !!}>
+                    Register on
+                    {!! $larasortManAttrs['created_at']['icon'] !!}
+                </a>
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($rows as $row)
+
+        @endforeach
+    </tbody>
+</table>
 ```
 
 Note: if you wish, you can also have access to `$larasortManAttrs['column_name']['url']`.
