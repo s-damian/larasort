@@ -103,6 +103,12 @@ Installation via Composer:
 composer require s-damian/larasort
 ```
 
+Or directly this branch:
+
+```
+composer require s-damian/larasort:^1
+```
+
 
 ## Customization With "vendor:publish"
 
