@@ -17,10 +17,10 @@ class LarasortLink
     final public static function getUrl(string $column): string
     {
         if (request()->has('orderby') && request()->orderby === $column) {
-            $order = request()->has('order') && mb_strtolower(request()->order) === 'asc'
+            $order = request()->has('order') && request()->order !== null && mb_strtolower(request()->order) === 'asc'
                 ? 'desc'
                 : 'asc';
-        } elseif (! request()->has('orderby') && $column === self::getDefaultSortableWithoutTable()) {
+        } elseif ((! request()->has('orderby') || request()->orderby === null) && $column === self::getDefaultSortableWithoutTable()) {
             if (config('larasort.default_order') === 'desc') {
                 $order = in_array($column, Larasort::getSortablesDefaultOrder()['asc'])
                     ? 'desc'
@@ -53,10 +53,10 @@ class LarasortLink
     final public static function getIcon(string $column): string
     {
         if (request()->has('orderby') && request()->orderby === $column) {
-            $class = request()->has('order') && mb_strtolower(request()->order) === 'asc'
+            $class = request()->has('order') && request()->order !== null && mb_strtolower(request()->order) === 'asc'
                 ? 'larasort-icon-1'
                 : 'larasort-icon-2';
-        } elseif (! request()->has('orderby') && $column === self::getDefaultSortableWithoutTable()) {
+        } elseif ((! request()->has('orderby') || request()->orderby === null) && $column === self::getDefaultSortableWithoutTable()) {
             if (config('larasort.default_order') === 'desc') {
                 $class = in_array($column, Larasort::getSortablesDefaultOrder()['desc'])
                     ? 'larasort-icon-1'

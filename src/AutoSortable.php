@@ -102,7 +102,7 @@ trait AutoSortable
     {
         // Case 1:
 
-        if (request()->has('order')) {
+        if (request()->has('order') && request()->order !== null) {
             return mb_strtolower(request()->order) === 'desc' ? 'desc' : 'asc';
         }
 
