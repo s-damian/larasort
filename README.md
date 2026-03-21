@@ -107,8 +107,9 @@ composer require s-damian/larasort
 ```
 
 Or directly this branch:
+
 ```
-composer require s-damian/larasort:dev-2.x
+composer require s-damian/larasort:^2
 ```
 
 
