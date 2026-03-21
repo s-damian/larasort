@@ -105,7 +105,7 @@ Installation via Composer:
 composer require s-damian/larasort
 ```
 
-Or directly this branch:
+Or directly the *2.x* branch:
 
 ```
 composer require s-damian/larasort:^2
