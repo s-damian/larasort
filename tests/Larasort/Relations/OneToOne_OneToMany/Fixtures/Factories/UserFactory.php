@@ -26,8 +26,8 @@ class UserFactory extends Factory
         return [
             'email' => $this->faker->unique()->safeEmail(),
             'username' => str_replace(' ', '', $this->faker->unique()->name()),
-            'last_name' => $this->faker->name,
-            'first_name' => $this->faker->name,
+            'last_name' => $this->faker->name(),
+            'first_name' => $this->faker->name(),
         ];
     }
 }
