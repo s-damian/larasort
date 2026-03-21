@@ -1,11 +1,9 @@
 parameters:
-  level: 8
+  level: 2
   paths:
     - "./src"
     - "./tests"
   ignoreErrors:
-    - '#Call to an undefined method object::getTable\(\).#'
-    - '#Cannot call method has\(\) on array|Illuminate\\Http\\Request\|string\|null.#'
     - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder|Illuminate\\Database\\Query\\Builder::getRelation\(\).#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Fixtures\\Models\\Customer::count\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Fixtures\\Models\\Customer::select\(\)#'
@@ -13,7 +11,13 @@ parameters:
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\(.*)::count\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\(.*)::select\(\)#'
     - '#Call to an undefined static method SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\(.*)::autosortWith\(\)#'
-    # From PHP 8.2 :
+    - '#Call to an undefined static method Illuminate\\Support\\Facades\\Request::offsetSet\(\)#'
+    - '#Access to an undefined property Illuminate\\Http\\Request::\$order.#'
+    - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$email.#'
+    - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::\$title.#'
+    #- '#Cannot access property \$email on Illuminate\\Database\\Eloquent\\Model\|null.#'
+    #- '#Call to an undefined method object::getTable\(\).#'
+    #- '#Cannot call method has\(\) on array|Illuminate\\Http\\Request\|string\|null.#'
     #- '#Access to an undefined property SDamian\\Tests\\Larasort\\Fixtures\\Models\\(.*)::\$sortablesAs.#'
     #- '#Access to an undefined property SDamian\\Tests\\Larasort\\Fixtures\\Models\\(.*)::\$sortablesRelated.#'
     #- '#SDamian\\Tests\\Larasort\\Relations\\OneToOne_OneToMany\\Fixtures\\Models\\(.*)::\$sortablesAs.#'

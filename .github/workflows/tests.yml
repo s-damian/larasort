@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+      - 1.x
+      - 2.x
   pull_request:
     branches:
       - main
+      - 1.x
+      - 2.x
 
 jobs:
   tests:
@@ -15,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['8.0', '8.1', '8.2', '8.3', '8.4']
+        php: ['8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
       - name: Checkout code
