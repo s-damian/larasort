@@ -25,7 +25,7 @@ class ArticleFactory extends Factory
     {
         return [
             'user_id_created_at' => null,
-            'title' => $this->faker->unique()->title,
+            'title' => $this->faker->unique()->title(),
             'description' => 'Description',
             'content' => 'Content',
         ];
