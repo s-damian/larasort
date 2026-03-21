@@ -60,8 +60,11 @@ This package is developed by [Stephen Damian](https://github.com/s-damian).
 
 ### Requirements
 
-- PHP `8.0` || `8.1` || `8.2` || `8.3` || `8.4` || `8.5`
-- Laravel `8` || `9` || `10` || `11` || `12`
+- PHP `8.4` || `8.5`
+- Laravel `12` || `13`
+
+If you are using an older version of PHP or Laravel:
+[1.x branch](https://github.com/s-damian/larasort/tree/1.x).
 
 
 ## Summary
@@ -101,6 +104,11 @@ Installation via Composer:
 
 ```
 composer require s-damian/larasort
+```
+
+Or directly this branch:
+```
+composer require s-damian/larasort:dev-2.x
 ```
 
 

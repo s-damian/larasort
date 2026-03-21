@@ -75,6 +75,10 @@ class Customer extends Model
                     $first_name = 'bbb';
 
                     break;
+                default:
+                    $first_name = null;
+
+                    break;
             }
 
             CustomerFactory::new()->create([
