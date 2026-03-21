@@ -150,7 +150,7 @@ class LarasortManual
      */
     private function getSqlOrderBy(): ?string
     {
-        if (request()->has('orderby') && in_array(request()->orderby, $this->sortables)) {
+        if (request()->has('orderby') && request()->orderby !== null && in_array(request()->orderby, $this->sortables)) {
             $orderBy = request()->orderby;
         } else {
             $orderBy = $this->sortables[0];
@@ -186,7 +186,7 @@ class LarasortManual
      */
     private function getSqlOrder(): string
     {
-        if (request()->has('order')) {
+        if (request()->has('order') && request()->order !== null) {
             return mb_strtolower(request()->order) === 'desc' ? 'desc' : 'asc';
         }
 
