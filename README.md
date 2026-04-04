@@ -11,7 +11,13 @@
 [![Latest Stable Version](https://poser.pugx.org/s-damian/larasort/v/stable)](https://packagist.org/packages/s-damian/larasort)
 [![License](https://poser.pugx.org/s-damian/larasort/license)](https://packagist.org/packages/s-damian/larasort)
 
+🛠️ 100% handcrafted code (no LLMs were used)
+
 ## Larasort : Column Sorting For Laravel - Sort Easily
+
+### Author
+
+This package is developed by [Stephen Damian](https://github.com/s-damian)
 
 ### Introduction - Larasort
 
@@ -53,17 +59,13 @@ Example rendering of a link in a table:
 
 [![Larasort](https://raw.githubusercontent.com/s-damian/medias/main/packages/larasort-th-example.webp)](https://github.com/s-damian/larasort)
 
-### Author
-
-This package is developed by [Stephen Damian](https://github.com/s-damian).
-
 ### Requirements
 
 - PHP `8.4` || `8.5`
 - Laravel `12` || `13`
 
 If you are using an older version of PHP or Laravel:
-[1.x branch](https://github.com/s-damian/larasort/tree/1.x).
+[1.x branch](https://github.com/s-damian/larasort/tree/1.x)
 
 
 ## Summary
