@@ -56,6 +56,13 @@ class LarasortServiceProvider extends ServiceProvider
 
             return "<?php echo \SDamian\Larasort\LarasortLink::getLink({$ex[0]}, {$label}); ?>";
         });
+
+        Blade::directive('sortableLinkV2', function ($expression) {
+            $ex = explode(', ', $expression);
+            $label = $ex[1] ?? null;
+
+            return "<?php echo \SDamian\Larasort\LarasortLink::getLinkV2({$ex[0]}, {$label}); ?>";
+        });
     }
 
     /**

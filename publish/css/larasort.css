@@ -11,7 +11,9 @@
 .with-larasort span.larasort-icon-n-1,
 .with-larasort span.larasort-icon-n-2,
 .with-larasort span.larasort-icon-1,
-.with-larasort span.larasort-icon-2 {
+.with-larasort span.larasort-icon-2,
+.with-larasort span.larasort-icon-1_v2,
+.with-larasort span.larasort-icon-2_v2 {
     background: url('../images/order.webp') center center no-repeat;
     height: 12px;
     width: 12px;
@@ -40,9 +42,9 @@
 }
 
 /* if the $_GET 'asc' is active, display ... */
-.with-larasort span.larasort-icon-1 {
+.with-larasort span.larasort-icon-1,
+.with-larasort span.larasort-icon-1_v2 {
     display: inline-block;
-    /*position: relative;*/
     transform: rotateZ(-180deg);
 }
 /* ... at the hover, also display it but in the other direction */
@@ -63,3 +65,23 @@
 .with-larasort a.a-for-larasort-icon:hover span.larasort-icon-2 {
     transform: rotateZ(-180deg);
 }
+
+.with-larasort span.larasort-icon-1_v2,
+.with-larasort span.larasort-icon-2_v2 {
+    opacity: 0.6;
+}
+
+.with-larasort span.larasort-icon-1_v2 {
+    top: -2px;
+}
+.with-larasort span.larasort-icon-2_v2 {
+    bottom: -2px;
+}
+
+.with-larasort span.larasort-icon-1_v2:hover,
+.with-larasort span.larasort-icon-1_v2.v2-active,
+.with-larasort span.larasort-icon-2_v2:hover,
+.with-larasort span.larasort-icon-2_v2.v2-active {
+    opacity: 1;
+}
+
