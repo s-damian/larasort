@@ -110,6 +110,15 @@ class LarasortLink
         return '<span class="'.$class.'"></span>';
     }
 
+    final public static function getHrefV2Class(string $ascOrDesc): string
+    {
+        if ($ascOrDesc === 'asc') {
+            return 'class="href-larasort-1_v2"';
+        }
+
+        return 'class="href-larasort-2_v2"';
+    }
+
     final public static function getLink(string $column, ?string $label = null): string
     {
         $labelToShow = $label ?? ucfirst(str_replace(['_', config('larasort.relation_column_separator')], ' ', $column));
@@ -131,12 +140,14 @@ class LarasortLink
         $html = '';
 
         $html .= $labelToShow;
-        $html .= '<a '.self::getHrefV2(column: $column, ascOrDesc: 'asc').'>';
-        $html .= self::getIconV2(ascOrDesc: 'asc');
+        $html .= '<span class="out-href_v2">';
+        $html .= '<a '.self::getHrefV2Class('asc').' '.self::getHrefV2($column, 'asc').'>';
+        $html .= self::getIconV2('asc');
         $html .= '</a>';
-        $html .= '<a '.self::getHrefV2(column: $column, ascOrDesc: 'desc').'>';
-        $html .= self::getIconV2(ascOrDesc: 'desc');
+        $html .= '<a '.self::getHrefV2Class('desc').' '.self::getHrefV2($column, 'desc').'>';
+        $html .= self::getIconV2('desc');
         $html .= '</a>';
+        $html .= '</span>';
 
         return $html;
     }

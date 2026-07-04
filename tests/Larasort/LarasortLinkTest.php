@@ -199,7 +199,21 @@ class LarasortLinkTest extends TestCase
     }
 
     /**
-     * Test de "getLinkV2" - le label est suivi des 2 liens (asc puis desc).
+     * Test de "getHrefV2Class" - retourne la class CSS du lien selon $ascOrDesc.
+     */
+    public function test_larasort_link_v2_get_href_class(): void
+    {
+        $this->verifyInAllTests();
+
+        $this->assertSame('class="href-larasort-1_v2"', LarasortLink::getHrefV2Class('asc'));
+        $this->assertSame('class="href-larasort-2_v2"', LarasortLink::getHrefV2Class('desc'));
+
+        // Toute valeur autre que "asc" doit retomber sur la class "desc".
+        $this->assertSame('class="href-larasort-2_v2"', LarasortLink::getHrefV2Class('autre-valeur'));
+    }
+
+    /**
+     * Test de "getLinkV2" - le label est suivi d'un span "out-href_v2" qui contient les 2 liens (asc puis desc).
      */
     public function test_larasort_link_v2_get_link(): void
     {
@@ -211,16 +225,20 @@ class LarasortLinkTest extends TestCase
         // Et on en profite pour test la méthode "getLinkV2" (AVEC label). "order" est à "desc" -> l'icône "desc" est active.
         $this->assertSame(
             'Customer Email'
-                .'<a href="http://localhost/?orderby=email&order=asc"><span class="larasort-icon-1_v2"></span></a>'
-                .'<a href="http://localhost/?orderby=email&order=desc"><span class="larasort-icon-2_v2 v2-active"></span></a>',
+                .'<span class="out-href_v2">'
+                .'<a class="href-larasort-1_v2" href="http://localhost/?orderby=email&order=asc"><span class="larasort-icon-1_v2"></span></a>'
+                .'<a class="href-larasort-2_v2" href="http://localhost/?orderby=email&order=desc"><span class="larasort-icon-2_v2 v2-active"></span></a>'
+                .'</span>',
             LarasortLink::getLinkV2('email', 'Customer Email')
         );
 
         // Et on en profite pour test la méthode "getLinkV2" (SANS passer de label).
         $this->assertSame(
             'Email'
-                .'<a href="http://localhost/?orderby=email&order=asc"><span class="larasort-icon-1_v2"></span></a>'
-                .'<a href="http://localhost/?orderby=email&order=desc"><span class="larasort-icon-2_v2 v2-active"></span></a>',
+                .'<span class="out-href_v2">'
+                .'<a class="href-larasort-1_v2" href="http://localhost/?orderby=email&order=asc"><span class="larasort-icon-1_v2"></span></a>'
+                .'<a class="href-larasort-2_v2" href="http://localhost/?orderby=email&order=desc"><span class="larasort-icon-2_v2 v2-active"></span></a>'
+                .'</span>',
             LarasortLink::getLinkV2('email')
         );
 
@@ -230,8 +248,10 @@ class LarasortLinkTest extends TestCase
         // (SANS passer de label, AVEC une colonne qui contient un underscore). "order" est à "asc" -> l'icône "asc" est active.
         $this->assertSame(
             'User name'
-                .'<a href="http://localhost/?orderby=user_name&order=asc"><span class="larasort-icon-1_v2 v2-active"></span></a>'
-                .'<a href="http://localhost/?orderby=user_name&order=desc"><span class="larasort-icon-2_v2"></span></a>',
+                .'<span class="out-href_v2">'
+                .'<a class="href-larasort-1_v2" href="http://localhost/?orderby=user_name&order=asc"><span class="larasort-icon-1_v2 v2-active"></span></a>'
+                .'<a class="href-larasort-2_v2" href="http://localhost/?orderby=user_name&order=desc"><span class="larasort-icon-2_v2"></span></a>'
+                .'</span>',
             LarasortLink::getLinkV2('user_name')
         );
     }
