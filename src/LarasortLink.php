@@ -45,9 +45,25 @@ class LarasortLink
         return request()->fullUrlWithQuery(['orderby' => $column, 'order' => $order]);
     }
 
+    final public static function getUrlV2(string $column, string $ascOrDesc): string
+    {
+        if ($ascOrDesc === 'asc') {
+            $order = 'asc';
+        } else {
+            $order = 'desc';
+        }
+
+        return request()->fullUrlWithQuery(['orderby' => $column, 'order' => $order]);
+    }
+
     final public static function getHref(string $column): string
     {
         return 'href="'.self::getUrl($column).'"';
+    }
+
+    final public static function getHrefV2(string $column, string $ascOrDesc): string
+    {
+        return 'href="'.self::getUrlV2($column, $ascOrDesc).'"';
     }
 
     final public static function getIcon(string $column): string
@@ -81,6 +97,19 @@ class LarasortLink
         return '<span class="'.$class.'"></span>';
     }
 
+    final public static function getIconV2(string $ascOrDesc): string
+    {
+        if ($ascOrDesc === 'asc') {
+            $suffix = request()->order !== null && mb_strtolower(request()->order) === 'asc' ? ' v2-active' : '';
+            $class = 'larasort-icon-1_v2'.$suffix;
+        } else {
+            $suffix = request()->order !== null && mb_strtolower(request()->order) === 'desc' ? ' v2-active' : '';
+            $class = 'larasort-icon-2_v2'.$suffix;
+        }
+
+        return '<span class="'.$class.'"></span>';
+    }
+
     final public static function getLink(string $column, ?string $label = null): string
     {
         $labelToShow = $label ?? ucfirst(str_replace(['_', config('larasort.relation_column_separator')], ' ', $column));
@@ -90,6 +119,23 @@ class LarasortLink
         $html .= '<a '.self::getHref($column).'>';
         $html .= $labelToShow;
         $html .= self::getIcon($column);
+        $html .= '</a>';
+
+        return $html;
+    }
+
+    final public static function getLinkV2(string $column, ?string $label = null): string
+    {
+        $labelToShow = $label ?? ucfirst(str_replace(['_', config('larasort.relation_column_separator')], ' ', $column));
+
+        $html = '';
+
+        $html .= $labelToShow;
+        $html .= '<a '.self::getHrefV2(column: $column, ascOrDesc: 'asc').'>';
+        $html .= self::getIconV2(ascOrDesc: 'asc');
+        $html .= '</a>';
+        $html .= '<a '.self::getHrefV2(column: $column, ascOrDesc: 'desc').'>';
+        $html .= self::getIconV2(ascOrDesc: 'desc');
         $html .= '</a>';
 
         return $html;
