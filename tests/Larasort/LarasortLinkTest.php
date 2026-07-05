@@ -169,12 +169,13 @@ class LarasortLinkTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        $this->assertSame('<span class="larasort-icon-1_v2"></span>', LarasortLink::getIconV2('asc'));
-        $this->assertSame('<span class="larasort-icon-2_v2"></span>', LarasortLink::getIconV2('desc'));
+        $this->assertSame('<span class="larasort-icon-1_v2"></span>', LarasortLink::getIconV2('email', 'asc'));
+        $this->assertSame('<span class="larasort-icon-2_v2"></span>', LarasortLink::getIconV2('email', 'desc'));
     }
 
     /**
-     * Test de "getIconV2" - AVEC "order" dans la request : l'icône correspondante reçoit " v2-active".
+     * Test de "getIconV2" - AVEC "orderby" et "order" dans la request :
+     * l'icône correspondante reçoit " v2-active" uniquement si la colonne correspond aussi.
      */
     public function test_larasort_link_v2_get_icon_with_order_in_request(): void
     {
@@ -183,19 +184,23 @@ class LarasortLinkTest extends TestCase
         Request::offsetSet('orderby', 'email');
         Request::offsetSet('order', 'asc');
 
-        // "order" est à "asc" -> seule l'icône "asc" est active.
-        $this->assertSame('<span class="larasort-icon-1_v2 v2-active"></span>', LarasortLink::getIconV2('asc'));
-        $this->assertSame('<span class="larasort-icon-2_v2"></span>', LarasortLink::getIconV2('desc'));
+        // "orderby" est à "email" et "order" est à "asc" -> seule l'icône "asc" de "email" est active.
+        $this->assertSame('<span class="larasort-icon-1_v2 v2-active"></span>', LarasortLink::getIconV2('email', 'asc'));
+        $this->assertSame('<span class="larasort-icon-2_v2"></span>', LarasortLink::getIconV2('email', 'desc'));
+
+        // Pour une AUTRE colonne, aucune icône n'est active (même si "order" est à "asc").
+        $this->assertSame('<span class="larasort-icon-1_v2"></span>', LarasortLink::getIconV2('user_name', 'asc'));
+        $this->assertSame('<span class="larasort-icon-2_v2"></span>', LarasortLink::getIconV2('user_name', 'desc'));
 
         Request::offsetSet('order', 'desc');
 
-        // "order" est à "desc" -> seule l'icône "desc" est active.
-        $this->assertSame('<span class="larasort-icon-1_v2"></span>', LarasortLink::getIconV2('asc'));
-        $this->assertSame('<span class="larasort-icon-2_v2 v2-active"></span>', LarasortLink::getIconV2('desc'));
+        // "order" est à "desc" -> seule l'icône "desc" de "email" est active.
+        $this->assertSame('<span class="larasort-icon-1_v2"></span>', LarasortLink::getIconV2('email', 'asc'));
+        $this->assertSame('<span class="larasort-icon-2_v2 v2-active"></span>', LarasortLink::getIconV2('email', 'desc'));
 
         // On vérifie aussi que la casse de "order" est bien ignorée (mb_strtolower).
         Request::offsetSet('order', 'ASC');
-        $this->assertSame('<span class="larasort-icon-1_v2 v2-active"></span>', LarasortLink::getIconV2('asc'));
+        $this->assertSame('<span class="larasort-icon-1_v2 v2-active"></span>', LarasortLink::getIconV2('email', 'asc'));
     }
 
     /**

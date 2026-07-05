@@ -97,13 +97,19 @@ class LarasortLink
         return '<span class="'.$class.'"></span>';
     }
 
-    final public static function getIconV2(string $ascOrDesc): string
+    final public static function getIconV2(string $column, string $ascOrDesc): string
     {
         if ($ascOrDesc === 'asc') {
-            $suffix = request()->order !== null && mb_strtolower(request()->order) === 'asc' ? ' v2-active' : '';
+            $suffix = request()->orderby !== null && request()->orderby === $column
+                && request()->order !== null && mb_strtolower(request()->order) === 'asc'
+                ? ' v2-active'
+                : '';
             $class = 'larasort-icon-1_v2'.$suffix;
         } else {
-            $suffix = request()->order !== null && mb_strtolower(request()->order) === 'desc' ? ' v2-active' : '';
+            $suffix = request()->orderby !== null && request()->orderby === $column
+                && request()->order !== null && mb_strtolower(request()->order) === 'desc'
+                ? ' v2-active'
+                : '';
             $class = 'larasort-icon-2_v2'.$suffix;
         }
 
@@ -142,10 +148,10 @@ class LarasortLink
         $html .= $labelToShow;
         $html .= '<span class="out-href_v2">';
         $html .= '<a '.self::getHrefV2Class(ascOrDesc: 'asc').' '.self::getHrefV2(column: $column, ascOrDesc: 'asc').'>';
-        $html .= self::getIconV2(ascOrDesc: 'asc');
+        $html .= self::getIconV2(column: $column, ascOrDesc: 'asc');
         $html .= '</a>';
         $html .= '<a '.self::getHrefV2Class(ascOrDesc: 'desc').' '.self::getHrefV2(column: $column, ascOrDesc: 'desc').'>';
-        $html .= self::getIconV2(ascOrDesc: 'desc');
+        $html .= self::getIconV2(column: $column, ascOrDesc: 'desc');
         $html .= '</a>';
         $html .= '</span>';
 
