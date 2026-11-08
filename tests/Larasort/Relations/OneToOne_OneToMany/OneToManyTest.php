@@ -12,7 +12,7 @@ use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\TestCase;
 
 /**
- * Ici on test le "One To Many".
+ * Ici on teste le "One To Many".
  *
  * Ici on "simule" qu'on est dans un Controller User,
  * et qu'on travaille sur un Model User qui a une relation "One To Many" avec un Model Article.
@@ -78,7 +78,7 @@ class OneToManyTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | On test les req SQL (sans tester les order by)
+    | On teste les req SQL (sans tester les order by)
     |--------------------------------------------------------------------------
     */
 
@@ -129,7 +129,7 @@ class OneToManyTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | On test les order by
+    | On teste les order by
     |--------------------------------------------------------------------------
     */
 
@@ -255,7 +255,7 @@ class OneToManyTest extends TestCase
         return User::autosortWith('articles', [
             'join_type' => 'join', // Optional - "leftJoin" by default.
             'columns' => 'id, email, username', // Optional - "*" by default.
-            'related_columns' => 'title AS article_title, content', // Optional -"*" by default.
+            'related_columns' => 'title AS article_title, content', // Optional - "*" by default.
         ])
             ->get();
     }
@@ -265,7 +265,7 @@ class OneToManyTest extends TestCase
         return User::autosortWith('articles', [
             'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
             'columns' => ['id', 'email', 'username'], // Optional - "*" by default.
-            'related_columns' => ['title AS article_title', 'content'], // Optional -"*" by default.
+            'related_columns' => ['title AS article_title', 'content'], // Optional - "*" by default.
         ])
             ->get();
     }

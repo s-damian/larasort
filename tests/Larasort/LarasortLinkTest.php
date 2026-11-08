@@ -11,7 +11,7 @@ use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\TestCase;
 
 /**
- * Ici on test :
+ * Ici on teste :
  * - La class LarasortLink
  */
 class LarasortLinkTest extends TestCase
@@ -83,7 +83,7 @@ class LarasortLinkTest extends TestCase
         $this->assertSame('href="http://localhost/?orderby=email&order=desc"', LarasortLink::getHref('email'));
         $this->assertSame('<span class="larasort-icon-1"></span>', LarasortLink::getIcon('email'));
 
-        // Maintenant on test en changeant la conf :
+        // Maintenant on teste en changeant la conf :
 
         config(['larasort.default_order' => 'desc']);
         $this->assertSame('desc', config('larasort.default_order'));

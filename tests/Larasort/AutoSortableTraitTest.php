@@ -45,7 +45,7 @@ class AutoSortableTraitTest extends TestCase
         Request::offsetSet('orderby', 'email');
         Request::offsetSet('order', 'asc');
 
-        // par défaut en préfixe du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclut
+        // par défaut en préfixe du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclus
         $this->assertSame('customers.email', $this->customer->getSqlOrderBy());
         $this->assertSame('asc', $this->customer->getSqlOrder());
 
@@ -123,7 +123,7 @@ class AutoSortableTraitTest extends TestCase
         Request::offsetSet('orderby', 'article_title');
         Request::offsetSet('order', 'asc');
 
-        // par défaut en préfixe du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclut
+        // par défaut en préfixe du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclus
         $this->assertSame('article_title', $this->customer->getSqlOrderBy()); // c'est ok, car pas de table en prefix
         $this->assertSame('asc', $this->customer->getSqlOrder());
     }
@@ -167,7 +167,7 @@ class AutoSortableTraitTest extends TestCase
     {
         $this->verifyInAllTests();
 
-        $this->assertSame('customers.id', $this->customer->getSqlOrderBy()); // car est en 1è position dans "$sortablesToTables" du Model Customer
+        $this->assertSame('customers.id', $this->customer->getSqlOrderBy()); // car il est en 1re position dans "$sortablesToTables" du Model Customer
         $this->assertSame('asc', $this->customer->getSqlOrder());
 
         // On surcharge la colonne par défaut :
@@ -218,7 +218,7 @@ class AutoSortableTraitTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | Tester : on test des sécurités
+    | Tester : on teste des sécurités
     |--------------------------------------------------------------------------
     */
 
@@ -232,19 +232,19 @@ class AutoSortableTraitTest extends TestCase
 
         $this->assertSame('customers.email', $this->customer->getSqlOrderBy()); // ça passe bien à "email"
 
-        Request::offsetSet('orderby', 'aaaaazzzzz'); // on met n'inporte quoi
+        Request::offsetSet('orderby', 'aaaaazzzzz'); // on met n'importe quoi
 
         $this->assertSame('customers.id', $this->customer->getSqlOrderBy()); // c'est bien la colonne par défaut qui est mise (par sécurité)
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Tester : faire des test avec le Model "Address" (qui a null en 1è "colonne" de sa propriété "$sortables").
+    | Tester : faire des tests avec le Model "Address" (qui a null en 1re "colonne" de sa propriété "$sortables").
     |--------------------------------------------------------------------------
     */
 
     /**
-     * Ici on test juste la propriété "$sortables" lorsqu'on lui met null en première "colonne".
+     * Ici on teste juste la propriété "$sortables" lorsqu'on lui met null en première "colonne".
      * C'est utile si par défaut (lorsque dans l'URL il n'y a pas de $_GET actif) qu'on ne veut pas mettre de ORDER BY à la requête SQL.
      */
     public function test_sortables_prop_with_null_in_first_pos_without_request(): void
@@ -276,7 +276,7 @@ class AutoSortableTraitTest extends TestCase
         Request::offsetSet('order', 'asc');
 
         $this->assertTrue(is_null($address->getSqlOrderBy()));
-        // Par défaut ça prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
+        // Par défaut ça prend bien sa 1re "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
     }
 
     public function test_sortables_getters_for_address_model(): void

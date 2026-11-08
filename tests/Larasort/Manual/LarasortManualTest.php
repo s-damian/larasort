@@ -10,11 +10,11 @@ use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\TestCase;
 
 /**
- * Ici on test :
+ * Ici on teste :
  * - La class LarasortManual
  *
- * Ici on test essentiellement les méthodes "setSortablesDefaultOrder" et "get".
- * Pour la méthode "get", on test ses keys "order_by" et "order".
+ * Ici on teste essentiellement les méthodes "setSortablesDefaultOrder" et "get".
+ * Pour la méthode "get", on teste ses keys "order_by" et "order".
  */
 class LarasortManualTest extends TestCase
 {

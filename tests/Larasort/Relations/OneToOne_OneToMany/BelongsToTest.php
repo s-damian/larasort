@@ -13,7 +13,7 @@ use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\TestCase;
 
 /**
- * Ici on test le "Belongs To".
+ * Ici on teste le "Belongs To".
  * Le "Belongs To" fonctionne identiquement avec "One To One" et avec "One To Many".
  * Dans cette class de test, on va le "simuler" avec les mêmes données en BDD qu'avec le "One To One".
  *
@@ -61,7 +61,7 @@ class BelongsToTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | On test les req SQL (sans tester les order by)
+    | On teste les req SQL (sans tester les order by)
     |--------------------------------------------------------------------------
     */
 
@@ -114,7 +114,7 @@ class BelongsToTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | On test les order by
+    | On teste les order by
     |--------------------------------------------------------------------------
     */
 
@@ -228,7 +228,7 @@ class BelongsToTest extends TestCase
         return Article::autosortWith('user', [
             'join_type' => 'join', // Optional - "leftJoin" by default.
             'columns' => 'id, title, content', // Optional - "*" by default.
-            'related_columns' => 'email AS user_email, username', // Optional -"*" by default.
+            'related_columns' => 'email AS user_email, username', // Optional - "*" by default.
         ])
             ->get();
     }
@@ -238,7 +238,7 @@ class BelongsToTest extends TestCase
         return Article::autosortWith('user', [
             'join_type' => 'leftJoin', // Optional - "leftJoin" by default.
             'columns' => ['id', 'title', 'content'], // Optional - "*" by default.
-            'related_columns' => ['email AS user_email', 'username'], // Optional -"*" by default.
+            'related_columns' => ['email AS user_email', 'username'], // Optional - "*" by default.
         ])
             ->get();
     }

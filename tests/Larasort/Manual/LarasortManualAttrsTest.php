@@ -10,11 +10,11 @@ use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\TestCase;
 
 /**
- * Ici on test :
+ * Ici on teste :
  * - La class LarasortManual
  *
- * Ici on test essentiellement les méthodes "setSortables", "setSortablesDefaultOrder" et "get".
- * Pour la méthode "get()", on test sa key "attrs".
+ * Ici on teste essentiellement les méthodes "setSortables", "setSortablesDefaultOrder" et "get".
+ * Pour la méthode "get()", on teste sa key "attrs".
  */
 class LarasortManualAttrsTest extends TestCase
 {
@@ -47,7 +47,7 @@ class LarasortManualAttrsTest extends TestCase
         $this->assertSame('<span class="larasort-icon-n-1"></span>', $resultLarasortMan['attrs']['name']['icon']); // larasort-icon-n-1
 
         // Conclusion :
-        // Il n'y a pas de $_GET actif. Donc "created_at" est le order by actif avec son order à "asc" (car cette colonne est en 1è position dans la méthode "setSortables").
+        // Il n'y a pas de $_GET actif. Donc "created_at" est le order by actif avec son order à "asc" (car cette colonne est en 1re position dans la méthode "setSortables").
         // Donc (contrairement aux 2 autres colonnes) : il a son href (lien cliquable) sur "desc".
     }
 
@@ -138,7 +138,7 @@ class LarasortManualAttrsTest extends TestCase
         $this->assertSame('<span class="larasort-icon-n-1"></span>', $resultLarasortMan['attrs']['name']['icon']); // larasort-icon-n-1
 
         // Conclusion :
-        // Il n'y a pas de $_GET actif. Donc "created_at" est le order by actif (car est en 1è position dans la méthode "setSortables").
+        // Il n'y a pas de $_GET actif. Donc "created_at" est le order by actif (car il est en 1re position dans la méthode "setSortables").
         // Mais là il a son order à "desc" (car on l'a mis dans la méthode "setSortablesDefaultOrder").
     }
 
@@ -202,6 +202,6 @@ class LarasortManualAttrsTest extends TestCase
         // Conclusion :
         // Là on a mis $_GET actif à "email" et à "desc". Donc "email" est le order by actif (car il est dans l'URL).
         // Et vu qu'on a mis "created_at" dans la méthode "setSortablesDefaultOrder" : "created_at" a son href (lien cliquable) toujours sur "desc"
-        // (normal car on lui a rien changé par rapport à la précédente méthode de test).
+        // (normal car on ne lui a rien changé par rapport à la précédente méthode de test).
     }
 }

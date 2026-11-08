@@ -10,7 +10,7 @@ use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\TestCase;
 
 /**
- * Ici on test le scope "scopeAutosort" du trait AutoSortable.
+ * Ici on teste le scope "scopeAutosort" du trait AutoSortable.
  */
 class AutosortScopeTest extends TestCase
 {
@@ -71,7 +71,7 @@ class AutosortScopeTest extends TestCase
         // Conclusion :
         // En faisant des asserts sur "email", on constate que la req SQL a bien fait le ORDER BY sur "email" à ASC
         // Ceci est dû au fait qu'il n'y a pas de Request ($_GET) actif,
-        // donc c'est bien sur "id" (1è colonne dans $sortables) que la req SQL a fait son ORDER BY
+        // donc c'est bien sur "id" (1re colonne dans $sortables) que la req SQL a fait son ORDER BY
 
         // On fait même test avec la conf "default_order" à "desc" au lieu de "asc" :
 
@@ -88,7 +88,7 @@ class AutosortScopeTest extends TestCase
         $this->assertSame('customer-1@gmail.com', $customerLast->email);
 
         // Conclusion :
-        // Le résultat a bien été inversé. Ceci est du grace au changement de la conf "default_order".
+        // Le résultat a bien été inversé. Ceci est dû grace au changement de la conf "default_order".
         // En faisant des asserts sur "email", on constate que la req SQL a bien fait le ORDER BY sur "email" à DESC
     }
 
@@ -130,7 +130,7 @@ class AutosortScopeTest extends TestCase
         $this->assertSame('customer-2@gmail.com', $customerFirst->email);
 
         // Conclusion :
-        // Le résultat a bien été inversé. Ceci est du grace au changement du Request "order" sur "desc".
+        // Le résultat a bien été inversé. Ceci est dû grace au changement du Request "order" sur "desc".
         // En faisant des asserts sur "first_name", on constate que la req SQL a bien fait le ORDER BY sur "first_name" à DESC
     }
 }
