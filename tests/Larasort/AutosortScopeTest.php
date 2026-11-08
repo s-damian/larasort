@@ -88,7 +88,7 @@ class AutosortScopeTest extends TestCase
         $this->assertSame('customer-1@gmail.com', $customerLast->email);
 
         // Conclusion :
-        // Le résultat a bien été inversé. Ceci est dû grace au changement de la conf "default_order".
+        // Le résultat a bien été inversé. Ceci est dû au changement de la conf "default_order".
         // En faisant des asserts sur "email", on constate que la req SQL a bien fait le ORDER BY sur "email" à DESC
     }
 
@@ -130,7 +130,7 @@ class AutosortScopeTest extends TestCase
         $this->assertSame('customer-2@gmail.com', $customerFirst->email);
 
         // Conclusion :
-        // Le résultat a bien été inversé. Ceci est dû grace au changement du Request "order" sur "desc".
+        // Le résultat a bien été inversé. Ceci est dû au changement du Request "order" sur "desc".
         // En faisant des asserts sur "first_name", on constate que la req SQL a bien fait le ORDER BY sur "first_name" à DESC
     }
 }

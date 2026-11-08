@@ -231,7 +231,7 @@ class OneToOneTest extends TestCase
 
     public function test_larasort_link_get_link_with_relation(): void
     {
-        // Et on en profite pour test la méthode "getLink" (SANS passer de label, AVEC une colonne qui contient le SEPARATOR) :
+        // Et on en profite pour tester la méthode "getLink" (SANS passer de label, AVEC une colonne qui contient le SEPARATOR) :
 
         Request::offsetSet('orderby', 'article'.config('larasort.relation_column_separator').'title');
         Request::offsetSet('order', 'desc');

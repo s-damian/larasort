@@ -47,13 +47,13 @@ class LarasortLinkTest extends TestCase
         Request::offsetSet('orderby', 'email');
         Request::offsetSet('order', 'desc');
 
-        // Et on en profite pour test la méthode "getLink"
+        // Et on en profite pour tester la méthode "getLink"
         $this->assertSame(
             '<a href="http://localhost/?orderby=email&order=asc">Customer Email<span class="larasort-icon-2"></span></a>',
             LarasortLink::getLink('email', 'Customer Email')
         );
 
-        // Et on en profite pour test la méthode "getLink" (SANS passer de label)
+        // Et on en profite pour tester la méthode "getLink" (SANS passer de label)
         $this->assertSame(
             '<a href="http://localhost/?orderby=email&order=asc">Email<span class="larasort-icon-2"></span></a>',
             LarasortLink::getLink('email')
@@ -62,7 +62,7 @@ class LarasortLinkTest extends TestCase
         Request::offsetSet('orderby', 'user_name');
         Request::offsetSet('order', 'desc');
 
-        // Et on en profite pour test la méthode "getLink" (SANS passer de label, AVEC une colonne qui contient un underscore)
+        // Et on en profite pour tester la méthode "getLink" (SANS passer de label, AVEC une colonne qui contient un underscore)
         $this->assertSame(
             '<a href="http://localhost/?orderby=user_name&order=asc">User name<span class="larasort-icon-2"></span></a>',
             LarasortLink::getLink('user_name')
@@ -227,7 +227,7 @@ class LarasortLinkTest extends TestCase
         Request::offsetSet('orderby', 'email');
         Request::offsetSet('order', 'desc');
 
-        // Et on en profite pour test la méthode "getLinkV2" (AVEC label). "order" est à "desc" -> l'icône "desc" est active.
+        // Et on en profite pour tester la méthode "getLinkV2" (AVEC label). "order" est à "desc" -> l'icône "desc" est active.
         $this->assertSame(
             'Customer Email'
                 .'<span class="out-href_v2">'
@@ -237,7 +237,7 @@ class LarasortLinkTest extends TestCase
             LarasortLink::getLinkV2('email', 'Customer Email')
         );
 
-        // Et on en profite pour test la méthode "getLinkV2" (SANS passer de label).
+        // Et on en profite pour tester la méthode "getLinkV2" (SANS passer de label).
         $this->assertSame(
             'Email'
                 .'<span class="out-href_v2">'

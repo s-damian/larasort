@@ -54,7 +54,7 @@ class OneToManyTest extends TestCase
      * - 3 articles joints à "$user1".
      * - 1 article joint à "$user2".
      * - 0 article joint à "$user3".
-     * - et le 3è article n'aura pas de user joint.
+     * - et le 3e article n'aura pas de user joint.
      */
     private function verifyDataInDb(): void
     {

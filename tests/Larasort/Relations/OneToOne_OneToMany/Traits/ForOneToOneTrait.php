@@ -14,7 +14,7 @@ trait ForOneToOneTrait
      * On veut :
      * - 1 article joint à "$user1".
      * - 1 article joint à "$user2".
-     * - et le 2è article n'aura pas de user joint.
+     * - et le 2e article n'aura pas de user joint.
      */
     private function verifyDataInDb(): void
     {
