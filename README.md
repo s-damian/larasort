@@ -74,6 +74,7 @@ If you are using an older version of PHP or Laravel:
 - [Customization with "vendor:publish"](#customization-with-vendorpublish)
 - [Larasort - For Eloquent ORM](#larasort---for-eloquent-orm)
   - [Basic usage](#basic-usage)
+  - [Sortable link V2](#sortable-link-v2)
   - [Aliasing](#aliasing)
     - [Example with ->join()](#example-with--join)
   - [Relationships](#relationships)
@@ -287,6 +288,34 @@ Example:
         @sortableIcon('email')
     </a>
 </th>
+```
+
+## Sortable Link V2
+
+If you prefer to display 2 arrows (one for `asc` and one for `desc`), you can replace `@sortableLink` by `@sortableLinkV2`.
+
+With `@sortableLinkV2`, the label is not clickable: the user directly clicks on the arrow of the direction he wants. The arrow of the active direction is highlighted.
+
+Example:
+
+```html
+<table class="with-larasort">
+    <thead>
+        <tr>
+            <th>
+                @sortableLinkV2('email', 'Email')
+            </th>
+        </tr>
+    </thead>
+</table>
+```
+
+Note: as with `@sortableLink`, the 2nd parameter (`label`) is optional.
+
+Note: if you published the CSS file before `v2.0.1`, you must publish it again (with `--force`) to have the CSS of `@sortableLinkV2`:
+
+```
+php artisan vendor:publish --provider="SDamian\Larasort\LarasortServiceProvider" --tag=css --force
 ```
 
 ## Aliasing
@@ -717,6 +746,7 @@ For `SDamian\Larasort\AutoSortable` trait:
 | string      | @sortableHref(string $column)                | Returns the href (with its URL in it) of a column.            | `href='http://www.website.com/utilisateurs?orderby=email&order=asc'` |
 | string      | @sortableIcon(string $column)                | Returns the icon (image) of a column, in the correct order. | `<span class="larasort-icon-n-1"></span>` |
 | string      | @sortableLink(string $column, string $label) | Return link of a column = href + label + icon.              | `<a href="http://www.website.com/utilisateurs?orderby=email&amp;order=asc">Email<span class="larasort-icon-n-1"></span></a>` |
+| string      | @sortableLinkV2(string $column, string $label) | Return label + 2 links of a column (one for "asc", one for "desc"). | `Email<span class="out-href_v2"><a class="href-larasort-1_v2" href="http://www.website.com/utilisateurs?orderby=email&amp;order=asc"><span class="larasort-icon-1_v2"></span></a><a class="href-larasort-2_v2" href="http://www.website.com/utilisateurs?orderby=email&amp;order=desc"><span class="larasort-icon-2_v2"></span></a></span>` |
 
 
 # LarasortManual - For Without Eloquent ORM
