@@ -12,7 +12,7 @@ use SDamian\Tests\Larasort\Traits\ForAllTestsTrait;
 use SDamian\Tests\TestCase;
 
 /**
- * Ici on test :
+ * Ici on teste :
  * - Le trait AutoSortable
  * - La class Larasort
  */
@@ -31,12 +31,12 @@ class AutoSortableTraitTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | Teser : toutes les méthodes du trait AutoSortable
+    | Tester : toutes les méthodes du trait AutoSortable
     |--------------------------------------------------------------------------
     */
 
     /**
-     * On test "Case 1" de la méthode "getSqlOrder" du trait "AutoSortable". (this case = "Request" has "order").
+     * On teste "Case 1" de la méthode "getSqlOrder" du trait "AutoSortable". (this case = "Request" has "order").
      */
     public function test_sql_order_case_1(): void
     {
@@ -45,7 +45,7 @@ class AutoSortableTraitTest extends TestCase
         Request::offsetSet('orderby', 'email');
         Request::offsetSet('order', 'asc');
 
-        // par défaut en préfix du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclut
+        // par défaut en préfixe du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclut
         $this->assertSame('customers.email', $this->customer->getSqlOrderBy());
         $this->assertSame('asc', $this->customer->getSqlOrder());
 
@@ -57,7 +57,7 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('customers.email', $this->customer->getSqlOrderBy());
         $this->assertSame('desc', $this->customer->getSqlOrder());
 
-        // On test "$sortablesToTables"
+        // On teste "$sortablesToTables"
 
         Request::offsetSet('orderby', 'id'); // ICI
         Request::offsetSet('order', 'asc');
@@ -67,7 +67,7 @@ class AutoSortableTraitTest extends TestCase
     }
 
     /**
-     * On test "Case 3" de la méthode "getSqlOrder" du trait "AutoSortable". (this case = "Request" n'a pas "order").
+     * On teste "Case 3" de la méthode "getSqlOrder" du trait "AutoSortable". (this case = "Request" n'a pas "order").
      */
     public function test_sql_order_case_3(): void
     {
@@ -81,7 +81,7 @@ class AutoSortableTraitTest extends TestCase
         // On passe à "desc" la conf "default_order" :
 
         config(['larasort.default_order' => 'desc']);
-        $this->assertSame('desc', config('larasort.default_order')); // la conf a bien changée
+        $this->assertSame('desc', config('larasort.default_order')); // la conf a bien changé
 
         $this->assertSame('customers.id', $this->customer->getSqlOrderBy());
         $this->assertSame('desc', $this->customer->getSqlOrder());
@@ -89,7 +89,7 @@ class AutoSortableTraitTest extends TestCase
 
     public function test_sortables_g_getters_for_customer_model(): void
     {
-        // La prop "$sortables" du Model "Customer" a bien fonctionnée.
+        // La prop "$sortables" du Model "Customer" a bien fonctionné.
         $this->assertSame($this->customer->getSortables(), [
             'id',
             'email',
@@ -98,23 +98,23 @@ class AutoSortableTraitTest extends TestCase
             'price',
         ]);
 
-        // La prop "$sortablesAs" du Model "Customer" a bien fonctionnée.
+        // La prop "$sortablesAs" du Model "Customer" a bien fonctionné.
         $this->assertSame($this->customer->getSortablesAs(), [
             'article_title',
         ]);
 
-        // La prop "$sortablesRelated" du Model "Customer" a bien fonctionnée.
+        // La prop "$sortablesRelated" du Model "Customer" a bien fonctionné.
         $this->assertSame($this->customer->getSortablesRelated(), []);
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Teser : D'autres comportements
+    | Tester : D'autres comportements
     |--------------------------------------------------------------------------
     */
 
     /**
-     * Teser l'aliasing
+     * Tester l'aliasing
      */
     public function test_sortables_as_property(): void
     {
@@ -123,21 +123,21 @@ class AutoSortableTraitTest extends TestCase
         Request::offsetSet('orderby', 'article_title');
         Request::offsetSet('order', 'asc');
 
-        // par défaut en préfix du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclut
+        // par défaut en préfixe du la colonne, le ORDER BY met bien la table où le trait AutoSortable est inclut
         $this->assertSame('article_title', $this->customer->getSqlOrderBy()); // c'est ok, car pas de table en prefix
         $this->assertSame('asc', $this->customer->getSqlOrder());
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Teser : toutes les méthodes de la class Larasort
+    | Tester : toutes les méthodes de la class Larasort
     |--------------------------------------------------------------------------
     */
 
     /**
      * A la class Larasort, tester ces méthodes : "setSortablesDefaultOrder" et "getSortablesDefaultOrder".
      *
-     * On test "Case 1" de la méthode "getSqlOrder" du trait "AutoSortable".
+     * On teste "Case 1" de la méthode "getSqlOrder" du trait "AutoSortable".
      * (this case = "Request" n'a pas "order", et colonne de "orderby" est dans "Larasort::setSortablesDefaultOrder").
      */
     public function test_sql_order_case_2(): void
@@ -155,8 +155,8 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('customers.id', $this->customer->getSqlOrderBy());
         $this->assertSame('desc', $this->customer->getSqlOrder()); // ICI
 
-        Larasort::clearSortablesDefaultOrder(); // on "reset" (pour éviter éventuels conflits avec les prochains tests)
-        // on test que la méthode "clearSortablesDefaultOrder" fonctionne bien
+        Larasort::clearSortablesDefaultOrder(); // on "reset" (pour éviter d'éventuels conflits avec les prochains tests)
+        // on teste que la méthode "clearSortablesDefaultOrder" fonctionne bien
         $this->assertSame(['desc' => [], 'asc' => []], Larasort::getSortablesDefaultOrder());
     }
 
@@ -186,8 +186,8 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('orders.id', $this->customer->getSqlOrderBy()); // ICI
         $this->assertSame('asc', $this->customer->getSqlOrder());
 
-        Larasort::clearDefaultSortable(); // on "reset" (pour éviter éventuels conflits avec les prochains tests)
-        // on test que la méthode "clearDefaultSortable" fonctionne bien
+        Larasort::clearDefaultSortable(); // on "reset" (pour éviter d'éventuels conflits avec les prochains tests)
+        // on teste que la méthode "clearDefaultSortable" fonctionne bien
         $this->assertSame(null, Larasort::getDefaultSortable());
     }
 
@@ -211,14 +211,14 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('orders.id', $this->customer->getSqlOrderBy()); // est précisé dans "$sortablesToTables" du Model Customer
         $this->assertSame('asc', $this->customer->getSqlOrder());
 
-        Larasort::clearSortablesToTables(); // on "reset" (pour éviter éventuels conflits avec les prochains tests)
-        // on test que la méthode "clearSortablesToTables" fonctionne bien
+        Larasort::clearSortablesToTables(); // on "reset" (pour éviter d'éventuels conflits avec les prochains tests)
+        // on teste que la méthode "clearSortablesToTables" fonctionne bien
         $this->assertSame([], Larasort::getSortablesToTables());
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Teser : on test des sécurités
+    | Tester : on test des sécurités
     |--------------------------------------------------------------------------
     */
 
@@ -234,12 +234,12 @@ class AutoSortableTraitTest extends TestCase
 
         Request::offsetSet('orderby', 'aaaaazzzzz'); // on met n'inporte quoi
 
-        $this->assertSame('customers.id', $this->customer->getSqlOrderBy()); // c'est bien la colonne par défaut qui est mis (par sécurité)
+        $this->assertSame('customers.id', $this->customer->getSqlOrderBy()); // c'est bien la colonne par défaut qui est mise (par sécurité)
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Teser : faire des test avec le Model "Address" (qui a null en 1è "colonne" de sa propriété "$sortables").
+    | Tester : faire des test avec le Model "Address" (qui a null en 1è "colonne" de sa propriété "$sortables").
     |--------------------------------------------------------------------------
     */
 
@@ -262,7 +262,7 @@ class AutoSortableTraitTest extends TestCase
 
         $address = new Address();
 
-        // On test avec "name" qu'il a bien dans "$sortables" :
+        // On teste avec "name" qu'il a bien dans "$sortables" :
 
         Request::offsetSet('orderby', 'name');
         Request::offsetSet('order', 'asc');
@@ -270,30 +270,30 @@ class AutoSortableTraitTest extends TestCase
         $this->assertSame('addresses.name', $address->getSqlOrderBy());
         $this->assertSame('asc', $address->getSqlOrder());
 
-        // On test avec "aaazzz" qu'il n'a pas dans "$sortables" :
+        // On teste avec "aaazzz" qu'il n'a pas dans "$sortables" :
 
         Request::offsetSet('orderby', 'aaazzz');
         Request::offsetSet('order', 'asc');
 
         $this->assertTrue(is_null($address->getSqlOrderBy()));
-        // Par défaut sa prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
+        // Par défaut ça prend bien sa 1è "colonne" (qui là est null car par défaut on ne veut pas de ORDER BY dans la requête SQL).
     }
 
     public function test_sortables_getters_for_address_model(): void
     {
         $address = new Address();
 
-        // La prop "$sortables" du Model "Address" a bien fonctionnée.
+        // La prop "$sortables" du Model "Address" a bien fonctionné.
         $this->assertSame($address->getSortables(), [
             null,
             'id',
             'name',
         ]);
 
-        // La prop "$sortablesAs" du Model "Address" a bien fonctionnée.
+        // La prop "$sortablesAs" du Model "Address" a bien fonctionné.
         $this->assertSame($address->getSortablesAs(), []);
 
-        // La prop "$sortablesRelated" du Model "Address" a bien fonctionnée.
+        // La prop "$sortablesRelated" du Model "Address" a bien fonctionné.
         $this->assertSame($address->getSortablesRelated(), []);
     }
 }

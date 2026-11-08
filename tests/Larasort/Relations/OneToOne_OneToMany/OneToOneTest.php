@@ -17,8 +17,8 @@ use SDamian\Tests\TestCase;
  * Ici on test le "One To One".
  *
  * Ici on "simule" qu'on est dans un Controller User,
- * et qu'on travail sur un Model User qui a une relation "One To One" avec un Model Article.
- * Un user peut avoir créé qu'un seul article, un article peut avoir été créé par qu'un seul user.
+ * et qu'on travaille sur un Model User qui a une relation "One To One" avec un Model Article.
+ * Un user peut avoir créé qu'un seul article, un article peut avoir été créé que par un seul user.
  */
 class OneToOneTest extends TestCase
 {
@@ -37,7 +37,7 @@ class OneToOneTest extends TestCase
             $this->markTestSkipped('Test requires a Sqlite connection.');
         }
 
-        // Créer la table "customers", et y insert 3 rows :
+        // Créer la table "customers", et y insérer 3 rows :
 
         $this->artisan('migrate', [
             '--path' => realpath(__DIR__.'/Fixtures/migrations/'),
@@ -49,7 +49,7 @@ class OneToOneTest extends TestCase
         Article::storeArticles_forOneToOne();
         // ***** /On prépare la BDD (migrations, etc.). *****
 
-        // On a besoin de ces déonnes pour nos tests de cette class
+        // On a besoin de ces données pour nos tests de cette class
         $this->verifyDataInDb();
     }
 
@@ -60,7 +60,7 @@ class OneToOneTest extends TestCase
     */
 
     /**
-     * On test que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
+     * On teste que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
      */
     public function test_join(): void
     {
@@ -75,13 +75,13 @@ class OneToOneTest extends TestCase
             ->join('articles', 'users.id', '=', 'articles.user_id_created_at')
             ->get();
 
-        // Seul 2 des 3 users sont joint à un article.
+        // Seuls 2 des 3 users sont joints à un article.
         $this->assertSame(2, $users->count());
         $this->assertSame($usersB->count(), $users->count());
     }
 
     /**
-     * On test que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
+     * On teste que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
      */
     public function test_left_join(): void
     {
@@ -101,7 +101,7 @@ class OneToOneTest extends TestCase
             )
             ->get();
 
-        // Seul 2 des 3 users sont joint à un article, mais avec le "leftJoin" ça retourne tout de même 3 lignes (car il y a 3 articles dans la BDD).
+        // Seuls 2 des 3 users sont joints à un article, mais avec le "leftJoin" ça retourne tout de même 3 lignes (car il y a 3 articles dans la BDD).
         $this->assertSame(3, $users->count());
         $this->assertSame($usersB->count(), $users->count());
     }
@@ -244,7 +244,7 @@ class OneToOneTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | On "range" les req SQL qu'on a besoin dans plusieurs tests
+    | On "range" les req SQL dont on a besoin dans plusieurs tests
     |--------------------------------------------------------------------------
     */
 

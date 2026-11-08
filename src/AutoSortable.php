@@ -60,7 +60,7 @@ trait AutoSortable
     {
         $this->verifySortablesProperty();
 
-        // "$this->getSqlOrderBy()" can be null (it is if in the "$sortables" property we have asked that it is not ordered by by default).
+        // "$this->getSqlOrderBy()" can be null (it is if in the "$sortables" property we have asked that there is no ORDER BY by default).
         $orderBy = OrderByRelated::getOrderByRelated() ?? $this->getSqlOrderBy();
 
         OrderByRelated::clearOrderByRelated();
@@ -81,7 +81,7 @@ trait AutoSortable
     final public function getSqlOrderBy(): ?string
     {
         if ($this->hasRequestStr() && in_array(request()->orderby, $this->sortablesAs ?? [])) {
-            return request()->orderby; // If is an alias: we don't want a prefix table.
+            return request()->orderby; // If it is an alias: we don't want a table prefix.
         } elseif ($this->hasRequestStr() && in_array(request()->orderby, $this->sortables)) {
             $orderBy = request()->orderby;
         } else {

@@ -91,7 +91,7 @@ class LarasortManual
     {
         $order = $this->getSqlOrder();
 
-        // Will be returned in the view (in the thead and tfoot of the array).
+        // Will be returned in the view (in the thead and tfoot of the table).
         $attrs = [];
 
         // For each column allowed to be in order by, assign it its CSS class and its clickable href.

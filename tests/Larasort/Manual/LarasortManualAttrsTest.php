@@ -22,7 +22,7 @@ class LarasortManualAttrsTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | Tester : $_GET active
+    | Tester : $_GET actif
     |--------------------------------------------------------------------------
     */
 
@@ -138,7 +138,7 @@ class LarasortManualAttrsTest extends TestCase
         $this->assertSame('<span class="larasort-icon-n-1"></span>', $resultLarasortMan['attrs']['name']['icon']); // larasort-icon-n-1
 
         // Conclusion :
-        // Il n'y a pas de $_GET actif. Donc "created_at" est le order by actif (cer est en 1è position dans la méthode "setSortables").
+        // Il n'y a pas de $_GET actif. Donc "created_at" est le order by actif (car est en 1è position dans la méthode "setSortables").
         // Mais là il a son order à "desc" (car on l'a mis dans la méthode "setSortablesDefaultOrder").
     }
 
@@ -201,7 +201,7 @@ class LarasortManualAttrsTest extends TestCase
 
         // Conclusion :
         // Là on a mis $_GET actif à "email" et à "desc". Donc "email" est le order by actif (car il est dans l'URL).
-        // Et ve qu'on a mis "created_at" dans la méthode "setSortablesDefaultOrder" : "created_at" a son href (lien cliquable) toujours sur "desc"
-        // (normal car on lui a rien changé par rapport à la précédante méthode de test).
+        // Et vu qu'on a mis "created_at" dans la méthode "setSortablesDefaultOrder" : "created_at" a son href (lien cliquable) toujours sur "desc"
+        // (normal car on lui a rien changé par rapport à la précédente méthode de test).
     }
 }

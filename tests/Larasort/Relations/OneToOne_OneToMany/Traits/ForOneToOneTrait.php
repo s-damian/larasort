@@ -10,11 +10,11 @@ use SDamian\Tests\Larasort\Relations\OneToOne_OneToMany\Fixtures\Models\User;
 trait ForOneToOneTrait
 {
     /**
-     * Pour tester la relation One To One, on insert 3 articles et 3 users.
+     * Pour tester la relation One To One, on insère 3 articles et 3 users.
      * On veut :
      * - 1 article joint à "$user1".
      * - 1 article joint à "$user2".
-     * - et le 2è article n'aura pas de user joint..
+     * - et le 2è article n'aura pas de user joint.
      */
     private function verifyDataInDb(): void
     {

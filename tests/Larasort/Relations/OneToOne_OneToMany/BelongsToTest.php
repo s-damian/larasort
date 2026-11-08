@@ -18,8 +18,8 @@ use SDamian\Tests\TestCase;
  * Dans cette class de test, on va le "simuler" avec les mêmes données en BDD qu'avec le "One To One".
  *
  * Ici on "simule" qu'on est dans un Controller Article,
- * et qu'on travail le "Belongs To" sur un Model Article qui a une relation "One To One" avec un Model User.
- * Un article peut avoir été créé par qu'un seul user, un user peut avoir créé qu'un seul article.
+ * et qu'on travaille le "Belongs To" sur un Model Article qui a une relation "One To One" avec un Model User.
+ * Un article peut avoir été créé que par un seul user, un user peut avoir créé qu'un seul article.
  */
 class BelongsToTest extends TestCase
 {
@@ -39,7 +39,7 @@ class BelongsToTest extends TestCase
             $this->markTestSkipped('Test requires a Sqlite connection.');
         }
 
-        // Créer la table "customers", et y insert 3 rows :
+        // Créer la table "customers", et y insérer 3 rows :
 
         $this->artisan('migrate', [
             '--path' => realpath(__DIR__.'/Fixtures/migrations/'),
@@ -51,7 +51,7 @@ class BelongsToTest extends TestCase
         Article::storeArticles_forOneToOne();
         // ***** /On prépare la BDD (migrations, etc.). *****
 
-        // On a besoin de ces déonnes pour nos tests de cette class
+        // On a besoin de ces données pour nos tests de cette class
         $this->verifyDataInDb();
 
         // Spécifique pour "Belongs To"
@@ -66,7 +66,7 @@ class BelongsToTest extends TestCase
     */
 
     /**
-     * On test que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
+     * On teste que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
      */
     public function test_join(): void
     {
@@ -81,13 +81,13 @@ class BelongsToTest extends TestCase
             ->join('users', 'articles.user_id_created_at', '=', 'users.id')
             ->get();
 
-        // Seul 2 des 3 users sont joint à un article.
+        // Seuls 2 des 3 users sont joints à un article.
         $this->assertSame(2, $articles->count());
         $this->assertSame($articlesB->count(), $articles->count());
     }
 
     /**
-     * On test que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
+     * On teste que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
      */
     public function test_left_join(): void
     {
@@ -107,7 +107,7 @@ class BelongsToTest extends TestCase
             )
             ->get();
 
-        // Seul 2 des 3 users sont joint à un article, mais avec le "leftJoin" ça retourne tout de même 3 lignes (car il y a 3 articles dans la BDD).
+        // Seuls 2 des 3 users sont joints à un article, mais avec le "leftJoin" ça retourne tout de même 3 lignes (car il y a 3 articles dans la BDD).
         $this->assertSame(3, $articles->count());
         $this->assertSame($articlesB->count(), $articles->count());
     }
@@ -133,7 +133,7 @@ class BelongsToTest extends TestCase
         $articleLast = $articles->last();
 
         // Req avec JOIN retourne 2 rows :
-        // "Article 1" et "Article 3". Car seul ces 2 articles sont joint à un user.
+        // "Article 1" et "Article 3". Car seuls ces 2 articles sont joints à un user.
         $this->assertSame(2, $articles->count());
         $this->assertSame('Title-1', $articleFirst->title);
         $this->assertSame('Title-3', $articleLast->title); // ICI
@@ -166,7 +166,7 @@ class BelongsToTest extends TestCase
         $articleLast = $articles->last();
 
         // Req avec JOIN retourne 2 rows :
-        // "Article 1" et "Article 3". Car seul ces 2 articles sont joint à un user.
+        // "Article 1" et "Article 3". Car seuls ces 2 articles sont joints à un user.
         $this->assertSame(2, $articles->count());
         $this->assertSame('Title-1', $articleFirst->title); // Car "Article 1" est joint à "user 1".
         $this->assertSame('Title-3', $articleLast->title); // Car "Article 3" est joint à "user 2".
@@ -180,7 +180,7 @@ class BelongsToTest extends TestCase
 
         // Req avec LEFT JOIN retourne les 3 rows.
         $this->assertSame(3, $articles->count());
-        $this->assertSame('Title-2', $articleFirst->title); // Car "Article 2" n'a pas d'user joint, donc sont 'user_email' vaut null.
+        $this->assertSame('Title-2', $articleFirst->title); // Car "Article 2" n'a pas d'user joint, donc son 'user_email' vaut null.
         $this->assertSame('Title-3', $articleLast->title); // Car "Article 3" est joint à "user 2".
     }
 
@@ -199,7 +199,7 @@ class BelongsToTest extends TestCase
         $articleLast = $articles->last();
 
         // Req avec JOIN retourne 2 rows :
-        // "Article 1" et "Article 3". Car seul ces 2 articles sont joint à un user.
+        // "Article 1" et "Article 3". Car seuls ces 2 articles sont joints à un user.
         $this->assertSame(2, $articles->count());
         $this->assertSame('Title-3', $articleFirst->title); // Car "Article 3" est joint à "user 2".
         $this->assertSame('Title-1', $articleLast->title); // Car "Article 1" est joint à "user 1".
@@ -214,12 +214,12 @@ class BelongsToTest extends TestCase
         // Req avec LEFT JOIN retourne les 3 rows.
         $this->assertSame(3, $articles->count());
         $this->assertSame('Title-3', $articleFirst->title); // Car "Article 3" est joint à "user 2".
-        $this->assertSame('Title-2', $articleLast->title); // Car "Article 2" n'a pas d'user joint, donc sont 'user_email' vaut null.
+        $this->assertSame('Title-2', $articleLast->title); // Car "Article 2" n'a pas d'user joint, donc son 'user_email' vaut null.
     }
 
     /*
     |--------------------------------------------------------------------------
-    | On "range" les req SQL qu'on a besoin dans plusieurs tests
+    | On "range" les req SQL dont on a besoin dans plusieurs tests
     |--------------------------------------------------------------------------
     */
 

@@ -113,7 +113,7 @@ class LarasortLinkTest extends TestCase
         config(['larasort.default_order' => 'desc']);
         $this->assertSame('desc', config('larasort.default_order'));
 
-        // "desc" car on vient de passer la conf "default_order" est à "desc"
+        // "desc" car on vient de passer la conf "default_order" à "desc"
         $this->assertSame('http://localhost/?orderby=email&order=desc', LarasortLink::getUrl('email'));
         $this->assertSame('href="http://localhost/?orderby=email&order=desc"', LarasortLink::getHref('email'));
         $this->assertSame('<span class="larasort-icon-n-2"></span>', LarasortLink::getIcon('email'));

@@ -12,7 +12,8 @@ use Illuminate\Database\Query\Builder;
 use SDamian\Larasort\Exception\LarasortException;
 
 /**
- * Larasort - This class is used to generate href and CSS class attributes.
+ * Larasort - This class is useful for making the join of a relationship (One To One, One To Many, Belongs To),
+ * and for getting the "table.column" of the relationship to use in the ORDER BY.
  *
  * @author  Stephen Damian <contact@damian-freelance.fr>
  * @license http://www.opensource.org/licenses/mit-license.php MIT
@@ -91,8 +92,8 @@ final class Related
 
                 break;
             case $relation instanceof BelongsTo:
-                $relatedPrimaryKey = $relation->getQualifiedOwnerKeyName(); // foreign_key of the table of this Model.
-                $modelPrimaryKey = $relation->getQualifiedForeignKeyName();  // primary_key of the table of the related Model.
+                $relatedPrimaryKey = $relation->getQualifiedOwnerKeyName(); // primary_key of the table of the related Model.
+                $modelPrimaryKey = $relation->getQualifiedForeignKeyName();  // foreign_key of the table of this Model.
 
                 break;
             default:

@@ -24,7 +24,7 @@ class AutosortScopeTest extends TestCase
             $this->markTestSkipped('Test requires a Sqlite connection.');
         }
 
-        // Créer la table "customers", et y insert 3 rows :
+        // Créer la table "customers", et y insérer 3 rows :
 
         $this->artisan('migrate', [
             '--path' => realpath(__DIR__.'/Fixtures/migrations/'),
@@ -33,7 +33,7 @@ class AutosortScopeTest extends TestCase
 
         Customer::storeCustomers(3);
 
-        // On a besoin de ces déonnes pour nos tests de cette class
+        // On a besoin de ces données pour nos tests de cette class
         $this->verifyRowsDataInDb();
 
         $this->assertSame(3, Customer::count());
@@ -70,13 +70,13 @@ class AutosortScopeTest extends TestCase
 
         // Conclusion :
         // En faisant des asserts sur "email", on constate que la req SQL a bien fait le ORDER BY sur "email" à ASC
-        // Ceci est du au fait qu'il n'y a pas de Request ($_GET) actif,
+        // Ceci est dû au fait qu'il n'y a pas de Request ($_GET) actif,
         // donc c'est bien sur "id" (1è colonne dans $sortables) que la req SQL a fait son ORDER BY
 
-        // On fait même test avec la conf "default_order" à "desc" eu lieu d'à "asc" :
+        // On fait même test avec la conf "default_order" à "desc" au lieu de "asc" :
 
         config(['larasort.default_order' => 'desc']);
-        $this->assertSame('desc', config('larasort.default_order')); // la conf a bien changée
+        $this->assertSame('desc', config('larasort.default_order')); // la conf a bien changé
 
         $customers = Customer::select('*')->autosort()->paginate(); // tester "scopeAutosort"
         $this->assertSame(3, $customers->total());
@@ -113,7 +113,7 @@ class AutosortScopeTest extends TestCase
         // Conclusion :
         // En faisant des asserts sur "first_name", on constate que la req SQL a bien fait le ORDER BY sur "first_name" à ASC
 
-        // On fait même test avec la conf "default_order" à "desc" eu lieu d'à "asc" :
+        // On fait même test avec la conf "default_order" à "desc" au lieu de "asc" :
 
         Request::offsetSet('orderby', 'first_name'); // ICI
         Request::offsetSet('order', 'desc');

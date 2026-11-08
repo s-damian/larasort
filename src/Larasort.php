@@ -42,7 +42,7 @@ final class Larasort
 
     /**
      * Note:
-     * - At the column passed to "$sortable", it is mandatory to put a column that exists in the table.
+     * - For the column passed to "$sortable", it is mandatory to put a column that exists in the table.
      *   We can optionally specify its table as a prefix (in this case, "Larasort::setSortablesDefaultOrder" method will just be ignored for this column).
      */
     final public static function setDefaultSortable(string $defaultSortable): void

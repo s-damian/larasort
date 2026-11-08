@@ -15,8 +15,8 @@ use SDamian\Tests\TestCase;
  * Ici on test le "One To Many".
  *
  * Ici on "simule" qu'on est dans un Controller User,
- * et qu'on travail sur un Model User qui a une relation "One To Many" avec un Model Article.
- * Un user peut avoir créé plusieurs article, un article peut avoir été créé par qu'un seul user.
+ * et qu'on travaille sur un Model User qui a une relation "One To Many" avec un Model Article.
+ * Un user peut avoir créé plusieurs articles, un article peut avoir été créé que par un seul user.
  */
 class OneToManyTest extends TestCase
 {
@@ -33,7 +33,7 @@ class OneToManyTest extends TestCase
             $this->markTestSkipped('Test requires a Sqlite connection.');
         }
 
-        // Créer la table "customers", et y insert 3 rows :
+        // Créer la table "customers", et y insérer 3 rows :
 
         $this->artisan('migrate', [
             '--path' => realpath(__DIR__.'/Fixtures/migrations/'),
@@ -44,17 +44,17 @@ class OneToManyTest extends TestCase
 
         Article::storeArticles_forOneToMany();
 
-        // On a besoin de ces déonnes pour nos tests de cette class
+        // On a besoin de ces données pour nos tests de cette class
         $this->verifyDataInDb();
     }
 
     /**
-     * Pour tester la relation One To Many, on insert 5 articles et 3 users.
+     * Pour tester la relation One To Many, on insère 5 articles et 3 users.
      * On veut :
      * - 3 articles joints à "$user1".
      * - 1 article joint à "$user2".
      * - 0 article joint à "$user3".
-     * - et le 3è article n'aura pas de user joint..
+     * - et le 3è article n'aura pas de user joint.
      */
     private function verifyDataInDb(): void
     {
@@ -83,7 +83,7 @@ class OneToManyTest extends TestCase
     */
 
     /**
-     * On test que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
+     * On teste que la req SQL JOIN de Larasort retourne bien le même résultat que la req SQL JOIN de Eloquent.
      */
     public function test_join(): void
     {
@@ -103,7 +103,7 @@ class OneToManyTest extends TestCase
     }
 
     /**
-     * On test que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
+     * On teste que la req SQL LEFT JOIN de Larasort retourne bien le même résultat que la req SQL LEFT JOIN de Eloquent.
      */
     public function test_left_join(): void
     {
@@ -246,7 +246,7 @@ class OneToManyTest extends TestCase
 
     /*
     |--------------------------------------------------------------------------
-    | On "range" les req SQL qu'on a besoin dans plusieurs tests
+    | On "range" les req SQL dont on a besoin dans plusieurs tests
     |--------------------------------------------------------------------------
     */
 

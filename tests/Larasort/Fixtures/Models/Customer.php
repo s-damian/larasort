@@ -49,8 +49,8 @@ class Customer extends Model
      *
      * PS :
      * 'id' => 'customers.id', :
-     * ça ne sert à rien (mais on test qu'il n'y est pas d'incidence).
-     * ça ne sert à rien car Larasort par défaut mett déjà en préfix de la table où le trait AutoSortable est inclut
+     * ça ne sert à rien (mais on test qu'il n'y a pas d'incidence).
+     * ça ne sert à rien car Larasort par défaut met déjà en préfixe de la table où le trait AutoSortable est inclut
      *
      * @var array<string, string>
      */
